@@ -4,7 +4,6 @@ tabulate
 expand_folders
 scikit-learn
 atlas-mpl-style
-pytorch_lightning
 matplotlib
 seaborn
 jupyterlab
@@ -16,5 +15,9 @@ dash
 dash-bootstrap-components
 python-multipart
 dash-cytoscape
-cognite-sdk
+statsmodels
+scipy
+kagglehub
+pyarrow
+fastparquet
 

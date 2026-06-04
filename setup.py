@@ -9,7 +9,7 @@ with open("requirements.txt", "r") as f:
 
 
 setup(
-    name='itm',
+    name='mixer',
     version='1.0.0',
     license='GPL-3.0',
     long_description=long_description,
