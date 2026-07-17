@@ -1,25 +1,30 @@
 SHELL := /bin/bash
 
-.PHONY: all build install jupyter dashboard clean
+# Docker parameters (can be overridden from the command line)
+PORT ?= 8888
+DATA_VOLUME ?= $(shell pwd)/data
+IMAGE_NAME ?= rap-2026
+IMAGE_TAG ?= latest
+REGISTRY ?= jodafons
+
+# Build full image tag dynamically depending on whether REGISTRY is set
+ifeq ($(REGISTRY),)
+    IMAGE_FULL_NAME := $(IMAGE_NAME):$(IMAGE_TAG)
+else
+    IMAGE_FULL_NAME := $(REGISTRY)/$(IMAGE_NAME):$(IMAGE_TAG)
+endif
+
+.PHONY: all build install jupyter clean push pull run
 
 all: build
 
 # Instala as dependências e configura o ambiente
 install: build
 
-build:
-	@echo "🔧 Configurando o ambiente virtual e instalando dependências..."
-	@bash activate.sh
-
 # Inicia o Jupyter Lab
 jupyter:
 	@echo "📓 Iniciando Jupyter Lab..."
 	@source activate.sh && jupyter lab --IdentityProvider.token="" --ServerApp.password=""
-
-# Inicia o Dashboard
-dashboard:
-	@echo "📊 Iniciando Dashboard..."
-	@source activate.sh && python termopar/dashboard.py
 
 # Limpa arquivos temporários e caches
 clean:
@@ -27,3 +32,35 @@ clean:
 	find . -type f -name "*.pyc" -delete
 	rm -rf .itm-env
 	rm -rf itm.egg-info 
+
+# --- Docker Targets ---
+
+# Build docker image
+build:
+	@echo "🐳 Building Docker image $(IMAGE_FULL_NAME)..."
+	docker build -t $(IMAGE_FULL_NAME) .
+
+# Push docker image to registry
+push:
+	@if [ -z "$(REGISTRY)" ]; then \
+		echo "❌ Error: REGISTRY variable is not set. Cannot push. Try: make push REGISTRY=myregistry.com"; \
+		exit 1; \
+	fi
+	@echo "🚀 Pushing Docker image $(IMAGE_FULL_NAME)..."
+	docker push $(IMAGE_FULL_NAME)
+
+# Pull docker image from registry
+pull:
+	@echo "📥 Pulling Docker image $(IMAGE_FULL_NAME)..."
+	docker pull $(IMAGE_FULL_NAME)
+
+# Run container with parameterized port and volume
+run:
+	@echo "🏃 Running Docker container..."
+	@echo "🔗 Jupyter will be available at: http://localhost:$(PORT)"
+	@echo "📂 Mount directory (local): $(DATA_VOLUME)"
+	@mkdir -p $(DATA_VOLUME)
+	docker run -it --rm \
+		-p $(PORT):8888 \
+		-v "$(DATA_VOLUME):/app/data" \
+		$(IMAGE_FULL_NAME)

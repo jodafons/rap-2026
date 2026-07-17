@@ -18,7 +18,3 @@ scipy
 kagglehub
 pyarrow
 fastparquet
-typing_extensions
-polars 
-
-
