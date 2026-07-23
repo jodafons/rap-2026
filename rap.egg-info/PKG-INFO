@@ -30,6 +30,8 @@ Requires-Dist: scipy
 Requires-Dist: kagglehub
 Requires-Dist: pyarrow
 Requires-Dist: fastparquet
+Requires-Dist: typing_extensions
+Requires-Dist: polars
 Dynamic: classifier
 Dynamic: description
 Dynamic: description-content-type
