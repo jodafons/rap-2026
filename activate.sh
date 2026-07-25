@@ -9,5 +9,5 @@ if [ -d "$VIRTUALENV_PATH" ]; then
 else
     virtualenv -p python ${VIRTUALENV_PATH}
     source $VIRTUALENV_PATH/bin/activate
-    pip install -e .
+    pip install -r requirements.txt
 fi

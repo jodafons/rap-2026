@@ -31,8 +31,7 @@ clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type f -name "*.pyc" -delete
 	rm -rf .rap-2026-env
-	rm -rf rap.egg-info 
-
+	
 # --- Docker Targets ---
 
 # Build docker image

@@ -28,15 +28,12 @@ COPY requirements.txt .
 RUN python3 -m pip install --no-cache-dir --upgrade pip && \
     python3 -m pip install --no-cache-dir -r requirements.txt
 
-# Copy setup.py, README.md, and package source code
-COPY setup.py README.md .
-COPY rap ./rap
 
-# Install the local package
-RUN python3 -m pip install --no-cache-dir .
+RUN mkdir -p notebooks/lessons
 
 # Copy notebooks into the container
-COPY notebooks ./notebooks
+COPY notebooks/*.ipynb ./notebooks
+COPY notebooks/lessons/* ./notebooks/lessons
 
 # Create the data directory (to be used as a volume mount point)
 RUN mkdir -p /app/data
