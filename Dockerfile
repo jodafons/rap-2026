@@ -29,11 +29,13 @@ RUN python3 -m pip install --no-cache-dir --upgrade pip && \
     python3 -m pip install --no-cache-dir -r requirements.txt
 
 
-RUN mkdir -p notebooks/lessons
+RUN mkdir -p notebooks/Exercícios
+RUN mkdir -p notebooks/Material
 
 # Copy notebooks into the container
-COPY notebooks/*.ipynb ./notebooks
-COPY notebooks/lessons/* ./notebooks/lessons
+COPY notebooks/*.ipynb ./notebooks/
+COPY notebooks/Exerc*/* ./notebooks/Exercícios/
+COPY notebooks/Material/* ./notebooks/Material/
 
 # Create the data directory (to be used as a volume mount point)
 RUN mkdir -p /app/data
