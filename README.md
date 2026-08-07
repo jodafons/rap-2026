@@ -21,36 +21,6 @@ A disciplina tem por finalidade consolidar os conceitos fundamentais de lógica 
 
 ---
 
-## 📋 Conteúdo Programático (Planejamento de Aulas)
-
-A ementa da disciplina está organizada nas seguintes sessões:
-
-| Aula | Conteúdo Programático |
-| :---: | :--- |
-| **01** | Apresentação da Disciplina, Introdução ao Python, Docker, Jupyter Lab e IDE (VS Code). |
-| **02** | Variáveis, Tipos Primitivos, Conversão de Tipos (*Casting*), Funções Integradas (*Built-ins*), Condicionais e Introdução a Funções. |
-| **03** | Estruturas de Repetição (`for` e `while`) e Controle de Fluxo (`break` e `continue`). |
-| **04** | Estruturas de Dados Dinâmicas: Listas, Matrizes e Métodos Principais (`append`, `insert`, `remove`). |
-| **05** | Atividades Práticas Dirigidas. |
-| **06** | Manipulação de Cadeias de Caracteres (*Strings*), Fatiamento e Métodos de Busca/Validação. |
-| **07** | Atividades Práticas Dirigidas. |
-| **08** | Estruturas de Dados de Associação: Dicionários, Métodos de Busca e Análise de Complexidade. |
-| **09** | Estruturas de Dados Estáticas: Tuplas, Imutabilidade e Desempacotamento de Variáveis (*Unpacking*). |
-| **10** | Entrada e Saída de Dados (I/O): Gerenciamento de Contexto (`with`), Leitura/Escrita de Arquivos (TXT, CSV, JSON) e Módulos `os`/`pathlib`. |
-| **11** | Funções Avançadas: Escopo de Variáveis (Global vs Local), Parâmetros Opcionais, Empacotamento (`*args`/`**kwargs`) e Tipagem. |
-| **12** | Atividades Práticas Dirigidas. |
-| **13** | Paradigma de Orientação a Objetos (POO): Classes, Atributos, Construtores, Herança e Sobrescrita de Métodos. |
-| **14** | Atividades Práticas Dirigidas. |
-| **15** | **Prova Escrita Individual (PI)** e Entrega da Primeira Lista de Exercícios (L1). |
-| **16** | Resolução da Primeira Lista de Exercícios (L1). |
-| **17** | Introdução à Visualização de Dados: Arquitetura do `Matplotlib`, Gráficos Bidimensionais e Customização de Elementos. |
-| **18** | Computação Numérica de Alto Desempenho com `NumPy`: Arrays, Operações Vetorizadas e Álgebra Linear. |
-| **19** | Análise de Dados com `Pandas`: Estruturas `Series` e `DataFrame`, Leitura de CSVs, Seleção/Filtragem e Agrupamentos (`groupby`). |
-| **20** | Atividades Práticas Dirigidas. |
-| **21** | Entrega da Segunda Lista de Exercícios (L2) e Resolução. |
-
----
-
 ## 📂 Estrutura do Repositório
 
 O repositório está organizado de forma a separar os materiais de instrução, exercícios e gabaritos:
