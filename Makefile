@@ -14,7 +14,7 @@ else
     IMAGE_FULL_NAME := $(REGISTRY)/$(IMAGE_NAME):$(IMAGE_TAG)
 endif
 
-.PHONY: all build install jupyter clean push pull run
+.PHONY: all build install jupyter clean push pull run update
 
 all: build
 
@@ -63,3 +63,39 @@ run:
 		-p $(PORT):8888 \
 		-v "$(DATA_VOLUME):/app/data" \
 		$(IMAGE_FULL_NAME)
+
+# Atualiza o repositório Git evitando conflitos com alterações locais do aluno
+update:
+	@echo "🔍 Verificando alterações locais..."
+	@HAS_CHANGES=$$(git status --porcelain | grep -v '^??' || true); \
+	if [ -n "$$HAS_CHANGES" ]; then \
+		echo "📦 Alterações locais detectadas. Salvando temporariamente com git stash..."; \
+		if git stash; then \
+			STASHED=1; \
+		else \
+			echo "❌ Falha ao salvar alterações locais com git stash. Abortando."; \
+			exit 1; \
+		fi; \
+	else \
+		STASHED=0; \
+	fi; \
+	echo "📥 Puxando atualizações do servidor (git pull)..."; \
+	if git pull; then \
+		PULL_SUCCESS=1; \
+	else \
+		PULL_SUCCESS=0; \
+		echo "❌ Erro ao executar git pull. Verifique sua conexão ou configuração do Git."; \
+	fi; \
+	if [ "$$STASHED" -eq 1 ]; then \
+		echo "📤 Restaurando suas alterações locais..."; \
+		if git stash pop; then \
+			echo "✅ Atualização concluída com sucesso e alterações locais reaplicadas!"; \
+		else \
+			echo "⚠️  Houve conflitos ao reaplicar suas alterações locais."; \
+			echo "👉 Por favor, resolva os conflitos nos arquivos listados acima ou use 'git stash drop' se quiser descartar suas alterações locais para ficar com a versão limpa do servidor."; \
+		fi; \
+	else \
+		if [ "$$PULL_SUCCESS" -eq 1 ]; then \
+			echo "✅ Repositório atualizado com sucesso!"; \
+		fi; \
+	fi
