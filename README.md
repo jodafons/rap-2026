@@ -70,63 +70,50 @@ O repositório está organizado de forma a separar os materiais de instrução, 
 
 ---
 
-## 🛠️ Instruções para Configuração do Ambiente
+## 🛠️ Instruções de Uso
 
-### Requisitos Prévios
-*   Python 3.8 ou superior instalado localmente.
-*   Ferramenta `make` (instalada nativamente em sistemas macOS/Linux).
-*   Docker (opcional, recomendado para isolamento completo do ambiente).
+O repositório disponibiliza comandos automatizados via `make` para facilitar a inicialização do ambiente e a atualização do material.
 
-### Opção 1: Configuração Local (Ambiente Virtual)
-
-1.  **Instalação de Dependências**:
-    Para criar automaticamente o ambiente virtual Python (`.rap-2026-env`) e instalar as dependências listadas em `requirements.txt`, execute o seguinte comando no terminal:
-    ```bash
-    make install
-    ```
-
-2.  **Inicialização do Jupyter Lab**:
-    Após a instalação, ative o ambiente virtual e inicie a interface interativa do Jupyter Lab executando:
-    ```bash
-    make jupyter
-    ```
-    A interface do Jupyter será aberta no navegador padrão.
-
-3.  **Limpeza de Caches e Arquivos Temporários**:
-    Para limpar arquivos de cache do Python (`__pycache__`, `*.pyc`) e reiniciar o ambiente virtual:
-    ```bash
-    make clean
-    ```
-
-### Opção 2: Configuração via Docker (Recomendada para Padronização)
-
-1.  **Construção da Imagem Docker**:
-    Para construir a imagem Docker contendo o sistema e todas as dependências configuradas:
-    ```bash
-    make build
-    ```
-
-2.  **Execução do Contêiner**:
-    Para inicializar o ambiente Jupyter Lab isolado dentro do contêiner:
-    ```bash
-    make run
-    ```
-    O servidor Jupyter estará disponível em seu navegador em `http://localhost:8888` (sem necessidade de senha). A pasta local `/data` será montada como volume compartilhado para persistência de dados.
-
----
-
-## 🔄 Sincronização e Atualização do Material
-
-À medida que o curso avança, novos materiais e exercícios serão disponibilizados no repositório central. Para atualizar o seu ambiente local de forma simples e segura, execute o seguinte comando:
-
+### 1. Atualizar o Repositório (`make update`)
+Sincroniza o seu ambiente local com o repositório central de forma simples e segura:
 ```bash
 make update
 ```
+*   **Área do Aluno Preservada**: Todo o conteúdo de `notebooks/Aluno/` é ignorado pelo Git e **nunca** será apagado ou modificado.
+*   **Restante Sincronizado**: Para evitar conflitos de versão, qualquer alteração local em arquivos oficiais localizados fora da pasta do aluno será descartada e substituída pela versão mais recente do servidor.
+*   **Backup Automático**: Se você tiver alterações locais em arquivos oficiais, o comando criará automaticamente um backup temporário (`git stash`) antes de realizar a sincronização.
 
-### Como funciona:
-*   **Preservação da Área do Aluno**: O comando **ignora completamente** a pasta `notebooks/Aluno/`. Tudo o que você criar ou modificar dentro dessa pasta estará protegido e não sofrerá nenhuma alteração ou risco de conflitos.
-*   **Sincronização Obrigatória**: Para garantir que você receba todos os cadernos de aulas e materiais atualizados sem erros, qualquer alteração feita nos arquivos fora de `notebooks/Aluno/` será descartada e substituída pela versão oficial do repositório central.
-*   **Backup automático**: Se você tiver alterações locais em arquivos rastreados fora da pasta do aluno, o comando criará automaticamente um backup temporário de segurança (`git stash`) antes de prosseguir com a sincronização.
+---
+
+### 2. Execução Local (`make jupyter`)
+Para configurar o ambiente virtual local (caso não exista) e iniciar a interface interativa do Jupyter Lab:
+```bash
+make jupyter
+```
+*O ambiente virtual Python e a instalação de dependências são gerenciados automaticamente na primeira execução do comando.*
+
+---
+
+### 3. Execução via Docker (Opcional)
+Para quem prefere utilizar Docker para isolamento completo do ambiente:
+
+*   **Construir a imagem localmente**:
+    ```bash
+    make build
+    ```
+*   **Baixar a imagem pronta do registro**:
+    ```bash
+    make pull
+    ```
+*   **Enviar a imagem local para o registro** (uso docente):
+    ```bash
+    make push
+    ```
+*   **Iniciar o contêiner com Jupyter Lab**:
+    ```bash
+    make run
+    ```
+    *O Jupyter estará disponível em `http://localhost:8888` e as leituras de arquivos ocorrerão a partir da pasta `/data` montada localmente.*
 
 ---
 
