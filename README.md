@@ -57,6 +57,7 @@ O repositório está organizado de forma a separar os materiais de instrução, 
 
 ```
 ├── notebooks/                     # Diretório contendo os cadernos Jupyter das aulas
+│   ├── Aluno/                     # Área de trabalho individual do aluno (não sincronizada)
 │   ├── Exercícios/                # Exercícios práticos contextualizados com cenários acústicos e navais
 │   ├── Material/                  # PDFs com planejamento de aulas e apresentações teóricas
 │   └── Professor/                 # Cadernos de apoio docente e gabaritos das atividades
@@ -111,6 +112,21 @@ O repositório está organizado de forma a separar os materiais de instrução, 
     make run
     ```
     O servidor Jupyter estará disponível em seu navegador em `http://localhost:8888` (sem necessidade de senha). A pasta local `/data` será montada como volume compartilhado para persistência de dados.
+
+---
+
+## 🔄 Sincronização e Atualização do Material
+
+À medida que o curso avança, novos materiais e exercícios serão disponibilizados no repositório central. Para atualizar o seu ambiente local de forma simples e segura, execute o seguinte comando:
+
+```bash
+make update
+```
+
+### Como funciona:
+*   **Preservação da Área do Aluno**: O comando **ignora completamente** a pasta `notebooks/Aluno/`. Tudo o que você criar ou modificar dentro dessa pasta estará protegido e não sofrerá nenhuma alteração ou risco de conflitos.
+*   **Sincronização Obrigatória**: Para garantir que você receba todos os cadernos de aulas e materiais atualizados sem erros, qualquer alteração feita nos arquivos fora de `notebooks/Aluno/` será descartada e substituída pela versão oficial do repositório central.
+*   **Backup automático**: Se você tiver alterações locais em arquivos rastreados fora da pasta do aluno, o comando criará automaticamente um backup temporário de segurança (`git stash`) antes de prosseguir com a sincronização.
 
 ---
 
