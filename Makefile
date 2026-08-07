@@ -64,38 +64,23 @@ run:
 		-v "$(DATA_VOLUME):/app/data" \
 		$(IMAGE_FULL_NAME)
 
-# Atualiza o repositório Git evitando conflitos com alterações locais do aluno
+# Atualiza o repositório Git de acordo com o repositório central, preservando a pasta notebooks/Aluno/
 update:
-	@echo "🔍 Verificando alterações locais..."
-	@HAS_CHANGES=$$(git status --porcelain | grep -v '^??' || true); \
+	@echo "🔍 Verificando repositório..."
+	@git fetch --all
+	@UPSTREAM=$$(git rev-parse --abbrev-ref @{u} 2>/dev/null || echo "origin/main"); \
+	HAS_CHANGES=$$(git status --porcelain | grep -v '^??' || true); \
 	if [ -n "$$HAS_CHANGES" ]; then \
-		echo "📦 Alterações locais detectadas. Salvando temporariamente com git stash..."; \
+		echo "📦 Alterações locais detectadas. Salvando backup temporário com git stash..."; \
 		if git stash; then \
-			STASHED=1; \
+			echo "💾 Backup salvo."; \
 		else \
-			echo "❌ Falha ao salvar alterações locais com git stash. Abortando."; \
+			echo "❌ Falha ao criar backup. Abortando."; \
 			exit 1; \
 		fi; \
-	else \
-		STASHED=0; \
 	fi; \
-	echo "📥 Puxando atualizações do servidor (git pull)..."; \
-	if git pull; then \
-		PULL_SUCCESS=1; \
-	else \
-		PULL_SUCCESS=0; \
-		echo "❌ Erro ao executar git pull. Verifique sua conexão ou configuração do Git."; \
-	fi; \
-	if [ "$$STASHED" -eq 1 ]; then \
-		echo "📤 Restaurando suas alterações locais..."; \
-		if git stash pop; then \
-			echo "✅ Atualização concluída com sucesso e alterações locais reaplicadas!"; \
-		else \
-			echo "⚠️  Houve conflitos ao reaplicar suas alterações locais."; \
-			echo "👉 Por favor, resolva os conflitos nos arquivos listados acima ou use 'git stash drop' se quiser descartar suas alterações locais para ficar com a versão limpa do servidor."; \
-		fi; \
-	else \
-		if [ "$$PULL_SUCCESS" -eq 1 ]; then \
-			echo "✅ Repositório atualizado com sucesso!"; \
-		fi; \
-	fi
+	echo "🔄 Forçando sincronização de todo o resto com o repositório central ($$UPSTREAM)..."; \
+	git reset --hard $$UPSTREAM; \
+	echo "🧹 Limpando arquivos extras (mantendo notebooks/Aluno)..."; \
+	git clean -fd -e "notebooks/Aluno/"; \
+	echo "✅ Repositório atualizado com sucesso de acordo com o repositório central!"
