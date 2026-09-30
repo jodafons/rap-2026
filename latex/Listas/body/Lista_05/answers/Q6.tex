@@ -1,0 +1,16 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 6:
+def eh_palindromo(texto):
+    # Padroniza letras para minúsculas e remove espaços
+    texto_limpo = texto.lower().replace(" ", "")
+    
+    # Verifica se a string é igual ao seu inverso
+    return texto_limpo == texto_limpo[::-1]
+
+# Testes (Item b):
+print(eh_palindromo("Arara"))                                    # Esperado: True
+print(eh_palindromo("socorram me subi no onibus em marrocos")) # Esperado: True
+print(eh_palindromo("Python"))                                   # Esperado: False
+\end{minted}
+}

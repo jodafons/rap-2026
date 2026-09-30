@@ -1,0 +1,27 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 4:
+def diferenca_listas(lista1, lista2):
+    resultado = []
+    i = 0
+    while i < len(lista1):
+        elemento = lista1[i]
+        # Verifica se 'elemento' está na lista2 sem usar o operador 'in'
+        encontrado = False
+        j = 0
+        while j < len(lista2):
+            if lista2[j] == elemento:
+                encontrado = True
+            j += 1
+        
+        if not encontrado:
+            resultado.append(elemento)
+        i += 1
+    return resultado
+
+# Testes (Item b):
+print(diferenca_listas([1, 2, 3, 4, 5], [2, 4, 6])) # Esperado: [1, 3, 5]
+print(diferenca_listas([10, 20], [10, 20, 30]))     # Esperado: []
+print(diferenca_listas([1, 2, 3], []))               # Esperado: [1, 2, 3]
+\end{minted}
+}

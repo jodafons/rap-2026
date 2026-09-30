@@ -1,0 +1,12 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 10
+def apurar_votacao(lista_votos):
+    contagem = {}
+    for voto in lista_votos:
+        contagem[voto] = contagem.get(voto, 0) + 1
+        
+    vencedor = max(contagem, key=contagem.get)
+    return (vencedor, contagem[vencedor])
+\end{minted}
+}

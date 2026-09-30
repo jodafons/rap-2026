@@ -1,0 +1,34 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta:
+def calcular_pontuacao_final(encontradas, total, tempo_limite, tempo_conclusao):
+
+    porcentagem = encontradas/total
+    pontos = 0
+    
+    # verificando pontos
+    if encontradas == total:
+        pontos = 100
+    elif porcentagem > 0.7:
+        pontos = 50
+    elif porcentagem >= 0.3 and porcentagem <= 0.7:
+        pontos = 25
+    else: # porcentagem < 30 %
+        pontos 0
+
+    fator_de_penalizacao = 1
+    atraso = tempo_conclusao - tempo_limite
+
+    # penalizando o jogador pelo tempo
+    if atraso <= 0:
+        fator_de_penalizacao = 1
+    elif atraso < 10:
+        fator_penalizacao = 0.8
+    elif atraso >= 10 and atraso <= 30:
+        fator_penalizacao = 0.4
+    else:
+        fator_penalizacao = 0
+
+    return pontos * fator_penalizacao
+\end{minted}
+}

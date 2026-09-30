@@ -1,0 +1,19 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 3:
+def area_trapezio(f, delta_t):
+    if len(f) <= 1:
+        return 0.0
+    
+    area = 0.0
+    x = 1
+    while x < len(f):
+        area += ((f[x] + f[x - 1]) * delta_t) / 2.0
+        x += 1
+    return area
+
+# Testes (Item b):
+print(area_trapezio([2, 4, 6, 8], 1.0))  # Esperado: 15.0
+print(area_trapezio([1, 1, 1, 1], 0.5))  # Esperado: 1.5
+\end{minted}
+}

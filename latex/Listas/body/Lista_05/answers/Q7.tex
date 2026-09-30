@@ -1,0 +1,16 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 7:
+def mascara_email(email):
+    partes = email.split("@")
+    usuario = partes[0]
+    dominio = partes[1]
+    
+    usuario_mascarado = usuario[:2] + "****"
+    return usuario_mascarado + "@" + dominio
+
+# Testes (Item b):
+print(mascara_email("joao.silva@gmail.com")) # Esperado: "jo****@gmail.com"
+print(mascara_email("aluno@ufrj.br"))        # Esperado: "al****@ufrj.br"
+\end{minted}
+}

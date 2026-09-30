@@ -1,0 +1,94 @@
+
+\vspace{1cm}
+
+\noindent  \textbf{Leia as instruções antes de fazer a lista:}
+
+\vspace{0.3cm}
+\begin{itemize}
+    \item O uso de \textbf{Type Hints} importados estritamente da biblioteca \code{typing} (\code{List}, \code{Dict}, \code{Union}, etc.) é \textbf{obrigatório} em todas as assinaturas e variáveis.
+    \item Utilize sempre o gerenciador de contexto \code{with} para manipulação de arquivos.
+    \item Não é necessário testar se os dados passados por argumento são válidos a menos que pedido na questão.
+\end{itemize}
+\vspace{0.5cm}
+
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+
+\item Um oficial de quarto precisa registrar o estado de navegação da embarcação em um arquivo de texto. Crie uma função chamada 
+
+\code{salvar\_diario\_bordo(caminho\_arquivo: str, registros: List[str]) -> bool} que receba o caminho de um arquivo e uma lista de strings. A função deve abrir o arquivo no modo de escrita (\code{'w'}) utilizando o gerenciador de contexto \code{with} e escrever cada linha seguida de uma quebra de linha \code{\textbackslash n}. A função deve retornar \code{True} após concluir a operação com sucesso.
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"diario.txt"}, \code{["10:00 - Rumo 180", "11:00 - Mar Calmo"]}
+    \item \textbf{Saída:} \code{True} (e o arquivo \code{"diario.txt"} criado no disco)
+\end{itemize}
+
+\input{body/answers/Q1}
+
+\item Para não sobrescrever o histórico do diário de bordo mantido no arquivo, é necessário adicionar novos eventos ao final do documento existente. Escreva uma função chamada 
+
+\code{anexar\_evento\_diario(caminho\_arquivo: str, evento: str) -> None} que receba o caminho do arquivo e uma string contendo um novo evento. A função deve utilizar o modo de abertura \code{'a'} (append) para inserir o evento no final do arquivo.
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"diario.txt"}, \code{"12:00 - Chegada ao ponto de controle"}
+    \item \textbf{Saída:} \code{None} (linha anexada ao final do arquivo \code{"diario.txt"})
+\end{itemize}
+
+
+\input{body/answers/Q2}
+
+\item Crie uma função chamada \code{ler\_diario\_bordo(caminho\_arquivo: str) -> List[str]} que receba o caminho de um arquivo de texto existente. A função deve abrir o arquivo no modo de leitura (\code{'r'}), ler todas as linhas utilizando o método \code{.readlines()} ou iteração direta, remover os caracteres de quebra de linha (\code{\textbackslash n}) de cada registro com \code{.strip()}, e retornar uma lista contendo apenas as linhas que não estejam em branco.
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"diario.txt"}
+    \item \textbf{Saída:} \code{['10:00 - Rumo 180', '11:00 - Mar Calmo',}\\\code{'12:00 - Chegada ao ponto de controle']}
+\end{itemize}
+
+\input{body/answers/Q3}
+
+
+
+\item Em um sistema de controle, as configurações de parâmetros de rede são mantidas em arquivo JSON. Crie duas funções utilizando a biblioteca nativa \code{json}:
+\begin{enumerate}
+    \item \code{salvar\_configuracao(caminho\_json: str, config: Dict[str, Any]) -> None}: grava o dicionário no arquivo usando \code{json.dump()}.
+    \item \code{carregar\_configuracao(caminho\_json: str) -> Dict[str, Any]}: lê e retorna o dicionário do arquivo usando \code{json.load()}.
+\end{enumerate}
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"config.json"}, \code{\{"ip": "192.168.1.1", "porta": 8080, "ativo": True\}}
+    \item \textbf{Saída (da leitura):} \code{\{'ip': '192.168.1.1', 'porta': 8080, 'ativo': True\}}
+\end{itemize}
+
+\input{body/answers/Q4}
+
+
+\item O sistema de monitoramento de um reator nuclear necessita gravar logs de emergência estruturados em formato JSON contendo parâmetros de operação e alertas de segurança. Crie uma função chamada 
+
+\code{registrar\_log\_reator(caminho\_log: str, dados\_reator: Dict[str, Any]) -> bool} que receba o caminho de um arquivo JSON e um dicionário contendo os dados operacionais:
+
+\begin{minted}{python}
+dados_reator = {
+    "temperatura_celsius": 345.8,
+    "pressao_bar": 155.2,
+    "status": "ALERTA_TEMPERATURA",
+    "alertas_ativos": ["TEMP_ELEVADA", "FLUXO_REDUZIDO"]
+}
+\end{minted}
+
+A função deve:
+\begin{enumerate}
+    \item Verificar se o arquivo \code{caminho\_log} já existe no disco.
+    \item Se o arquivo existir, carregar seu conteúdo (que deve ser uma lista de logs estruturados em formato JSON) usando \code{json.load()}. Se não existir, inicializar uma nova lista vazia.
+    \item Adicionar o novo dicionário \code{dados\_reator} à lista de logs.
+    \item Salvar a lista atualizada de volta no arquivo JSON com indentação de 4 espaços (\code{indent=4}).
+    \item Retornar \code{True} ao final da operação.
+\end{enumerate}
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"logs\_reator.json"}, o dicionário \code{dados\_reator} fornecido.
+    \item \textbf{Saída:} \code{True} (e o arquivo \code{"logs\_reator.json"} atualizado com a lista de logs em formato JSON)
+\end{itemize}
+
+\input{body/answers/Q5}
+
+\end{enumerate}

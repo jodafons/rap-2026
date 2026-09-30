@@ -1,0 +1,13 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 9
+def mapear_posicoes(texto):
+    palavras = texto.lower().split()
+    mapa = {}
+    for idx, palavra in enumerate(palavras):
+        if palavra not in mapa:
+            mapa[palavra] = []
+        mapa[palavra].append(idx)
+    return mapa
+\end{minted}
+}

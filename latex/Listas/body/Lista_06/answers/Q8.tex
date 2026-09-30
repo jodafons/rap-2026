@@ -1,0 +1,16 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 8
+usuarios = [
+    {"nome": "Carlos", "email": "carlos@email.com", "cpf": "123.456.789-00", "ativo": True},
+    {"nome": "Mariana", "email": "mariana@email.com", "cpf": "987.654.321-11", "ativo": False},
+    {"nome": "Pedro", "email": "pedro@email.com", "cpf": "456.789.123-22", "ativo": True}
+]
+
+for usuario in usuarios:
+    if not usuario["ativo"] and "cpf" in usuario:
+        del usuario["cpf"]
+
+print(usuarios)
+\end{minted}
+}

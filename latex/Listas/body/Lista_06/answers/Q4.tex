@@ -1,0 +1,20 @@
+
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 4
+import string
+
+def agrupar_por_tamanho(frase):
+    frase_limpa = frase.translate(str.maketrans('', '', string.punctuation)).lower()
+    palavras = frase_limpa.split()
+    
+    grupos = {}
+    for palavra in palavras:
+        tamanho = len(palavra)
+        if tamanho not in grupos:
+            grupos[tamanho] = []
+        grupos[tamanho].append(palavra)
+        
+    return grupos
+\end{minted}
+}

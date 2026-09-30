@@ -1,0 +1,24 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 8:
+def palavras_longas(frase, k):
+    palavras = frase.split()
+    resultado = []
+    i = 0
+    while i < len(palavras):
+        if len(palavras[i]) >= k:
+            resultado.append(palavras[i])
+        i += 1
+    return resultado
+
+# Testes (Item b):
+print(palavras_longas("A estrutura de repeticao while e o tipo lista", 5))
+# Esperado: ['estrutura', 'repeticao', 'while', 'lista']
+
+print(palavras_longas("Python e uma linguagem incrivel", 7))
+# Esperado: ['linguagem', 'incrivel']
+
+print(palavras_longas("a b c", 2))
+# Esperado: []
+\end{minted}
+}

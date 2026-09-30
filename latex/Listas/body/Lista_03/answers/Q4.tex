@@ -1,0 +1,29 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta:
+def somar_pares( n, s ):
+
+    if not (type(n)==int) or not (type(s)==int):
+        print("Os valores de n e s precisam ser inteiros.")
+        return -2
+        
+    if n < 0 or s < 0:
+        print("Os valores de n e s precisam ser positivos.")
+        return -2
+
+    soma = 0
+    for numero in range( 0, n+1, 1 ):
+
+        if n % 2 != 0:
+            continue
+            
+        # devo testar antes de contabilizar
+        if soma+numero > s:
+            break
+
+        # como não passou o limite s, eu contabilizo
+        soma += numero
+    return soma        
+
+\end{minted}
+}

@@ -1,0 +1,66 @@
+
+\vspace{1cm}
+
+\noindent  \textbf{Leia as instruções antes de fazer a lista:}
+
+\vspace{0.3cm}
+\noindent  Não utilize nenhum módulo, método ou função já existente no Python exceto pela função \code{print}. Não é necessário testar se os dados passados por argumento são válidos a menos que pedido na questão.
+
+
+\vspace{0.5cm}
+
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+
+
+  
+
+    \item Escreva uma função em Python que recebe por argumento dois números inteiros e maiores que zero e calcula o somatório de todos os números múltiplos de três e/ou múltiplos de cinco dentro desta faixa (incluindo os números dos argumentos). Utilize a estrutura de repetição \code{for} para fazer a questão.
+
+    \input{body/answers/Q1}
+
+    \vspace{0.5cm}
+
+    \item A função exponencial natural pode ser calculada utilizando a seguinte série:
+    \[
+    e^{x} = \sum_{n=0}^{m} \frac{x^{n}}{n!} = \frac{x^{0}}{0!} + \frac{x^{1}}{1!} + \frac{x^{2}}{2!} + \dots + \frac{x^{m}}{m!}
+    \]
+    Veja que $m$ representa o número de termos do somatório que são usados. Nessa questão você deve, necessariamente, fazer três funções em Python:
+    \begin{itemize}
+        \item uma para cálculo do fatorial (cujo nome deve terminar com \texttt{2a});
+        \item uma para o cálculo da potência sem o uso do operador com dupla asterisco \texttt{**}, a potência deve ser calculada com \code{while} (cujo nome deve terminar com o número \texttt{2b});
+        \item outra para cálculo da função exponencial (cujo nome deve terminar com o número \texttt{2c}).
+    \end{itemize}
+    A função para cálculo do fatorial (\texttt{2a}) recebe por argumento um número inteiro e maior ou igual a $0$ e retorna o fatorial desse número (lembrando que o fatorial de $0$ é $1$). A função para cálculo da potência (\texttt{2b}) recebe dois números inteiros e positivos por argumento e retorna o resultado do primeiro número elevado ao segundo número. A função para cálculo da exponencial (\texttt{2c}) recebe os números $x$ e $m$ por argumento (nessa ordem) e calcula a função exponencial de acordo com o somatório acima. A função de cálculo da função exponencial deve chamar a função fatorial para encontrar os denominadores e deve chamar a função de potência para cálculo dos numeradores. Considere que $x$ é um \code{float} e que $m$ é um inteiro positivo e maior ou igual a $0$. A função \texttt{2c} deve retornar o resultado da exponencial de acordo com o cálculo da série.
+
+    \input{body/answers/Q2}
+
+    \vspace{0.5cm}
+    \item A sequência de Fibonacci é uma série numérica em que cada termo é dado pela soma dos dois anteriores, iniciando em 0 e 1:
+    \[
+    0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, \dots
+    \]
+
+    \noindent Escreva uma função em Python que receba como argumento um número inteiro $n$ ($n > 0$), exiba na tela a sequência até o $n$-ésimo termo e retorne o valor do $n$-ésimo elemento. A função deve validar o parâmetro $n$ antes da execução do cálculo, retornando os seguintes códigos de erro:
+    \begin{itemize}
+    \item \code{-1} caso $n$ \textbf{não seja} do tipo inteiro (\code{int});
+    \item \code{-2} caso $n$ \textbf{não seja} estritamente maior que zero ($n \le 0$).
+    \end{itemize}
+
+    \noindent  Utilize a estrutura de repetição \code{for} para fazer a questão.
+
+    \input{body/answers/Q3}
+
+    \vspace{0.5cm}
+    \item Escreva uma função em Python que receba dois números inteiros positivos, $n$ e $s$. A função deve calcular a soma dos números pares no intervalo de $0$ até $n$, interrompendo o processo imediatamente antes que o somatório ultrapasse o limite $s$.
+    A função deve validar os parâmetros $n$ e $s$ antes do cálculo, retornando os seguintes valores:
+    \begin{itemize}
+        \item \code{-1} caso $n$ ou $s$ \textbf{não sejam} do tipo inteiro (\code{int});
+        \item \code{-2} caso $n$ ou $s$ \textbf{não sejam} estritamente positivos ($n \le 0$ ou $s \le 0$);
+        \item O valor do somatório resultante, caso os dados de entrada sejam válidos.
+    \end{itemize}
+
+    \noindent É \textbf{obrigatório} utilizar as estruturas \code{for}, \code{continue} e \code{break} na solução.
+
+    \input{body/answers/Q4}
+\end{enumerate}

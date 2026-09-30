@@ -1,0 +1,170 @@
+
+\vspace{1cm}
+
+\noindent  \textbf{Leia as instruções antes de fazer a lista:}
+
+\vspace{0.3cm}
+\noindent  Não é necessário testar se os dados passados por argumento são válidos a menos que pedido na questão.
+
+
+\vspace{0.5cm}
+
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+
+
+
+    % Questão 1
+    \item Escreva uma função em Python que busca todas as ocorrências de um determinado número em uma lista.
+    \begin{enumerate}[label=\alph*)]
+        \item A função deve receber por argumento uma lista de números e um número (nessa ordem), e retornar uma nova lista contendo as posições (índices) em que esse número aparece na lista passada por argumento. Se o número não existir na lista, a função deve retornar uma lista vazia.
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{busca\_posicoes([10, 20, 30, 20, 40, 20], 20)} $\rightarrow$ \textbf{Saída Esperada:} \code{[1, 3, 5]}
+            \item \textbf{Entrada:} \code{busca\_posicoes([1, 2, 3, 4, 5], 99)} $\rightarrow$ \textbf{Saída Esperada:} \code{[]}
+            \item \textbf{Entrada:} \code{busca\_posicoes([], 5)} $\rightarrow$ \textbf{Saída Esperada:} \code{[]}
+        \end{itemize}
+    \end{enumerate}
+
+    \vspace{0.5cm}
+
+    \input{body/answers/Q1}
+
+    % Questão 2
+    \item O produto escalar entre dois vetores $a$ e $b$ de tamanho $n$ é definido por:
+    \[
+    [a_{1}, a_{2}, \dots, a_{n}] \cdot 
+    \begin{bmatrix}
+    b_{1} \\
+    b_{2} \\
+    \vdots \\
+    b_{n}
+    \end{bmatrix}
+    = a_{1} \cdot b_{1} + a_{2} \cdot b_{2} + \dots + a_{n} \cdot b_{n}
+    \]
+    \begin{enumerate}[label=\alph*)]
+        \item Escreva uma função em Python que recebe por argumento duas listas que representam vetores e retorna o resultado do produto escalar entre elas. Considere que as listas recebidas possuem o mesmo tamanho e que todos os seus elementos são números.
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{produto\_escalar([1, 2, 3], [4, 5, 6])} $\rightarrow$ \textbf{Saída Esperada:} \code{32}
+            \item \textbf{Entrada:} \code{produto\_escalar([2.5, 0.0], [4.0, 10.0])} $\rightarrow$ \textbf{Saída Esperada:} \code{10.0}
+            \item \textbf{Entrada:} \code{produto\_escalar([], [])} $\rightarrow$ \textbf{Saída Esperada:} \code{0}
+        \end{itemize}
+    \end{enumerate}
+
+    \vspace{0.5cm}
+    \input{body/answers/Q2}
+
+    % Questão 3
+    \item Dada uma lista de elementos que representam os pontos de uma função $f(t)$ em um intervalo de tempo de interesse, separados por um passo $\Delta t$ fixo, uma forma de calcular a área sob a curva $f(t)$ neste intervalo é o método dos trapézios, dado por:
+    \[
+    \text{área} = \sum_{x=1}^{n} \frac{[f(x) + f(x-1)] \Delta t}{2}
+    \]
+    onde $x$ representa a posição na lista e $n$ é igual ao tamanho da lista menos 1.
+    \begin{enumerate}[label=\alph*)]
+        \item Escreva uma função em Python que recebe dois argumentos: uma lista de números que representam uma função $f(t)$ e o valor do passo $\Delta t$, e retorna a área calculada de acordo com a expressão acima.
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{area\_trapezio([2, 4, 6, 8], 1.0)} $\rightarrow$ \textbf{Saída Esperada:} \code{15.0}
+            \item \textbf{Entrada:} \code{area\_trapezio([1, 1, 1, 1], 0.5)} $\rightarrow$ \textbf{Saída Esperada:} \code{1.5}
+        \end{itemize}
+    \end{enumerate}
+
+    \vspace{0.5cm}
+    \input{body/answers/Q3}
+
+    % Questão 4
+    \item Escreva uma função em Python que calcula a diferença entre duas listas.
+    \begin{enumerate}[label=\alph*)]
+        \item A função deve receber duas listas por argumento e retornar uma nova lista que contém somente os números da primeira lista que não estão contidos na segunda lista. \textbf{Atenção:} Não utilize o operador \code{in}!
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{diferenca\_listas([1, 2, 3, 4, 5], [2, 4, 6])} $\rightarrow$ \textbf{Saída Esperada:} \code{[1, 3, 5]}
+            \item \textbf{Entrada:} \code{diferenca\_listas([10, 20], [10, 20, 30])} $\rightarrow$ \textbf{Saída Esperada:} \code{[]}
+            \item \textbf{Entrada:} \code{diferenca\_listas([1, 2, 3], [])} $\rightarrow$ \textbf{Saída Esperada:} \code{[1, 2, 3]}
+        \end{itemize}
+    \end{enumerate}
+    \input{body/answers/Q4}
+
+
+
+
+    % Questão 5
+    \item Escreva uma função em Python para contar a frequência de um caractere específico em uma string.
+    \begin{enumerate}[label=\alph*)]
+        \item A função deve receber por argumento uma string e um caractere (uma string de tamanho 1), e retornar o número de vezes que esse caractere aparece na string dada.
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{conta\_caractere("programacao", "a")} $\rightarrow$ \textbf{Saída Esperada:} \code{3}
+            \item \textbf{Entrada:} \code{conta\_caractere("Computacao", "z")} $\rightarrow$ \textbf{Saída Esperada:} \code{0}
+            \item \textbf{Entrada:} \code{conta\_caractere("", "a")} $\rightarrow$ \textbf{Saída Esperada:} \code{0}
+        \end{itemize}
+    \end{enumerate}
+
+    \vspace{0.5cm}
+    \input{body/answers/Q5}
+
+    % Questão 6
+    \item Escreva uma função em Python que verifica se uma palavra ou frase é um palíndromo (lê-se da mesma forma de trás para frente e de frente para trás, ignorando maiúsculas, minúsculas e espaços).
+    \begin{enumerate}[label=\alph*)]
+        \item A função deve receber por argumento uma string e retornar \code{True} se a string for um palíndromo e \code{False} caso contrário. \textit{Dica:} você pode utilizar métodos de string para padronizar as letras e remover espaços.
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{eh\_palindromo("Arara")} $\rightarrow$ \textbf{Saída Esperada:} \code{True}
+            \item \textbf{Entrada:} \code{eh\_palindromo("socorram me subi no onibus em marrocos")} $\rightarrow$ \textbf{Saída Esperada:} \code{True}
+            \item \textbf{Entrada:} \code{eh\_palindromo("Python")} $\rightarrow$ \textbf{Saída Esperada:} \code{False}
+        \end{itemize}
+    \end{enumerate}
+    
+
+    \vspace{0.5cm}
+    \input{body/answers/Q6}
+
+
+    % Questão 7
+    \item Escreva uma função em Python para formatar e ocultar parte de um endereço de e-mail por motivos de privacidade.
+    \begin{enumerate}[label=\alph*)]
+        \item A função deve receber por argumento uma string contendo um e-mail válido (no formato \code{usuario@dominio.com}). Ela deve retornar o e-mail mascarado, onde apenas os 2 primeiros caracteres do nome do usuário ficam visíveis, substituindo o restante do nome do usuário por 4 asteriscos (\code{****}) mantendo o domínio intacto.
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{mascara\_email("joao@gmail.com")} $\rightarrow$ \textbf{Saída Esperada:} \\\code{"jo****@gmail.com"}
+            \item \textbf{Entrada:} \code{mascara\_email("aluno@ufrj.br")} $\rightarrow$ \textbf{Saída Esperada:} \code{"al****@ufrj.br"}
+        \end{itemize}
+    \end{enumerate}
+
+    \vspace{0.5cm}
+    \input{body/answers/Q7}
+
+    % Questão 8
+    \item Escreva uma função em Python para extrair apenas as palavras que possuem um comprimento mínimo a partir de uma frase.
+    \begin{enumerate}[label=\alph*)]
+        \item A função deve receber dois argumentos: uma string contendo uma frase e um número inteiro $k$. A função deve retornar uma lista de strings contendo apenas as palavras da frase cujo tamanho seja maior ou igual a $k$.
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{palavras\_longas("A estrutura de repeticao while e o tipo lista", 5)} $\rightarrow$ \textbf{Saída Esperada:} \code{['estrutura', 'repeticao', 'while', 'lista']}
+            \item \textbf{Entrada:} \code{palavras\_longas("Python e uma linguagem incrivel", 7)} $\rightarrow$ \textbf{Saída Esperada:} \code{['linguagem', 'incrivel']}
+            \item \textbf{Entrada:} \code{palavras\_longas("a b c", 2)} $\rightarrow$ \textbf{Saída Esperada:} \code{[]}
+        \end{itemize}
+    \end{enumerate}
+
+    \input{body/answers/Q8}
+
+
+    \item Escreva uma função em Python para sanitizar e extrair as palavras-chave (tags) de um texto formatado contendo dados brutos.
+    \begin{enumerate}[label=\alph*)]
+        \item A função deve receber por argumento uma string representando uma lista de tags brutas enviadas por um formulário (com espaçamentos extras no início/fim, letras maiúsculas e palavras separadas por hífen). A função deve realizar o tratamento do texto removendo os espaços das extremidades, convertendo todo o texto para minúsculas, substituindo os hífens (\code{-}) por espaços (\code{" "}) e, por fim, separando as tags por vírgula para retornar uma lista com as palavras-chave tratadas.
+        
+        \textit{Dica:} Para resolver esta questão, utilize os métodos de string \code{.strip()}, \code{.lower()}, \code{.replace()} e \code{.split()}.
+        
+        \item Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+        \begin{itemize}
+            \item \textbf{Entrada:} \code{processa\_tags("  PYTHON, MÁQUINA-DE-APRENDER, ESTRUTURA-DE-DADOS  ")} $\rightarrow$ \textbf{Saída Esperada:} \code{['python', 'máquina de aprender', 'estrutura de dados']}
+            \item \textbf{Entrada:} \code{processa\_tags("  UFRJ, COMPUTAÇÃO-I, PROVA-FINAL  ")} $\rightarrow$ \textbf{Saída Esperada:} \code{['ufrj', 'computação i', 'prova final']}
+            \item \textbf{Entrada:} \code{processa\_tags("  LÓGICA-DE-PROGRAMAÇÃO  ")} $\rightarrow$ \textbf{Saída Esperada:} 
+            \\\code{['lógica de programação']}
+        \end{itemize}
+    \end{enumerate}
+    \input{body/answers/Q9}
+
+
+\end{enumerate}

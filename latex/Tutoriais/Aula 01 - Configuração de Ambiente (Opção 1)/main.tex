@@ -1,0 +1,121 @@
+\documentclass[12pt]{exam}
+\usepackage[utf8]{inputenc} 
+\usepackage[brazil]{babel}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig,psfrag} 
+\usepackage{wrapfig}
+\usepackage[left=1.8cm,top=1cm,right=1.8cm,bottom=1cm]{geometry}
+\usepackage[lined, ruled, vlined]{algorithm2e}
+\usepackage[normalem]{ulem}
+\usepackage{graphics}
+\usepackage{pstricks,pst-node,pst-tree}
+\usepackage{eqnarray,amsmath}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{datetime}
+\usepackage{nicematrix, tikz}
+\usepackage{mathtools}
+\ctikzset{bipoles/thickness=1}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{cinza-codigo}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{cinza-codigo}{\texttt{#1}}}
+\usepackage{ragged2e}
+
+% 2. Configurar o estilo do bloco de código
+\lstset{
+    language=bash,                  % Define a linguagem como Bash
+    basicstyle=\ttfamily\small,     % Fonte monoespaçada e menor
+    keywordstyle=\color{blue},      % Cor para comandos/palavras-chave
+    commentstyle=\color{gray},      % Cor para comentários
+    stringstyle=\color{purple},     % Cor para strings
+    numbers=left,                   % Mostra números de linha na esquerda
+    numberstyle=\tiny\color{gray},  % Estilo dos números de linha
+    stepnumber=1,                   % Número em cada linha
+    backgroundcolor=\color{lightgray!20}, % Cor de fundo do bloco
+    frame=single,                   % Moldura ao redor do código
+    breaklines=true,                % Quebra linhas longas automaticamente
+    showstringspaces=false          % Não mostra espaços especiais em strings
+}
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+
+\newdateformat{specialdate}{\THEYEAR-\twodigit{\THEMONTH}-\twodigit{\THEDAY}}
+\newcommand{\examdate}{Data de Entrega: 11/12/2024}
+
+%\pagestyle{headandfoot}
+%\firstpagefooter{}{Pág. \thepage\ de \numpages}{}
+%\firstpageheader{}{}{}
+%\runningfooter{}{Pág. \thepage\ de \numpages}{}
+%\runningheader{}{}{}
+
+\extraheadheight[.25in]{.5in}
+\extrafootheight[.25in]{.5in}
+\pagestyle{empty}
+\usepackage{xcolor}
+\definecolor{greendel}{HTML}{2F5416}
+\definecolor{bluepoli}{HTML}{1E1D44}
+\definecolor{redpoli}{HTML}{C73834}
+
+
+\hypersetup{
+    colorlinks=false,       % Desativa o texto colorido para manter a caixa de destaque
+    linkbordercolor=green,  % Define a cor da caixa de links internos (sumário, referências) como verde
+    urlbordercolor=red    % Define a cor da caixa de links externos (sites) como verde
+}
+
+
+
+
+\begin{document}
+%\setlength{\arrayrulewidth}{1cm}
+\setlength{\arrayrulewidth}{1.5pt}
+%\centerline{\rule{\textwidth}{0.2mm} \\}\\
+\vspace{0.1cm}
+%\begin{tabular}{l!{\color{bluepoli}\vline}l}
+\begin{tabular}{l|l}
+
+
+\thispagestyle{empty}
+\multirow{4}{30mm}{
+
+    \vspace*{-1cm}\hspace*{-0.4cm}\includegraphics[width=0.15\textwidth]{logos/ciaa_gray.pdf}
+}  
+& {\bf \Large{Revisão Acelerada de Programação - RAP} \\
+ & \bf \Large{RAP-2026, Marinha do Brasil} \\
+ & {Centro de Instrução Almirante Alexandrino}\\
+ & {Departamento de Aperfeiçoamento Avançado para Oficiais}\\
+ & {Curso de Aperfeiçoamento Avançado em Guerra Acústica (C-ApA-Of-GA)}\\
+ & {Professor: João Victor da Fonseca Pinto}\\
+ & {Descrição do Documento: Configuração de ambiente Docker}\\
+ & {Código da Aula: 1}\\
+%\hspace{0.0cm} & {Data: \today}\\
+\end{tabular}\\ 
+%\c
+
+\thispagestyle{headandfoot}
+\normalsize
+\vspace{-0.2cm}
+
+\vspace{0.2cm}
+
+
+
+
+\input{body/main}
+
+\end{document}
+
+
+
+

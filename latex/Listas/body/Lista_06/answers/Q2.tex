@@ -1,0 +1,12 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 2
+def inverter_dicionario(d):
+    resultado = {}
+    for aluno, turma in d.items():
+        if turma not in resultado:
+            resultado[turma] = []
+        resultado[turma].append(aluno)
+    return resultado
+\end{minted}
+}

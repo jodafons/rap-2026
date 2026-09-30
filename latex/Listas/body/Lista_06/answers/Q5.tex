@@ -1,0 +1,19 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 5
+alunos = {
+    "Ana": {"Matemática": 8.5, "Português": 9.0, "História": 7.5},
+    "Bruno": {"Matemática": 5.0, "Português": 6.0, "História": 5.5},
+    "Carla": {"Matemática": 9.5, "Português": 8.0, "História": 9.0}
+}
+
+relatorio_final = {}
+for aluno, disciplinas in alunos.items():
+    notas = disciplinas.values()
+    media = round(sum(notas) / len(notas), 2)
+    status = "Aprovado" if media >= 7.0 else "Recuperação"
+    relatorio_final[aluno] = {"media": media, "status": status}
+
+print(relatorio_final)
+\end{minted}
+}

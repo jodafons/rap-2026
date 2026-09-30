@@ -1,0 +1,19 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 3
+estoque = {
+    "camisa": 45.0,
+    "calça": 120.0,
+    "meia": 12.5,
+    "casaco": 250.0,
+    "boné": 35.0
+}
+
+produtos_caros = {}
+for produto, preco in estoque.items():
+    if preco > 50.0:
+        produtos_caros[produto] = preco
+
+print(produtos_caros)
+\end{minted}
+}

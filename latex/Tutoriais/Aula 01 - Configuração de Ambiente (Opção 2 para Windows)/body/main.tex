@@ -1,0 +1,97 @@
+
+
+\section*{Configuração de ambiente}
+
+No dia de hoje, realizaremos um avanço significativo no estabelecimento e na padronização de nosso ambiente prático de desenvolvimento de software. É frequente nos depararmos com cenários nos quais rotinas computacionais desenvolvidas em linguagem Python apresentam comportamento inconsistente ou falhas de execução ao serem transferidas entre diferentes estações de trabalho. Tais discrepâncias decorrem, em grande medida, de conflitos nas versões das bibliotecas instaladas ou da interferência do ambiente global do sistema operacional.
+
+Para mitigar definitivamente essas inconsistências e assegurar a reprodutibilidade dos experimentos, adotaremos a combinação do Visual Studio Code (VS Code) com a ferramenta de isolamento virtualenv. O Visual Studio Code consolidou-se como um ambiente integrado de desenvolvimento (IDE) moderno, leve e altamente extensível, oferecendo suporte nativo à navegação de arquivos, integração com sistemas de controle de versão e execução de terminais de linha de comando em uma interface unificada.
+Complementarmente, a utilização do virtualenv possibilita a criação de ambientes virtuais isolados dentro do próprio sistema, garantindo que o interpretador Python e suas respetivas dependências fiquem circunscritos ao escopo de cada projeto específico. Dessa forma, evita-se a contaminação do ambiente global e assegura-se que todo o corpo discente execute as atividades sob as exatas mesmas condições de configuração e versão.
+
+\section*{Parte I}
+
+O procedimento inicial requer a abertura do Windows PowerShell com privilégios de administrador. Para realizar essa operação, clique no menu Iniciar do Windows e digite a palavra \code{PowerShell} no campo de busca. Ao visualizar o aplicativo nos resultados, clique sobre o ícone com o botão direito do mouse e selecione a opção \code{Executar como Administrador}. Na janela do terminal administrativo, execute o comando \code{wsl --install} para dar início à ativação do subsistema. Concluído o processo de instalação, reinicie o computador de forma obrigatória para que as modificações de sistema sejam aplicadas.
+
+\subsection*{Mapeamento do Diretório Linux no Windows Explorer}
+
+Para facilitar a transferência e o gerenciamento visual de arquivos situados dentro do subsistema Linux diretamente pelo ambiente gráfico do Windows, o aluno pode utilizar o caminho de rede nativo disponibilizado pelo protocolo de integração do WSL.
+
+Para realizar esse acesso, abra o Explorador de Arquivos do Windows (por meio do atalho de teclado Tecla \code{Windows + E}), clique na barra de endereços localizada no topo da janela, digite exatamente o caminho \code{\textbackslash\textbackslash wsl\$} e pressione a tecla \code{Enter}. A interface exibirá os diretórios correspondentes às distribuições Linux instaladas (por exemplo, \code{Ubuntu}), permitindo a navegação, manipulação e visualização das pastas e arquivos do subsistema exatamente como se estivessem armazenados no sistema de arquivos local.
+
+
+\section*{Parte II}
+
+A escolha de um ambiente integrado dinâmico e flexível é fundamental para a edição de códigos, depuração e execução de scripts desenvolvidos para as atividades do curso. Para este propósito, adotaremos o \href{https://code.visualstudio.com}{Visual Studio Code (VS Code)}, um editor de código-fonte leve e extremamente extensível, mantido pela Microsoft.
+Com o objetivo de viabilizar a conexão com ambientes isolados e garantir a perfeita integração com o interpretador da linguagem Python e servidores remotos, realizaremos a instalação do editor e a parametrização das extensões Python e Remote - SSH.
+
+No ambiente Windows, a instalação do Visual Studio Code possibilita a integração perfeita com o terminal de comandos e com o Subsistema Windows para Linux (WSL). Os requisitos operacionais compreendem o sistema Windows 10 (versão 22H2 ou superior) ou Windows 11.
+Para iniciar a instalação, acesse o portal eletrônico oficial do editor e efetue o \href{https://code.visualstudio.com/download?_exp_download=fb315fc982}{download} do instalador executável (User Installer) adequado à arquitetura de 64 bits do seu sistema. Localize o arquivo baixado no diretório de downloads e execute-o com um duplo clique. Na janela do assistente de instalação que se apresentará, aceite os termos do contrato de licença e avance para a etapa de seleção de tarefas adicionais. É altamente recomendável assinalar as opções \code{Adicionar 'Abrir com Code'} ao menu de contexto do Windows Explorer e \code{Adicionar ao PATH}, pois tais parâmetros facilitam a abertura de diretórios de trabalho diretamente pelo terminal ou pelo menu de contexto do sistema. Finalize o assistente clicando em Instalar e, ao término do processo, confirme a inicialização do programa.
+
+
+\section*{Parte III}
+
+Com o propósito de viabilizar o desenvolvimento na linguagem Python e permitir a conexão com servidores remotos ou containers, faz-se necessária a adição de componentes de expansão ao editor. A interface gráfica do VS Code dispõe de um gerenciador nativo de extensões localizado na barra de ferramentas lateral esquerda, representado por um ícone com quatro blocos quadrados.
+
+
+\subsection*{Configuração da Extensão Python}
+
+Para habilitar o suporte completo à linguagem Python — incluindo destaque de sintaxe, autocompletar inteligente (IntelliSense) e recursos de depuração —, clique no ícone de Extensões na barra lateral esquerda ou utilize o atalho de teclado \code{Ctrl+Shift+X} (no Windows) ou \code{Cmd+Shift+X} (no macOS).
+No campo de busca localizado no topo do painel lateral, digite exatamente o termo \code{Python}. O primeiro resultado listado corresponderá à extensão oficial desenvolvida pela Microsoft. Clique no botão \code{Install} associado ao pacote. O processo de transferência e ativação ocorrerá automaticamente em segundo plano. Após a conclusão, abra um arquivo de código com extensão \code{.py}.
+
+\subsection*{Configuração da Extensão Remote - SSH}
+
+Para efetuar a conexão com servidores remotos de processamento homologados ou máquinas virtuais através do protocolo SSH, utilizaremos o conjunto de extensões remotas.
+Ainda no painel de Extensões, navegue até a caixa de pesquisa e digite \code{Remote - SSH}. Identifique o pacote oficial fornecido pela Microsoft e selecione o botão \code{Install}. Após o término da instalação, um novo ícone em formato de monitor ou conexão remota será adicionado à barra lateral do VS Code, representado graficamente por um pequeno botão azul contendo os símbolos de maior e menor justapostos (\code{><}).
+
+\section*{Parte V}
+
+Após a conclusão da instalação, é possível inicializar o ambiente clicando no indicador de janela remota situado no canto inferior esquerdo da barra de status do editor, representado graficamente por um pequeno botão azul contendo os símbolos de maior e menor justapostos (\code{><}), e selecionando a opção \code{WSL: Connect to WSL}. O VS Code iniciará o servidor de desenvolvimento dentro do ambiente virtualizado Linux, permitindo a utilização nativa de ferramentas e executáveis instalados na distribuição.
+
+
+Com a sessão do terminal Linux aberta no ambiente do subsistema, execute a atualização dos repositórios do sistema e a instalação do controlador de versão Git juntamente com o gerenciador de ambientes virtuais do Python através do comando:
+
+\vspace{0.3cm}
+\begin{lstlisting}
+sudo apt update
+sudo apt install git make python3-virtualenv -y
+\end{lstlisting}
+
+Aguarde a finalização da transferência e do desembalamento dos pacotes para garantir que o versionamento e o isolamento de dependências estejam devidamente operacionais.
+
+\section*{Parte VI}
+
+Após a conclusão das instalações, navegue até o diretório de trabalho de sua preferência utilizando o terminal. Caso deseje criar uma nova pasta para organizar as atividades do curso, utilize o comando mkdir seguido pelo nome da pasta e acesse-a com o comando cd:
+
+\vspace{0.3cm}
+\begin{lstlisting}
+mkdir -p ~/workspace
+cd ~/workspace
+\end{lstlisting}
+
+
+Dentro do diretório escolhido, efetue a clonagem do repositório oficial da disciplina executando o seguinte comando no terminal:
+
+\vspace{0.3cm}
+\begin{lstlisting}
+git clone https://github.com/jodafons/rap-2026.git
+\end{lstlisting}
+
+
+Concluído o download do projeto, acesse o diretório do repositório clonado e inicie o servidor do ambiente executando a instrução de automação via Make:
+
+\vspace{0.3cm}
+\begin{lstlisting}
+cd rap-2026
+make jupyter
+\end{lstlisting}
+
+Assim que a instrução for executada, a linha de comandos do terminal exibirá o log de inicialização do servidor, incluindo a URL de acesso local acompanhada do token de autenticação (por exemplo, \code{http://localhost:8888/lab}). Abra o navegador de internet de sua preferência (como Google Chrome, Mozilla Firefox ou Microsoft Edge) em sua máquina local, copie e cole o endereço de conexão fornecido pelo terminal na barra de navegação e pressione a tecla Enter. Este procedimento estabelecerá a conexão com a interface do Jupyter Notebook, viabilizando a interação com os arquivos interativos e notebooks de exercícios da aula.
+
+
+
+\section*{Parte VII}
+
+À medida que o curso avança, o professor disponibilizará novos notebooks, exercícios e atualizações no repositório remoto mantido no \href{https://github.com/jodafons/rap-2026/tree/mainAula }{GitHub}. Para garantir que sua estação de trabalho local permaneça perfeitamente alinhada com a versão mais recente do material, disponibilizamos uma instrução simplificada de sincronização executada diretamente via \code{Make}.  
+
+No entanto, faz-se estritamente necessário atentar para as regras de organização e preservação de arquivos no ambiente local. Todos os seus exercícios, testes, rotinas de aprendizado e anotações pessoais devem ser salvos obrigatoriamente dentro do diretório \code{rap-2026/notebooks/Aluno}. As informações e arquivos mantidos estritamente dentro dessa pasta não serão perdidos durante os procedimentos de sincronização. Por outro lado, ressalta-se que qualquer arquivo ou alteração realizada fora do diretório \code{notebooks/Aluno} será permanentemente perdido e sobrescrito no momento em que a atualização com o repositório do professor for efetuada.
+
+Para realizar a atualização com segurança, abra o Terminal através do VS Code, navegue até o diretório do projeto com o comando \code{cd ~/workspace/rap-2026} e execute a instrução de automação \code{make update}. O comando \code{make update} efetuará o alinhamento de versões com o repositório remoto oficial, aplicando as melhorias e novos conteúdos da disciplina, ao mesmo tempo em que preserva intacto todo o trabalho armazenado na pasta \code{notebooks/Aluno}. Concluída a sincronização, reinicie o servidor do ambiente interativo executando a instrução \code{make jupyter}. Por fim, copie e cole o endereço de conexão fornecido no Terminal (como \code{http://localhost:8888/lab}) na barra de navegação do seu navegador para dar prosseguimento às atividades com o material devidamente atualizado.

@@ -1,0 +1,32 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta:
+def calcular_fatorial_2a( valor ):
+    # fatorial de 0 é 1 por definição
+    if valor == 0:
+        return 1
+    fatorial = 1
+    for numero in range( 1, valor+1 ):
+        # ou podemos fazer fatorial*=numero
+        fatorial = fatorial*numero
+    return fatorial
+    
+def calcular_power_2b( valor, potencia ):
+    n = 1
+    saida = 1
+    while n <= potencia:
+        saida *= valor
+        n+=1
+    return saida
+
+def calcular_exponencial_2c( x, m_termos ):
+    n = 0
+    saida = 0
+    while n <= m_termos:
+        xn = calcular_power_2b(x , n)
+        n_fatorial = calcular_fatorial_2a( n )
+        saida += xn/n_fatorial
+        n+=1
+    return saida
+\end{minted}
+}

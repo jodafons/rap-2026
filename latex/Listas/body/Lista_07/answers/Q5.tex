@@ -1,0 +1,19 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questao 5
+def consolidar_carrinho(texto_compras):
+    carrinho = []
+    itens = texto_compras.split(";")
+    for item in itens:
+        produto, qtd_str, preco_str = item.split("#")
+        qtd = int(qtd_str)
+        subtotal = qtd * float(preco_str)
+        carrinho.append((produto, qtd, subtotal))
+    return carrinho
+\end{minted}
+}
+
+
+
+
+

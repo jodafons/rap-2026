@@ -1,0 +1,33 @@
+\ifmostrarGabarito{
+
+\begin{minted}{python}
+import json
+from pathlib import Path
+from typing import Dict, List, Union
+
+TipoDadoReator = Dict[str, Union[float, str, List[str]]]
+
+def registrar_log_reator(caminho_log: str, dados_reator: TipoDadoReator) -> bool:
+    arquivo_path: Path = Path(caminho_log)
+    historico_logs: List[TipoDadoReator] = []
+    
+    if arquivo_path.is_file():
+        with open(arquivo_path, mode='r', encoding='utf-8') as arquivo:
+            try:
+                historico_logs = json.load(arquivo)
+            except json.JSONDecodeError:
+                historico_logs = []
+                
+    historico_logs.append(dados_reator)
+    
+    with open(arquivo_path, mode='w', encoding='utf-8') as arquivo:
+        json.dump(historico_logs, arquivo, indent=4)
+        
+    return True
+\end{minted}
+}
+
+
+
+
+

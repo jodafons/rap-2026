@@ -1,0 +1,99 @@
+
+\vspace{1cm}
+
+\noindent  \textbf{Leia as instruções antes de fazer a lista:}
+
+\vspace{0.3cm}
+\noindent  Não utilize laços de repetição ou recursão nessa lista. Não utilize nenhum módulo, método ou função já existente no Python exceto pela função \code{print}. Não é necessário testar se os dados passados por argumento são válidos a menos que pedido na questão.
+
+
+\vspace{0.5cm}
+
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+   \item Escreva uma função em Python que recebe um número por argumento e retorna o booleano \code{True} se esse número for do tipo inteiro ou do tipo float, e se o número for positivo. Caso o número não seja nem inteiro nem float, ou se o número for menor ou igual a zero, a função deve retornar o booleano \code{False}. Utilize operadores lógicos booleanos (\code{not}, \code{and} ou \code{or}).
+
+    \input{body/answers/Q1}
+
+    \vspace{0.5cm}
+
+    \item Em ciência da computação, redes neurais são modelos computacionais usados na área de inteligência artificial. A saída dos neurônios é comumente descrita por uma função de ativação, que, muitas vezes, limita o valor de saída a um máximo e um mínimo, como a função mostrada no gráfico abaixo. Escreva uma função em Python que recebe um número $x$ por argumento e retorna o $y$ equivalente, onde $y$ é dado pela seguinte função por partes:
+
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        % Eixos
+        \draw[->, thick] (-2.5, 0) -- (2.5, 0) node[below] {$x$};
+        \draw[->, thick] (0, -1.8) -- (0, 1.8) node[left] {$y$};
+        
+        % Linhas auxiliares pontilhadas
+        \draw[dotted] (1,0) -- (1,1) -- (0,1);
+        \draw[dotted] (-1,0) -- (-1,-1) -- (0,-1);
+        
+        % Rótulos nos eixos
+        \node[below right] at (1,0) {$1$};
+        \node[above left] at (-1,0) {$-1$};
+        \node[left] at (0,1) {$1$};
+        \node[right] at (0,-1) {$-1$};
+        
+        % Gráfico da função
+        \draw[very thick] (-2.2,-1) -- (-1,-1) -- (1,1) -- (2.2,1);
+    \end{tikzpicture}
+    \end{center}
+
+    \input{body/answers/Q2}
+
+    \vspace{0.5cm}
+
+    \item Considere um jogo no qual um jogador tem a tarefa de encontrar o maior número de bolas vermelhas dentro de um cesto com bolas de várias cores no menor tempo possível. O jogador pode finalizar a tarefa a qualquer momento, mesmo que nem todas as bolas tenham sido encontradas. A pontuação base do jogador é dada pela seguinte regra:
+    
+    \begin{itemize}
+        \item Se o jogador encontrar todas as bolas vermelhas disponíveis, então ele ganha 100 pontos.
+        \item Se o jogador não encontrar todas as bolas vermelhas disponíveis, mas achar mais do que 70\% desse total, então ele ganha 50 pontos.
+        \item Se o jogador encontrar entre 30\% (inclusive) e 70\% (inclusive) do total de bolas vermelhas disponíveis, então ele ganha 25 pontos.
+        \item Se o jogador encontrar menos de 30\% das bolas vermelhas disponíveis, então ele não pontua.
+    \end{itemize}
+
+    A pontuação final do jogador é definida segundo o tempo que ele levou para concluir a tarefa, e segue a seguinte regra:
+
+    \begin{itemize}
+        \item Se o jogador concluiu a tarefa até antes do tempo limite estipulado (inclusive), então a pontuação final é igual à pontuação base.
+        \item Se o jogador concluiu a tarefa até 10 minutos depois do tempo limite estipulado, então a pontuação final é 80\% da pontuação base obtida.
+        \item Se o jogador concluiu a tarefa entre 10 (inclusive) e 30 (inclusive) minutos depois do tempo limite estipulado, então a pontuação final é 40\% da pontuação base obtida.
+        \item Se o jogador concluiu a tarefa mais de 30 minutos depois do tempo limite estipulado, então o jogador não pontua.
+    \end{itemize}
+
+    Escreva uma função em Python que calcule a pontuação final de um jogador neste jogo. A função recebe 4 argumentos inteiros, nesta ordem: a quantidade de bolas vermelhas encontradas pelo jogador, a quantidade total de bolas vermelhas totais estavam no cesto, o tempo limite da tarefa (em minutos), e o tempo em que o jogador concluiu a tarefa (em minutos). A função deve retornar um número que representa a pontuação final do jogador.
+    \input{body/answers/Q3}
+
+    \vspace{0.5cm}
+
+    \item (Inspirada na OBI 2010 - Nível 1, Fase 1) A empresa local de abastecimento de água, a Saneamento Básico da Cidade (SBC), está promovendo uma campanha de conservação de água, distribuindo cartilhas e promovendo ações demonstrando a importância da água para a vida e para o meio ambiente. Para incentivar mais ainda a economia de água, a SBC alterou os preços de seu fornecimento de forma que, proporcionalmente, aqueles clientes que consumirem menos água paguem menos pelo metro cúbico. Todo cliente paga mensalmente uma assinatura de R\$ 10, que inclui uma franquia de $15\text{ m}^3$ de água. Isto é, para qualquer consumo entre 0 e $15\text{ m}^3$, o consumidor paga a mesma quantia de R\$ 10 reais (note que o valor da assinatura deve ser pago mesmo que o consumidor não tenha consumido água). Acima de $15\text{ m}^3$ cada metro cúbico subsequente tem um valor diferente, dependendo da faixa de consumo. A tabela abaixo especifica o preço por metro cúbico para cada faixa de consumo:
+
+    \begin{center}
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Faixa de consumo ($\text{m}^3$)} & \textbf{Preço (por $\text{m}^3$)} \\ \hline
+        Até 15 & Incluído na franquia \\ \hline
+        Acima de 15 a 40 & R\$ 1.2 \\ \hline
+        Acima de 40 & R\$ 3.0 \\ \hline
+    \end{tabular}
+    \end{center}
+
+    Por exemplo, se o consumo foi de $55\text{ m}^3$, o valor da conta é dado por:
+    \begin{itemize}
+        \item 10 reais da assinatura básica;
+        \item 30 reais pelo consumo no intervalo acima de 15 até $40\text{ m}^3$;
+        \item 45 reais pelo consumo no intervalo acima de 40 até $55\text{ m}^3$;
+    \end{itemize}
+    Isto é: $10 + 25 \times 1.2 + 15 \times 3.0 = \text{R}\$ 85.0$.
+
+    Escreva uma função em Python para calcular o valor total a ser pago por uma família. Essa função recebe por argumento três números inteiros que correspondem aos valores do consumo de água das três residências da família, em $\text{m}^3$, e retorna o valor total da conta de água (soma dos valores a serem pagos em cada residência).
+
+    Antes de fazer a conta, no entanto, a função deve verificar se os argumentos de entrada são válidos: os argumentos devem ser do tipo inteiro ou float. Se algum dos valores passados por argumento não for nem inteiro nem float, retorne -1. Se todos os valores forem inteiros ou float, verifique se a faixa está correta: os valores devem ser maiores que 0 e menores que 5000. Se algum dos valores estiver fora dessa faixa, retorne -2. Se todos os valores forem inteiros ou floats e estiverem dentro da faixa, verifique o consumo e retorne o total. Utilize operadores lógicos booleanos (\code{not}, \code{and} ou \code{or}) em pelo menos uma das condicionais. 
+
+    Outro exemplo: se a entrada for $(15.5, 41, 60)$, a saída deve ser $153.6$, calculado da seguinte forma: 
+    $$(10 + 0.5 \times 1.2) + (10 + 25 \times 1.2 + 1 \times 3) + (10 + 25 \times 1.2 + 20 \times 3.0)$$ 
+    onde $(10 + 0.5 \times 1.2)$ é referente ao valor do consumo da primeira residência (15.5), $(10 + 25 \times 1.2 + 1 \times 3)$ é referente ao valor do consumo da segunda residência (41) e $(10 + 25 \times 1.2 + 20 \times 3.0)$ é referente ao valor do consumo da terceira residência (60).
+
+    \input{body/answers/Q4}
+\end{enumerate}

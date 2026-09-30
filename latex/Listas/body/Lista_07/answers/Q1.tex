@@ -1,0 +1,14 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questao 1
+def resumir_temperaturas(temperaturas):
+    # Fatiamento descarta o primeiro [0] e o ultimo [-1] elementos
+    intermediarias = temperaturas[1:-1]
+    
+    menor = min(intermediarias)
+    maior = max(intermediarias)
+    media = sum(intermediarias) / len(intermediarias)
+    
+    return menor, maior, media
+\end{minted}
+}

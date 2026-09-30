@@ -1,0 +1,27 @@
+
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 6
+def gerar_relatorio_colecao(garagem):
+    relatorio = {}
+    
+    for carro in garagem:
+        # Cria a tupla imutável (modelo, ano) para 
+        # ser usada como chave do dicionário
+        chave_carro = (carro["modelo"], carro["ano"])
+        
+        # Separa a string de donos pela vírgula e 
+        # remove os espaços extras de cada nome
+        lista_donos_raw = carro["donos"].split(",")
+        lista_donos_limpa = [dono.strip() for dono in lista_donos_raw]
+        
+        # Atribui a lista de donos processada à chave correspondente
+        relatorio[chave_carro] = lista_donos_limpa
+        
+    return relatorio
+\end{minted}
+}
+
+
+
+

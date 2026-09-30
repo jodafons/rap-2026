@@ -1,0 +1,207 @@
+
+\vspace{1cm}
+
+\noindent  \textbf{Leia as instruções antes de fazer a lista:}
+
+\vspace{0.3cm}
+\noindent  Não é necessário testar se os dados passados por argumento são válidos a menos que pedido na questão.
+
+
+\vspace{0.5cm}
+
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+
+% ---------------------------------------------------------
+\item Escreva uma função chamada \code{contar\_caracteres(texto)} que receba como parâmetro uma string qualquer. A função deve retornar um dicionário no qual as chaves sejam os caracteres individuais da string (convertidos para minúsculas e desconsiderando espaços em branco) e os valores correspondam à quantidade total de ocorrências de cada caractere. Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"A B C a b a"} $\rightarrow$ \textbf{Saída:} \code{\{'a': 3, 'b': 2, 'c': 1\}}
+    \item \textbf{Entrada:} \code{"Marinha do Brasil"} $\rightarrow$ \textbf{Saída:} \code{\{'m': 1, 'a': 3, 'r': 2, 'i': 2,}\\\code{ 'n': 1, 'h': 1, 'd': 1, 'o': 1, 'b': 1, 's': 1, 'l': 1\}}
+\end{itemize}
+
+
+\input{body/answers/Q1}
+
+
+% ---------------------------------------------------------
+\item Considere um dicionário onde as chaves representam o nome de alunos e os valores representam suas respectivas turmas (exemplo: \code{\{"Ana": "Turma A", "Bruno": "Turma B",}\\\code{"Carla": "Turma A"\}}). Escreva uma função \code{inverter\_dicionario(d)} que receba esse dicionário e retorne um novo dicionário onde as chaves sejam o nome das turmas e os valores sejam listas contendo os nomes dos alunos matriculados em cada uma delas. Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{\{"Ana": "Turma A", "Bruno": "Turma B", "Carla": "Turma A",}\\\code{"Daniel": "Turma B"\}}
+    \item \textbf{Saída:} \code{\{'Turma A': ['Ana', 'Carla'], 'Turma B': ['Bruno', 'Daniel']\}}
+\end{itemize}
+
+
+\input{body/answers/Q2}
+
+
+% ---------------------------------------------------------
+\item Dado o dicionário a seguir, que representa um estoque de produtos e seus respectivos preços:
+\begin{minted}{python}
+estoque = {
+    "camisa": 45.0,
+    "calça": 120.0,
+    "meia": 12.5,
+    "casaco": 250.0,
+    "boné": 35.0
+}
+\end{minted}
+Escreva um trecho de código em Python utilizando laço de repetição e estrutura condicional para construir um novo dicionário denominado \code{produtos\_caros}, contendo apenas os itens que possuem preço estritamente superior a R\$ 50,00. Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} O dicionário \code{estoque} fornecido.
+    \item \textbf{Saída:} \code{\{'calça': 120.0, 'casaco': 250.0\}}
+\end{itemize}
+
+\input{body/answers/Q3}
+
+% ---------------------------------------------------------
+\item Crie uma função \code{agrupar\_por\_tamanho(frase)} que receba uma frase (string). A função deve tratar a frase separando as palavras, ignorando maiúsculas e pontuações simples. O retorno deve ser um dicionário onde:
+\begin{itemize}
+    \item As chaves sejam números inteiros representando o comprimento (tamanho) das palavras.
+    \item Os valores sejam listas com as palavras da frase que possuem aquele comprimento exato.
+\end{itemize}
+
+Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"O sol brilhou e o sol se foi."}
+    \item \textbf{Saída:} \code{\{1: ['o', 'e', 'o'], 3: ['sol', 'sol', 'foi'], 7: ['brilhou'], }\\\code{2: ['se']\}}
+\end{itemize}
+
+\input{body/answers/Q4}
+
+
+% ---------------------------------------------------------
+\item Considere a estrutura de dicionário aninhado contendo as notas de estudantes em três disciplinas distintas:
+
+\begin{minted}{python}
+alunos = {
+    "Ana": {"Matemática": 8.5, "Português": 9.0, "História": 7.5},
+    "Bruno": {"Matemática": 5.0, "Português": 6.0, "História": 5.5},
+    "Carla": {"Matemática": 9.5, "Português": 8.0, "História": 9.0}
+}
+\end{minted}
+
+Escreva um programa que percorra a estrutura e gere um novo dicionário \code{relatorio\_final}. Para cada aluno, calcule a média aritmética das notas e atribua o status \code{"Aprovado"} se a média for maior ou igual a 7.0, ou \code{"Recuperação"} caso contrário.
+
+Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} O dicionário \code{alunos} fornecido.
+    \item \textbf{Saída:} \code{\{'Ana': \{'media': 8.33, 'status': 'Aprovado'\}, 'Bruno': }\\\code{\{'media': 5.5, 'status': 'Recuperação'\}, 'Carla': \{'media': 8.83, }\\\code{'status': 'Aprovado'\}\}}
+\end{itemize}
+
+\input{body/answers/Q5}
+
+
+% ---------------------------------------------------------
+\item Dada uma lista de vendas onde cada item é uma string no formato \code{"PRODUTO:QUANTIDADE"}:
+\begin{minted}{python}
+vendas = ["maçã:5", "banana:3", "maçã:2", "uva:1", "laranja:8", "banana:4"]
+\end{minted}
+Escreva um algoritmo em Python que processe os dados da lista utilizando divisão de strings (\code{.split()}) e acúmulo em um dicionário, resultando em uma contagem total consolidada da quantidade vendida de cada produto.
+
+Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} A lista \code{vendas} fornecida.
+    \item \textbf{Saída:} \code{\{'maçã': 7, 'banana': 7, 'uva': 1, 'laranja': 8\}}
+\end{itemize}
+
+\input{body/answers/Q6}
+
+
+% ---------------------------------------------------------
+\item Duas palavras são consideradas anagramas se possuem exatamente as mesmas letras nas mesmas quantidades (ex: \code{"amor"} e \code{"roma"}). Crie uma função chamada \code{sao\_anagramas(palavra1,}\\\code{ palavra2)} que retorne \code{True} se as palavras forem anagramas e \code{False} caso contrário.
+
+\textbf{Restrição:} Não utilize métodos ou funções prontas de ordenação (como \code{sorted()}). A validação deve ser feita obrigatoriamente através da comparação de dois dicionários de contagem de caracteres.
+
+Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} \code{sao\_anagramas("amor", "roma")} $\rightarrow$ \textbf{Saída:} \code{True}
+    \item \textbf{Entrada:} \code{sao\_anagramas("casa", "saco")} $\rightarrow$ \textbf{Saída:} \code{False}
+\end{itemize}
+
+\input{body/answers/Q7}
+
+
+% ---------------------------------------------------------
+\item Em um sistema administrativo, os dados dos usuários são mantidos em uma lista de dicionários conforme o modelo:
+\begin{minted}{python}
+usuarios = [
+    {"nome": "Carlos", 
+    "email": "carlos@email.com", 
+    "cpf": "123.456.789-00", 
+    "ativo": True},
+    {"nome": "Mariana", 
+    "email": "mariana@email.com", 
+    "cpf": "987.654.321-11", 
+    "ativo": False},
+    {"nome": "Pedro", 
+    "email": "pedro@email.com", 
+    "cpf": "456.789.123-22", 
+    "ativo": True}
+]
+\end{minted}
+Escreva um código que percorra essa lista e remova a chave \code{"cpf"} do dicionário apenas dos usuários cujo status \code{"ativo"} seja \code{False}, garantindo a privacidade dos dados inativos.
+Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+
+\begin{itemize}
+    \item \textbf{Entrada:} A lista \code{usuarios} fornecida.
+    \item \textbf{Saída:} 
+    \begin{minted}{python}
+[
+    {'nome': 'Carlos', 
+    'email': 'carlos@email.com', 
+    'cpf': '123.456.789-00', 
+    'ativo': True},
+    {'nome': 'Mariana', 
+    'email': 'mariana@email.com', 
+    'ativo': False},
+    {'nome': 'Pedro', 
+    'email': 'pedro@email.com', 
+    'cpf': '456.789.123-22', 
+    'ativo': True}
+]
+    \end{minted}
+\end{itemize}
+
+\input{body/answers/Q8}
+
+
+% ---------------------------------------------------------
+\item Escreva uma função \code{mapear\_posicoes(texto)} que receba um texto e retorne um dicionário onde:
+\begin{itemize}
+    \item As chaves sejam as palavras únicas presentes no texto (em minúsculas).
+    \item Os valores sejam listas de inteiros indicando os índices de posição (iniciando em 0) onde a palavra aparece na sequência das palavras da frase.
+\end{itemize}
+Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+\begin{itemize}
+    \item \textbf{Entrada:} \code{"o sol brilhou e o sol se foi"}
+    \item \textbf{Saída:} \code{\{'o': [0, 4], 'sol': [1, 5], 'brilhou': [2], 'e': [3],}\\
+    \code{ 'se': [6], 'foi': [7]\}}
+\end{itemize}
+
+\input{body/answers/Q9}
+
+
+% ---------------------------------------------------------
+\item Crie uma função chamada \code{apurar\_votacao(lista\_votos)} que receba uma lista de strings contendo os nomes dos candidatos votados em uma eleição (podendo conter nomes repetidos ou votos em branco/nulos). A função deve:
+\begin{enumerate}[label=\alph*)]
+    \item Construir um dicionário com o total de votos recebidos por cada candidato.
+    \item Identificar o candidato com o maior número de votos.
+    \item Retornar uma tupla contendo o nome do vencedor e o respectivo número de votos no formato \code{(nome\_vencedor, total\_votos)}.
+\end{enumerate}
+
+Teste a sua função de acordo com as entradas e saídas esperadas a seguir:
+\begin{itemize}
+    \item \textbf{Entrada:} \code{["Alice", "Bob", "Alice", "Nulo", "Bob", "Alice", "Branco"]}
+    \item \textbf{Saída:} \code{('Alice', 3)}
+\end{itemize}
+
+\input{body/answers/Q10}
+
+\end{enumerate}

@@ -1,0 +1,13 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 6
+vendas = ["maçã:5", "banana:3", "maçã:2", "uva:1", "laranja:8", "banana:4"]
+
+consolidado = {}
+for item in vendas:
+    produto, quantidade = item.split(":")
+    consolidado[produto] = consolidado.get(produto, 0) + int(quantidade)
+
+print(consolidado)
+\end{minted}
+}

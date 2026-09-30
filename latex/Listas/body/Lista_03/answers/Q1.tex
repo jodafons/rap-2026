@@ -1,0 +1,25 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta:
+def calcular_soma( valor_min, valor_max ):
+
+    if (not type(valor_min)==int) or (not type(valor_max)==int):
+        print("os valores passados por parametro precisam ser inteiros.")
+        return -1
+        
+    # acerta o range de interação caso min > max (invertido)
+    valor = valor_min 
+    if valor_min > valor_max
+        valor_max = valor_min
+        valor_min = valor
+
+    total = 0
+    for valor in range( valor_min, valor_max+1, 1 ):
+        if (valor % 3 == 0) or (valor % 5 == 0):
+            total+=valor
+
+    print(f"Somatório é de {valor}")
+    return valor
+
+\end{minted}
+}

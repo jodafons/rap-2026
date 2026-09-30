@@ -1,0 +1,90 @@
+
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{epsfig,psfrag} 
+\usepackage{wrapfig}
+\usepackage[left=1.8cm,top=1cm,right=1.8cm,bottom=1cm]{geometry}
+\usepackage[lined, ruled, vlined]{algorithm2e}
+\usepackage[normalem]{ulem}
+\usepackage{graphics}
+\usepackage{pstricks,pst-node,pst-tree}
+\usepackage{eqnarray,amsmath}
+\usepackage{caption}
+\usepackage{circuitikz}
+\usepackage{datetime}
+\usepackage{nicematrix, tikz}
+\usepackage{mathtools}
+\ctikzset{bipoles/thickness=1}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{ragged2e}
+\usepackage{enumitem}
+\usepackage{ifthen}
+\usepackage{minted}
+\usepackage{pythonhighlight}
+\usepackage[utf8]{inputenc} 
+\usepackage[brazil]{babel}
+\usepackage{ifthen}
+
+
+\definecolor{cinza-codigo}{gray}{0.9}
+\newcommand{\code}[1]{\colorbox{cinza-codigo}{\texttt{#1}}}
+
+% 2. Configurar o estilo do bloco de código
+\lstset{
+    language=bash,                  % Define a linguagem como Bash
+    basicstyle=\ttfamily\small,     % Fonte monoespaçada e menor
+    keywordstyle=\color{blue},      % Cor para comandos/palavras-chave
+    commentstyle=\color{gray},      % Cor para comentários
+    stringstyle=\color{purple},     % Cor para strings
+    numbers=left,                   % Mostra números de linha na esquerda
+    numberstyle=\tiny\color{gray},  % Estilo dos números de linha
+    stepnumber=1,                   % Número em cada linha
+    backgroundcolor=\color{lightgray!20}, % Cor de fundo do bloco
+    frame=single,                   % Moldura ao redor do código
+    breaklines=true,                % Quebra linhas longas automaticamente
+    showstringspaces=false          % Não mostra espaços especiais em strings
+}
+
+
+% Estilização para blocos de código Python
+% Configuração do estilo para o código Python
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\ttfamily\small,         % Fonte monoespaçada pequena
+    keywordstyle=\color{blue}\bfseries, % Palavras-chave em azul e negrito
+    stringstyle=\color{red},            % Strings em vermelho
+    commentstyle=\color{green!50!black},% Comentários em verde escuro
+    numbers=left,                       % Numeração das linhas no lado esquerdo
+    numberstyle=\tiny\color{gray},      % Estilo dos números das linhas
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{gray!10},    % Fundo cinza claro
+    frame=single,                       % Moldura ao redor do código
+    tabsize=4,
+    showstringspaces=false,
+    breaklines=true                     % Quebra linha automaticamente se for longa
+}
+\lstset{style=pythonstyle}
+
+
+
+\newcommand\encircle[1]{%
+  \tikz[baseline=(X.base)] 
+    \node (X) [draw, shape=circle, inner sep=0] {\strut #1};}
+\newdateformat{specialdate}{\THEYEAR-\twodigit{\THEMONTH}-\twodigit{\THEDAY}}
+\extraheadheight[.25in]{.5in}
+\extrafootheight[.25in]{.5in}
+\pagestyle{empty}
+\usepackage{xcolor}
+\definecolor{greendel}{HTML}{2F5416}
+\definecolor{bluepoli}{HTML}{1E1D44}
+\definecolor{redpoli}{HTML}{C73834}
+

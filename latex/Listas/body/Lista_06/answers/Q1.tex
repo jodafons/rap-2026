@@ -1,0 +1,11 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 1
+def contar_caracteres(texto):
+    frequencia = {}
+    texto_limpo = texto.lower().replace(" ", "")
+    for char in texto_limpo:
+        frequencia[char] = frequencia.get(char, 0) + 1
+    return frequencia
+\end{minted}
+}

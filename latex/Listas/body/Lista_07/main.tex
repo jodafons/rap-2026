@@ -1,0 +1,95 @@
+
+\vspace{1cm}
+
+\noindent  \textbf{Leia as instruções antes de fazer a lista:}
+
+\vspace{0.3cm}
+\noindent  Não é necessário testar se os dados passados por argumento são válidos a menos que pedido na questão.
+
+
+\vspace{0.5cm}
+
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+
+% ---------------------------------------------------------
+\item Em uma estação meteorológica, os dados diários de temperatura são gravados em uma tupla de valores numéricos. Crie uma função chamada \code{resumir\_temperaturas(temperaturas)} que extraia, via fatiamento (\emph{slicing}), apenas as leituras intermediárias (descartando a primeira e a última medição) e retorne três valores usando retorno múltiplo: a menor temperatura do período intermediário, a maior e a média aritmética das temperaturas intermediárias.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Entrada:} \code{(18.0, 21.5, 25.0, 23.0, 19.5, 17.0)}
+    \item \textbf{Saída:} \code{(19.5, 25.0, 22.25)}
+\end{itemize}
+
+
+\input{body/answers/Q1}
+
+
+
+\item Uma biblioteca comunitária está reorganizando seu catálogo digital. Os títulos dos livros foram inseridos com traços baixos (\textit{underline}) substituindo os espaços e uma etiqueta no final: \code{"O\_Alquimista-ROMANCE"}. Escreva uma função \code{formatar\_catalogo(lista\_raw)} que receba uma lista de strings nesse formato, utilize \code{.split('-')} para desempacotar o título bruto e a categoria, substitua os traços baixos (\code{\_}) por espaços no título usando \code{.replace()}, e retorne uma lista de tuplas \code{[(titulo\_limpo, categoria)]}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Entrada:} \code{["O\_Alquimista-ROMANCE", "Dom\_Casmurro-CLASSICO"]}
+    \item \textbf{Saída:} \code{[('O Alquimista', 'ROMANCE'), ('Dom Casmurro', 'CLASSICO')]}
+\end{itemize}
+
+\input{body/answers/Q2}
+
+
+
+\item Um aplicativo de corridas urbanas registra o histórico de viagens de um motorista em uma lista de tuplas contendo \code{(id\_corrida, valor\_reais, (latitude\_destino, longitude\_destino))}. Crie uma função chamada \code{filtrar\_corridas\_rentaveis(historico, valor\_minimo)} que percorra a lista e retorne uma lista de dicionários contendo apenas as corridas cujo valor seja estritamente superior ao \code{valor\_minimo}. O dicionário deve possuir as chaves \code{"id"} e \code{"destino"}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Entrada:} \code{[(101, 25.0, (-23.55, -46.63)), (102, 12.0, (-23.58, -46.65))], 15.0}
+    \item \textbf{Saída:} \code{[\{'id': 101, 'destino': (-23.55, -46.63)\}]}
+\end{itemize}
+
+\input{body/answers/Q3}
+
+
+\item Em um sistema de cadastro de clientes de um banco, passar uma lista mutável para uma função pode alterar a lista original indesejadamente. 
+
+Crie uma função \code{adicionar\_tag\_segura(lista\_tags, nova\_tag)} que receba uma lista de tags de um cliente. A função deve criar uma cópia rasa (\emph{shallow copy}), utilizando o método \code{.copy()} da lista antes de adicionar a \code{nova\_tag}, garantindo que a lista original passada como argumento não seja modificada. O retorno deve ser a nova lista.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Entrada:} \code{["VIP", "Investidor"]}, \code{"Premium"}
+    \item \textbf{Saída (retorno da função):} \code{['VIP', 'Investidor', 'Premium']}
+    \item \textbf{Verificação da lista original:} Permanece \code{['VIP', 'Investidor']}
+\end{itemize}
+\input{body/answers/Q4}
+
+
+\item Em uma plataforma de e-commerce de artigos esportivos, os dados de venda chegam em uma string consolidada onde as compras são separadas por ponto e vírgula (\code{;}) e os atributos do item por cerquilha (\code{\#}): \code{"Bola\#3\#45.0;Chuteira\#1\#180.0"}. Escreva uma função chamada \code{consolidar\_carrinho(texto\_compras)} que processe a string e retorne uma lista de tuplas no formato \code{[(produto\_str, quantidade\_int, subtotal\_float)]}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Entrada:} \code{"Bola\#3\#45.0;Chuteira\#1\#180.0"}
+    \item \textbf{Saída:} \code{[('Bola', 3, 135.0), ('Chuteira', 1, 180.0)]}
+\end{itemize}
+
+\input{body/answers/Q5}
+
+
+Uma escola de música organiza suas turmas em uma estrutura integrada. Ela possui um cadastro de alunos no formato de lista de dicionários:
+
+\begin{minted}{python}
+alunos = [
+    {"nome": "Lucas", "instrumento": "Violao", "notas": "8.5,9.0,7.5"},
+    {"nome": "Beatriz", "instrumento": "Piano", "notas": "10.0,9.5,9.0"}
+]
+\end{minted}
+
+Escreva uma função chamada \code{gerar\_relatorio\_musica(lista\_alunos)} que processe esses dados e retorne um novo dicionário onde:
+\begin{itemize}[leftmargin=*]
+    \item A \textbf{chave} seja uma tupla imutável com o nome do aluno e seu instrumento: \code{(nome, instrumento)}.
+    \item O \textbf{valor} seja uma tupla contendo a média das notas (arredondada para 2 casas decimais) e uma string de status (\code{"Aprovado"} se média $\ge 8.0$, senão \code{"Em Desenvolvimento"}).
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Entrada:} A lista \code{alunos} fornecida acima.
+    \item \textbf{Saída:} \code{\{('Lucas', 'Violao'): (8.33, 'Aprovado'),}\\
+    \code{('Beatriz', 'Piano'): (9.5, 'Aprovado')\}}
+\end{itemize}
+
+\input{body/answers/Q6}
+
+
+\end{enumerate}

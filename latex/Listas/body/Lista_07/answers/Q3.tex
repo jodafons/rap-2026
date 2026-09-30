@@ -1,0 +1,14 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questao 3
+def filtrar_corridas_rentaveis(historico, valor_minimo):
+    rentaveis = []
+    for id_corrida, valor, destino in historico:
+        if valor > valor_minimo:
+            rentaveis.append({
+                "id": id_corrida,
+                "destino": destino
+            })
+    return rentaveis
+\end{minted}
+}

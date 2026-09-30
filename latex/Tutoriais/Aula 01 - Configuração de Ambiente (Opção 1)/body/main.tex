@@ -1,0 +1,80 @@
+
+
+\section*{Configuração de ambiente}
+
+No dia de hoje, realizaremos um avanço significativo em nosso fluxo de desenvolvimento de software. É comum nos depararmos com situações em que um código desenvolvido em linguagem Python executa perfeitamente em uma determinada estação de trabalho, porém apresenta falhas ao ser executado em outro computador devido a discrepâncias nas versões das dependências ou do próprio interpretador. Para mitigar definitivamente essas inconsistências, utilizaremos o Docker Desktop, uma ferramenta de conteinerização que permite empacotar nossas aplicações e suas respectivas dependências em um ambiente isolado e portátil.
+Cumpre ressaltar que a criação de uma conta no Docker Hub não é obrigatória para a realização das atividades desta aula ou para a obtenção das imagens oficiais do Python. A interface inicial permitirá ignorar a etapa de autenticação, viabilizando a utilização plena das ferramentas locais sem qualquer necessidade de registro.
+
+\section*{Parte I}
+
+\subsection*{Instalando no macOS}
+
+Para a instalação no sistema operacional macOS, o Docker Desktop apresenta excelente desempenho, sendo imprescindível a seleção do pacote compatível com a arquitetura de processamento do hardware utilizado. Os requisitos mínimos do sistema compreendem uma versão atualizada do sistema operacional, correspondente a uma das três últimas edições lançadas, além de ao menos quatro gigabytes de memória de acesso aleatório.
+Inicialmente, deve-se acessar o portal eletrônico oficial do Docker para efetuar o download do \href{https://docs.docker.com/desktop/setup/install/mac-install/}{instalador} correspondente ao hardware de sua máquina, selecionando a opção destinada aos processadores Apple Silicon para modelos das linhas M1, M2, M3 ou M4, ou a opção destinada a processadores Intel para os modelos de fabricação anterior. Após a conclusão do download, execute o arquivo com extensão DMG e arraste o ícone do Docker para o diretório de Aplicações. Ao iniciar o software pela primeira vez por meio do Launchpad, o sistema solicitará privilégios administrativos para concluir as configurações necessárias, exigindo a inserção das credenciais do usuário do sistema. Na janela de autenticação que se apresentará a seguir, selecione a opção para ignorar o registro para acessar diretamente o painel de controle da aplicação.
+
+
+\subsection*{Instalando no Windows}
+
+
+No ambiente Windows, a máxima eficiência no desenvolvimento em linguagem Python é alcançada por meio da utilização do mecanismo WSL 2, correspondente ao Subsistema Windows para Linux, o qual possibilita a execução do Docker sobre um núcleo Linux real. Os requisitos mínimos para esta implementação consistem no sistema operacional Windows 10 em sua versão 22H2 ou superior, ou no Windows 11, além da ativação do recurso de virtualização de hardware diretamente nas configurações de BIOS ou UEFI do computador.
+
+O procedimento inicial requer a abertura do \code{PowerShell} com privilégios de administrador. Para realizar essa operação, clique no menu \code{Iniciar} do Windows e digite a palavra \code{PowerShell} no campo de busca. Ao visualizar o aplicativo \code{Windows PowerShell} nos resultados apresentados, clique sobre o ícone com o botão direito do mouse e selecione a opção \code{Executar como Administrador}. O sistema de controle de conta de usuário do Windows poderá exibir uma janela de confirmação de segurança, na qual se deve confirmar a operação clicando em \code{Sim} para conceder os privilégios necessários. Com o terminal administrativo aberto, execute o comando \code{wsl --install} para dar início à ativação da estrutura básica do subsistema Linux.
+
+Concluído o processo de instalação do subsistema WSL 2, reinicie o computador de forma obrigatória para que as modificações de sistema sejam aplicadas. Na sequência, obtenha o \href{https://docs.docker.com/desktop/setup/install/windows-install/}{instalador} executável do Docker Desktop para Windows no portal oficial da plataforma. Execute o instalador e assegure-se de que a opção de preferência pelo WSL 2 em detrimento do Hyper-V permaneça selecionada durante as etapas do assistente, assegurando o melhor desempenho para a execução das aplicações. Concluída a instalação, confirme o encerramento do assistente e a reinicialização da sessão de usuário. Ao abrir o painel do Docker Desktop, selecione a opção correspondente à desconsideração do login para prosseguir sem uma conta registrada.
+
+\section*{Parte II}
+
+Com o propósito de assegurar a máxima uniformidade na execução dos códigos por parte do corpo discente, o desenvolvimento das atividades práticas será realizado integralmente em ambiente controlado, utilizando uma imagem Ubuntu homologada e fornecida pelo corpo docente, cujo acesso dar-se-á por meio de um servidor Jupyter Notebook precisamente configurado, o qual já dispõe de todo o material didático e das dependências de software que serão abordados ao longo do curso.
+
+
+\subsection*{Instalação da imagem}
+
+Para iniciar o processo, você deve realizar a transferência da imagem diretamente para a sua máquina. No topo da interface do Docker Desktop, localize a barra de pesquisa geral e digite exatamente o identificador da imagem, que é \code{jodafons/rap-2026}. Ao visualizar o resultado correspondente sob a guia de imagens, clique no botão denominado \code{Pull} para que o download dos arquivos seja inicializado. Aguarde alguns instantes até que a transferência seja completamente concluída, o que será indicado pela presença da imagem na sua lista local, disponível na guia \code{Images} localizada no menu lateral esquerdo do painel.
+
+Após a conclusão do download, acesse a referida aba de imagens locais, posicione o cursor sobre a linha correspondente ao pacote \code{jodafons/rap-2026} e clique no botão \code{Run}, que é representado graficamente pelo ícone de reprodução. Nesse momento, uma janela flutuante de configuração será exibida na tela. Antes de efetivar a inicialização do container, é fundamental clicar sobre o menu expansível rotulado como \code{Optional settings}, localizado logo abaixo do nome do container, de modo a revelar as configurações avançadas de rede, volumes e variáveis de ambiente que estruturaremos a seguir.
+
+Na primeira etapa da parametrização, você deve configurar o redirecionamento de comunicação na seção de portas. No campo designado como \code{Host Port}, insira o número da porta desejada, por exemplo \code{8888}, para acessar a aplicação pelo seu navegador local, mapeando a comunicação de rede da sua máquina física diretamente para o ambiente isolado do container.
+
+Em seguida, configure o mapeamento de armazenamento persistente na seção de volumes para garantir que as alterações de código e dados não sejam perdidas ao encerrar o sistema. No campo que solicita o caminho do hospedeiro (\code{Host path}), clique no ícone de seleção de diretório para escolher uma pasta física existente em seu próprio computador. No campo imediatamente ao lado, correspondente ao caminho interno do container (\code{Container path}), preencha rigorosamente com o caminho absoluto \code{/apt/data}.
+
+Por fim, estabeleça a variável de integração para que o sistema saiba onde ler e gravar os dados gerados. Na área destinada às variáveis de ambiente, adicione uma nova chave inserindo o termo \code{VOLUME\_PATH} no campo de identificação (\code{Key}) e atribua-lhe o valor exato de \code{/apt/data} no campo de conteúdo associado (\code{Value}).
+
+Após verificar minuciosamente que todos os campos de configuração foram preenchidos conforme as diretrizes estabelecidas, clique no botão \code{Run} localizado na parte inferior do formulário de opções avançadas. O Docker Desktop redirecionará a sua interface para o painel de gerenciamento de containers ativos, onde será possível monitorar o status de execução da aplicação e acompanhar em tempo real todas as mensagens de \code{log} impressas pelo sistema.
+
+Assim que o status do container indicar que a aplicação está em plena execução, abra o navegador de internet de sua preferência em sua máquina física e digite o endereço \code{localhost:8888} na barra de navegação, pressionando a tecla \code{Enter} em seguida. Esse procedimento estabelecerá a conexão direta com a interface da aplicação que está rodando isoladamente dentro do container, permitindo que você interaja com o sistema desenvolvido para a nossa atividade prática de hoje.
+Qualquer divergência nos nomes das variáveis de ambiente ou nos caminhos de diretório configurados anteriormente impedirá o correto funcionamento desse acesso, de modo que recomendo atenção redobrada caso a página apresente alguma falha de carregamento.
+
+\subsection*{Atualização da imagem}
+
+Ao longo do curso, o docente poderá realizar a inclusão ou a atualização de notebooks no repositório central da disciplina. Havendo modificações, será solicitado ao corpo discente que efetue a atualização da imagem local em suas respectivas máquinas. Para realizar esse procedimento, o aluno deverá acessar a interface gráfica do \code{Docker Desktop}, navegar até a aba \code{Images} e localizar a imagem \code{rap-2026}. Na linha correspondente, no canto direito da tela, deve-se clicar no ícone de três pontos e selecionar a opção \code{Pull}. Essa ação sincronizará o ambiente local com a versão mais recente disponibilizada pelo professor.
+
+
+\section*{Parte III}
+
+A escolha de um ambiente integrado dinâmico e flexível é fundamental para a edição de códigos, depuração e execução de scripts desenvolvidos para as atividades do curso. Para este propósito, adotaremos o \href{https://code.visualstudio.com}{Visual Studio Code (VS Code)}, um editor de código-fonte leve e extremamente extensível, mantido pela Microsoft.
+Com o objetivo de viabilizar a conexão com ambientes isolados e garantir a perfeita integração com o interpretador da linguagem Python e servidores remotos, realizaremos a instalação do editor e a parametrização das extensões Python e Remote - SSH.
+
+\subsection*{Instalando no macOS}
+
+Para a instalação no sistema operacional macOS, o Visual Studio Code oferece suporte nativo e otimizado, sendo fundamental selecionar o pacote adequado à arquitetura do processador da máquina utilizada. Os requisitos mínimos englobam uma versão recente do sistema operacional e capacidade de processamento compatível.
+Primeiro, deve-se acessar o portal eletrônico oficial do Visual Studio Code para efetuar o \href{https://code.visualstudio.com/download?_exp_download=fb315fc982}{download} do arquivo de instalação. Na página de downloads, selecione a opção destinada aos processadores Apple Silicon caso sua máquina seja equipada com os chips M1, M2, M3 ou M4, ou a opção destinada a processadores Intel para modelos de gerações anteriores. Concluído o download do arquivo compactado em formato ZIP, drible a extração automática abrindo-o e mova o executável do Visual Studio Code diretamente para o diretório de Aplicações. Ao abrir o aplicativo pela primeira vez por meio do Finder ou Launchpad, o sistema operacional poderá exibir um alerta de segurança referente a softwares baixados da internet; confirme a abertura para autorizar a execução permanente do programa.
+
+\subsection*{Instalando no Windows}
+
+No ambiente Windows, a instalação do Visual Studio Code possibilita a integração perfeita com o terminal de comandos e com o Subsistema Windows para Linux (WSL). Os requisitos operacionais compreendem o sistema Windows 10 (versão 22H2 ou superior) ou Windows 11.
+Para iniciar a instalação, acesse o portal eletrônico oficial do editor e efetue o \href{https://code.visualstudio.com/download?_exp_download=fb315fc982}{download} do instalador executável (User Installer) adequado à arquitetura de 64 bits do seu sistema. Localize o arquivo baixado no diretório de downloads e execute-o com um duplo clique. Na janela do assistente de instalação que se apresentará, aceite os termos do contrato de licença e avance para a etapa de seleção de tarefas adicionais. É altamente recomendável assinalar as opções \code{Adicionar 'Abrir com Code'} ao menu de contexto do Windows Explorer e \code{Adicionar ao PATH}, pois tais parâmetros facilitam a abertura de diretórios de trabalho diretamente pelo terminal ou pelo menu de contexto do sistema. Finalize o assistente clicando em Instalar e, ao término do processo, confirme a inicialização do programa.
+
+
+\section*{Parte IV}
+
+Com o propósito de viabilizar o desenvolvimento na linguagem Python e permitir a conexão com servidores remotos ou containers, faz-se necessária a adição de componentes de expansão ao editor. A interface gráfica do VS Code dispõe de um gerenciador nativo de extensões localizado na barra de ferramentas lateral esquerda, representado por um ícone com quatro blocos quadrados.
+
+\subsection*{Configuração da Extensão Python}
+
+Para habilitar o suporte completo à linguagem Python — incluindo destaque de sintaxe, autocompletar inteligente (IntelliSense) e recursos de depuração —, clique no ícone de Extensões na barra lateral esquerda ou utilize o atalho de teclado \code{Ctrl+Shift+X} (no Windows) ou \code{Cmd+Shift+X} (no macOS).
+No campo de busca localizado no topo do painel lateral, digite exatamente o termo \code{Python}. O primeiro resultado listado corresponderá à extensão oficial desenvolvida pela Microsoft. Clique no botão \code{Install} associado ao pacote. O processo de transferência e ativação ocorrerá automaticamente em segundo plano. Após a conclusão, abra um arquivo de código com extensão \code{.py}.
+
+\subsection*{Configuração da Extensão Remote - SSH}
+
+Para efetuar a conexão com servidores remotos de processamento homologados ou máquinas virtuais através do protocolo SSH, utilizaremos o conjunto de extensões remotas.
+Ainda no painel de Extensões, navegue até a caixa de pesquisa e digite \code{Remote - SSH}. Identifique o pacote oficial fornecido pela Microsoft e selecione o botão \code{Install}. Após o término da instalação, um novo ícone em formato de monitor ou conexão remota será adicionado à barra lateral do VS Code, denominado \code{Remote Explorer} (semelhante a um \code{prompt} no canto inferior esquerdo).

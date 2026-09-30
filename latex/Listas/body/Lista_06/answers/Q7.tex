@@ -1,0 +1,13 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 7
+def criar_freq(palavra):
+    freq = {}
+    for char in palavra.lower():
+        freq[char] = freq.get(char, 0) + 1
+    return freq
+
+def sao_anagramas(palavra1, palavra2):
+    return criar_freq(palavra1) == criar_freq(palavra2)
+\end{minted}
+}

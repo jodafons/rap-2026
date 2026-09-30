@@ -1,0 +1,11 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+from typing import List
+
+def salvar_diario_bordo(caminho_arquivo: str, registros: List[str]) -> bool:
+    with open(caminho_arquivo, mode='w', encoding='utf-8') as arquivo:
+        for linha in registros:
+            arquivo.write(f"{linha}\n")
+    return True
+\end{minted}
+}

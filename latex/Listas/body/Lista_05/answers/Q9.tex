@@ -1,0 +1,20 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 9:
+def processa_tags(texto_bruto):
+    # Utiliza .strip(), .lower(), .replace() e .split()
+    texto_sanitizado = texto_bruto.strip().lower().replace("-", " ")
+    tags = texto_sanitizado.split(",")
+    return [tag.strip() for tag in tags]
+
+# Testes (Item b):
+print(processa_tags("  PYTHON, MÁQUINA-DE-APRENDER, ESTRUTURA-DE-DADOS  "))
+# Esperado: ['python', 'máquina de aprender', 'estrutura de dados']
+
+print(processa_tags("  UFRJ, COMPUTAÇÃO-I, PROVA-FINAL  "))
+# Esperado: ['ufrj', 'computação i', 'prova final']
+
+print(processa_tags("  LÓGICA-DE-PROGRAMAÇÃO  "))
+# Esperado: ['lógica de programação']
+\end{minted}
+}

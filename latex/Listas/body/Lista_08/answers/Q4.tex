@@ -1,0 +1,24 @@
+\ifmostrarGabarito{
+
+\begin{minted}{python}
+import json
+from typing import Dict, Union, Any
+
+ConfigDict = Dict[str, Any]
+
+def salvar_configuracao(caminho_json: str, config: ConfigDict) -> None:
+    with open(caminho_json, mode='w', encoding='utf-8') as arquivo:
+        json.dump(config, arquivo, indent=4)
+
+def carregar_configuracao(caminho_json: str) -> ConfigDict:
+    with open(caminho_json, mode='r', encoding='utf-8') as arquivo:
+        dados: ConfigDict = json.load(arquivo)
+    return dados
+\end{minted}
+}
+
+
+
+
+
+

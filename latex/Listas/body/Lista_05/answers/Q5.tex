@@ -1,0 +1,18 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta Questão 5:
+def conta_caractere(texto, caractere):
+    contador = 0
+    i = 0
+    while i < len(texto):
+        if texto[i] == caractere:
+            contador += 1
+        i += 1
+    return contador
+
+# Testes (Item b):
+print(conta_caractere("programacao", "a")) # Esperado: 3
+print(conta_caractere("Computacao", "z"))  # Esperado: 0
+print(conta_caractere("", "a"))            # Esperado: 0
+\end{minted}
+}

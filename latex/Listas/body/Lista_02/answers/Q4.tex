@@ -1,0 +1,67 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta:
+
+# 0 =< 15m3 , valor = 10
+# > 15m3 e <= 40 , 1.2 por m3 consumido a mais
+# >40m3, 3 por m3 consumido a mais
+
+def calcular_conta_individual( consumo ):
+    if (not type(consumo) == int) or (not type(consumo) == float):
+        return -1
+        
+    if not (0 < consumo_1 < 5000):
+        return -2
+
+    if consumo > 40:
+        excedente = consumo - 40
+        return 10 + 25*1.2 + excedente*3
+    elif 15 < consumo <= 40:
+        excedente = consumo - 15
+        return 10 + excedente * 1.2
+    else: # taxa padrão da empresa
+        return 10
+
+
+
+def calcular_conta_das_familias( consumo_1 , consumo_2 , consumo_3 ):
+
+    conta_residencia_1 = calcular_conta_individual(consumo_1)
+
+    if conta_residencia_1 == -1:
+        print("Argumento consumo 1 não é inteiro ou float")
+        return -1
+
+    if conta_residencia_1 == -2
+        print(f"Consumo 1 ({consumo_1}) fora da faixa permitida.")
+        return -2
+
+    conta_residencia_2 = calcular_conta_individual(consumo_2)
+
+    if conta_residencia_2 == -1:
+        print("Argumento consumo 2 não é inteiro ou float")
+        return -1
+
+    if conta_residencia_2 == -2
+        print(f"Consumo 2 ({consumo_2}) fora da faixa permitida.")
+        return -2
+
+    conta_residencia_3 = calcular_conta_individual(consumo_3)
+
+    if conta_residencia_3 == -1:
+        print("Argumento consumo 3 não é inteiro ou float")
+        return -1
+
+    if conta_residencia_3 == -2
+        print(f"Consumo 3 ({consumo_3}) fora da faixa permitida.")
+        return -2
+
+    consumo_total = consumo_1 + consumo_2 + consumo_3
+    valor_total = conta_residencia_1 + conta_residencia_2 + conta_residencia_3
+    print(f"O valor consumido pela familia é de {consumo_total} m3.")
+    print(f"Valor a ser pago é de {valor total} reais")
+    return valor_total
+
+
+\end{minted}
+}

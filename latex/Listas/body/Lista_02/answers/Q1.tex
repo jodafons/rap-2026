@@ -1,0 +1,16 @@
+\ifmostrarGabarito{
+\begin{minted}{python}
+# Resposta:
+def verificar_numero( num ):
+    if not (type(num)==int or type(num) == float):
+        print("Número não é inteiro ou float.")
+        return False
+
+    if num < 0:
+        print("Número não é positivo")
+        return False
+
+    # número é int,float e positivo (>=0)
+    return True
+\end{minted}
+}

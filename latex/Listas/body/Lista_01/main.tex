@@ -1,0 +1,59 @@
+
+\vspace{1cm}
+
+\noindent  \textbf{Leia as instruções antes de fazer a lista:}
+
+\vspace{0.3cm}
+\noindent  Não utilize laços de repetição, condicionais ou recursão nessa lista. Não utilize nenhum módulo, método ou função já existente no Python exceto pela função \code{print}. 
+
+\vspace{0.5cm}
+
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+    \item Escreva uma função em Python que recebe por argumento o preço de um item do mercado em reais e o seu peso em kg e retorna a quantidade de reais por grama deste produto.
+
+    \input{body/answers/Q1}
+
+
+    \item Escreva uma função em Python que receba como argumento um número $x$ e que retorne um número $y$ dado pela função abaixo:
+    \[
+    y = x^{5/3} + \frac{x^2 - 8x}{10} - \left( \frac{5x^4 + 9x^3 - 10x^2}{x^5 + 2} \right)^{1/2}
+    \]
+    
+    \input{body/answers/Q2}
+
+    \item A física nos diz que é possível descrever o movimento de corpos quando estes se movem em linha reta e sem aceleração (isto é, com velocidade constante), de acordo com a seguinte fórmula:
+    \[
+    s = s_0 + v \cdot \Delta t
+    \]
+    onde $s$ é a posição final, $s_0$ é a posição inicial, $v$ é a velocidade em que o corpo está se movendo e $\Delta t$ é o intervalo de tempo decorrido para que objeto vá de $s_0$ a $s$ com essa velocidade. Este tipo de movimento é chamado de movimento retilíneo uniforme (MRU). Escreva uma função em Python que recebe por argumento a posição inicial ($s_0$), a posição final ($s$) e o intervalo de tempo ($\Delta t$) e retorna a velocidade de um corpo se movendo em MRU.
+
+    \input{body/answers/Q3}
+
+
+    \item Escreva uma função em Python que recebe uma temperatura em Kelvin e retorna o seu equivalente em Fahrenheit sabendo que:
+    \[
+    \frac{T_{\text{Fahrenheit}} - 32}{9} = \frac{T_{\text{Kelvin}} - 273}{5}
+    \]
+
+    \input{body/answers/Q4}
+
+
+    \item Escreva uma função que calcule o perímetro de um retângulo sabendo que valores são passados por argumento: o valor da sua diagonal e de um dos lados (nessa ordem). Lembre-se que a diagonal do retângulo pode ser pensada como a hipotenusa do triângulo formado por dois lados adjacentes e a diagonal. Lembre-se também que não é permitido importar nenhum módulo ou usar funções prontas do Python. O cálculo de uma raiz quadrada pode ser feito elevando a 0.5.
+
+    \input{body/answers/Q5}
+
+
+    \item A média, a variância e o desvio padrão são medidas muito utilizadas em estatística. A média é um valor que demonstra a concentração dos dados de uma distribuição como um ponto de equilíbrio. Já a variância e o desvio padrão são usados para indicar o quanto um conjunto de dados se desvia da média. A diferença entre a variância e o desvio padrão é que a variância é expressa em unidades quadráticas, enquanto o desvio padrão permite uma interpretação da dispersão na mesma unidade dos dados originais. Considerando um conjunto com seis valores, a média, a variância e o desvio padrão desse conjunto são calculados da seguinte forma:
+    \[
+    m = \frac{x_1 + x_2 + x_3 + x_4 + x_5 + x_6}{6}
+    \]
+    \[
+    V = \frac{(x_1 - m)^2 + (x_2 - m)^2 + (x_3 - m)^2 + (x_4 - m)^2 + (x_5 - m)^2 + (x_6 - m)^2}{6} = \sigma^2,
+    \]
+    onde $m$ é a média, $V$ é a variância e $\sigma$ é o desvio padrão. Escreva uma função em Python que recebe seis números por argumento, e calcula e retorna a média $m$, a variância $V$ e o desvio padrão $\sigma$, nesta ordem. Lembre-se que não é permitido importar nenhum módulo ou usar funções prontas do Python.
+
+    \input{body/answers/Q6}
+
+    
+\end{enumerate}
