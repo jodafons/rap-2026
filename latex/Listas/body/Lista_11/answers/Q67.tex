@@ -1,0 +1,18 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def contar_erros_log(
+    caminho_arquivo: str,
+) -> int:
+    total_erros = 0
+    with open(
+        caminho_arquivo,
+        "r",
+        encoding="utf-8",
+    ) as arq:
+        for linha in arq:
+            if "ERROR" in linha:
+                total_erros += 1
+    return total_erros
+\end{minted}
+
+\fi

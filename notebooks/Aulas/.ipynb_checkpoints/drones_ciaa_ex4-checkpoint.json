@@ -1,0 +1,49 @@
+[
+    {
+        "id": 1,
+        "nome": "AUV-Tupã",
+        "status": "operacional",
+        "bateria": 92.5,
+        "sensores": [
+            "Sonar",
+            "Camera HD"
+        ]
+    },
+    {
+        "id": 2,
+        "nome": "AUV-Curupira",
+        "status": "manutencao",
+        "bateria": 45.0,
+        "sensores": [
+            "Magnetometro"
+        ]
+    },
+    {
+        "id": 3,
+        "nome": "AUV-Yara",
+        "status": "operacional",
+        "bateria": 84.0,
+        "sensores": [
+            "Sonar",
+            "Termometro"
+        ]
+    },
+    {
+        "id": 4,
+        "nome": "AUV-Boto",
+        "status": "em_missao",
+        "bateria": 68.0,
+        "sensores": [
+            "Camera 4K"
+        ]
+    },
+    {
+        "id": 5,
+        "nome": "AUV-Anhanga",
+        "status": "operacional",
+        "bateria": 71.5,
+        "sensores": [
+            "Batimetria"
+        ]
+    }
+]

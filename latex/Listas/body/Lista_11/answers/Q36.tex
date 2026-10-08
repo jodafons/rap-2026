@@ -1,0 +1,18 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def extremos_gastos(
+    gastos: Tuple[float, ...],
+) -> Tuple[float, float]:
+    menor = gastos[0]
+    maior = gastos[0]
+    for v in gastos:
+        if v < menor:
+            menor = v
+        if v > maior:
+            maior = v
+    return menor, maior
+\end{minted}
+
+\fi

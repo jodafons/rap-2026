@@ -1,0 +1,16 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Dict
+
+def inverter_dicionario(
+    dicionario_original: Dict[str, str],
+) -> Dict[str, str]:
+    return {
+        v: k
+        for k, v in (
+            dicionario_original.items()
+        )
+    }
+\end{minted}
+
+\fi

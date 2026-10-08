@@ -1,0 +1,23 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def cifrar_texto(
+    mensagem: str,
+    deslocamento: int,
+) -> str:
+    res = []
+    for ch in mensagem:
+        if "A" <= ch <= "Z":
+            base = ord("A")
+            diff = ord(ch) - base
+            offset = (
+                diff + deslocamento
+            ) % 26
+            res.append(
+                chr(base + offset)
+            )
+        else:
+            res.append(ch)
+    return "".join(res)
+\end{minted}
+
+\fi

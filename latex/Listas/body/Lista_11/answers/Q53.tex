@@ -1,0 +1,13 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def media_sem_extremos(
+    notas: List[float],
+) -> float:
+    ord_n = sorted(notas)
+    miolo = ord_n[1:-1]
+    return sum(miolo) / len(miolo)
+\end{minted}
+
+\fi

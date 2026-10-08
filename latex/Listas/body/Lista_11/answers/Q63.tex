@@ -1,0 +1,17 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Dict
+
+def consolidar_estoques(
+    estoque_loja1: Dict[str, int],
+    estoque_loja2: Dict[str, int]
+) -> Dict[str, int]:
+    consolidado = dict(estoque_loja1)
+    for prod, qtd in estoque_loja2.items():
+        consolidado[prod] = (
+            consolidado.get(prod, 0) + qtd
+        )
+    return consolidado
+\end{minted}
+
+\fi

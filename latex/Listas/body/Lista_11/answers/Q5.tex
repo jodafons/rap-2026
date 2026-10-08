@@ -1,0 +1,14 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def aplicar_desconto(
+    preco_original: float,
+    porcentagem_desconto: float,
+) -> float:
+    desconto = (
+        preco_original
+        * (porcentagem_desconto / 100.0)
+    )
+    return preco_original - desconto
+\end{minted}
+
+\fi

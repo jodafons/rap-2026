@@ -1,0 +1,23 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def transpor_imagem(
+    matriz_pixels: List[List[int]],
+) -> List[List[int]]:
+    if not matriz_pixels:
+        return []
+    n_lin = len(matriz_pixels)
+    n_col = len(matriz_pixels[0])
+    
+    transposta = []
+    for c in range(n_col):
+        nova_linha = []
+        for l in range(n_lin):
+            val = matriz_pixels[l][c]
+            nova_linha.append(val)
+        transposta.append(nova_linha)
+    return transposta
+\end{minted}
+
+\fi

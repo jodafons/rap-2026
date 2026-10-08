@@ -1,0 +1,12 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def calcular_frete(
+    valor_compra: float,
+    cliente_vip: bool
+) -> float:
+    if valor_compra > 200.0 or cliente_vip:
+        return 0.0
+    return 25.0
+\end{minted}
+
+\fi

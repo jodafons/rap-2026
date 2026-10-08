@@ -1,0 +1,11 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def contar_digitos_codigo(codigo: str) -> int:
+    qtd_digitos = 0
+    for char in codigo:
+        if "0" <= char <= "9":
+            qtd_digitos += 1
+    return qtd_digitos
+\end{minted}
+
+\fi

@@ -1,0 +1,31 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List, Dict, Union
+
+def carregar_pedidos_csv(
+    caminho_csv: str,
+) -> List[Dict[str, Union[int, str, float]]]:
+    pedidos: List[
+        Dict[str, Union[int, str, float]]
+    ] = []
+    with open(
+        caminho_csv, "r", encoding="utf-8"
+    ) as arq:
+        linhas = arq.readlines()
+        if not linhas:
+            return []
+        # Ignora cabecalho
+        for linha in linhas[1:]:
+            limpa = linha.strip()
+            if not limpa:
+                continue
+            partes = limpa.split(",")
+            pedidos.append({
+                "id": int(partes[0]),
+                "cliente": partes[1],
+                "valor": float(partes[2]),
+            })
+    return pedidos
+\end{minted}
+
+\fi

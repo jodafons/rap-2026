@@ -1,0 +1,11 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def limpar_precos_invalidos(
+    precos: List[float]
+) -> List[float]:
+    return [p for p in precos if p > 0.0]
+\end{minted}
+
+\fi

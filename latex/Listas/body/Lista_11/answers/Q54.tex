@@ -1,0 +1,16 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def intercalar_listas(
+    fila_a: List[str],
+    fila_b: List[str],
+) -> List[str]:
+    resultado = []
+    for a, b in zip(fila_a, fila_b):
+        resultado.append(a)
+        resultado.append(b)
+    return resultado
+\end{minted}
+
+\fi

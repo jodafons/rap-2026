@@ -1,0 +1,12 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def eh_ano_bissexto(ano: int) -> bool:
+    div_4_nao_100 = (
+        ano % 4 == 0
+        and ano % 100 != 0
+    )
+    div_400 = (ano % 400 == 0)
+    return div_4_nao_100 or div_400
+\end{minted}
+
+\fi

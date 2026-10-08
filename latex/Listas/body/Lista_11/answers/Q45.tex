@@ -1,0 +1,15 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def formatar_etiqueta_produto(
+    produto: Tuple[int, str, float, str],
+) -> str:
+    cod, nome, preco, cat = produto
+    return (
+        f"[{cat}] {nome} - "
+        f"R$ {preco:.2f} (Cod: {cod})"
+    )
+\end{minted}
+
+\fi

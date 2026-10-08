@@ -1,0 +1,17 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def formatar_citacao_bibliografica(
+    nome_completo: str,
+) -> str:
+    partes = (
+        nome_completo.strip().split()
+    )
+    prim = partes[0]
+    ult = partes[-1]
+    return (
+        f"{ult.upper()}, "
+        f"{prim[0].upper()}."
+    )
+\end{minted}
+
+\fi

@@ -1,0 +1,12 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def calcular_montante_juros_compostos(
+    capital_inicial: float,
+    taxa_mensal: float,
+    meses: int
+) -> float:
+    fator = (1.0 + taxa_mensal) ** meses
+    return capital_inicial * fator
+\end{minted}
+
+\fi

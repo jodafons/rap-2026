@@ -1,0 +1,30 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def simular_pagamento_divida(
+    saldo_devedor: float,
+    taxa_juros_mensal: float,
+    pagamento_mensal: float,
+) -> int:
+    juros_min = (
+        saldo_devedor
+        * taxa_juros_mensal
+    )
+    if pagamento_mensal <= juros_min:
+        return -1
+    
+    meses = 0
+    saldo = saldo_devedor
+    while saldo > 0:
+        juros = (
+            saldo * taxa_juros_mensal
+        )
+        saldo = (
+            saldo
+            + juros
+            - pagamento_mensal
+        )
+        meses += 1
+    return meses
+\end{minted}
+
+\fi

@@ -1,0 +1,8 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def eh_palindromo(texto: str) -> bool:
+    limpo = texto.replace(" ", "").lower()
+    return limpo == limpo[::-1]
+\end{minted}
+
+\fi

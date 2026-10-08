@@ -1,0 +1,18 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def sacar_cedulas(
+    valor_reais: int,
+) -> Tuple[int, int, int]:
+    c50 = valor_reais // 50
+    resto50 = valor_reais % 50
+    
+    c20 = resto50 // 20
+    resto20 = resto50 % 20
+    
+    c10 = resto20 // 10
+    return c50, c20, c10
+\end{minted}
+
+\fi

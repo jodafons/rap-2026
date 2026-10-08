@@ -1,0 +1,22 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def validar_cadastro_usuario(
+    idade: int,
+    email: str,
+    renda: float,
+) -> Tuple[bool, str]:
+    if not (18 <= idade <= 120):
+        return False, "ERRO_IDADE"
+    if (
+        "@" not in email
+        or "." not in email
+    ):
+        return False, "ERRO_EMAIL"
+    if renda < 0:
+        return False, "ERRO_RENDA"
+    return True, "CADASTRO_VALIDO" 
+\end{minted}
+
+\fi

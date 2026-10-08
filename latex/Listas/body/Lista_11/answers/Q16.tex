@@ -1,0 +1,20 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def classificar_inteiro(
+    numero: int,
+) -> str:
+    if numero == 0:
+        return "ZERO"
+    
+    paridade = (
+        "PAR" if numero % 2 == 0
+        else "IMPAR"
+    )
+    sinal = (
+        "POSITIVO" if numero > 0
+        else "NEGATIVO"
+    )
+    return f"{paridade}_{sinal}" 
+\end{minted}
+
+\fi

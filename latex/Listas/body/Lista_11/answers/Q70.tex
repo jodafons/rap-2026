@@ -1,0 +1,45 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+class Veiculo:
+    def __init__(
+        self,
+        marca: str,
+        modelo: str,
+        preco: float
+    ) -> None:
+        self.marca: str = marca
+        self.modelo: str = modelo
+        self.preco: float = preco
+
+        def exibir_ficha(self) -> str:
+        return (
+            f"{self.marca} {self.modelo} - "
+            f"R$ {self.preco:.2f}"
+        )
+
+class CarroEletrico(Veiculo):
+    def __init__(
+        self,
+        marca: str,
+        modelo: str,
+        preco: float,
+        capacidade_kwh: float,
+    ) -> None:
+        super().__init__(
+            marca, modelo, preco
+        )
+        self.capacidade_kwh: float = (
+            capacidade_kwh
+        )
+
+    def estimar_autonomia(
+        self,
+        consumo_kwh_por_km: float,
+    ) -> float:
+        return (
+            self.capacidade_kwh
+            / consumo_kwh_por_km
+        )
+\end{minted}
+
+\fi

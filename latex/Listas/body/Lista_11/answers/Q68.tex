@@ -1,0 +1,22 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List, Tuple
+
+def salvar_produtos_csv(
+    caminho_arquivo: str,
+    produtos: List[Tuple[str, float]],
+) -> bool:
+    with open(
+        caminho_arquivo,
+        "w",
+        encoding="utf-8",
+    ) as arq:
+        arq.write("produto,preco\n")
+        for nome, preco in produtos:
+            arq.write(
+                f"{nome},{preco:.2f}\n"
+            )
+    return True
+\end{minted}
+
+\fi

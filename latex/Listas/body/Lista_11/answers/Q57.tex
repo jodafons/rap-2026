@@ -1,0 +1,23 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def faturamento_por_departamento(
+    matriz_vendas: List[List[float]],
+    vetor_precos: List[float],
+) -> List[float]:
+    faturamentos = []
+    for linha in matriz_vendas:
+        parcial = [
+            q * p
+            for q, p in zip(
+                linha, vetor_precos
+            )
+        ]
+        faturamentos.append(
+            sum(parcial)
+        )
+    return faturamentos
+\end{minted}
+
+\fi

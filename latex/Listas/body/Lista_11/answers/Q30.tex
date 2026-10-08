@@ -1,0 +1,15 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def meses_para_meta_financeira(
+    meta_reais: float,
+    aporte_mensal: float,
+) -> int:
+    acumulado = 0.0
+    meses = 0
+    while acumulado < meta_reais:
+        acumulado += aporte_mensal
+        meses += 1
+    return meses
+\end{minted}
+
+\fi

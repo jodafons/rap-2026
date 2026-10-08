@@ -1,0 +1,16 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def parse_log_web(
+    linha_log: str
+) -> Tuple[str, int, int, str]:
+    campos = linha_log.strip().split(";")
+    ip = campos[0].split("=")[1]
+    status = int(campos[1].split("=")[1])
+    nbytes = int(campos[2].split("=")[1])
+    path = campos[3].split("=")[1]
+    return (ip, status, nbytes, path)
+\end{minted}
+
+\fi

@@ -1,0 +1,64 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Dict, Union
+
+class Biblioteca:
+    def __init__(
+        self, nome_biblioteca: str
+    ) -> None:
+        self.nome_biblioteca: str = (
+            nome_biblioteca
+        )
+        self.catalogo: Dict[
+            int, Dict[str, Union[str, int]]
+        ] = {}
+
+    def cadastrar_livro(
+        self,
+        livro_id: int,
+        titulo: str,
+        quantidade: int,
+    ) -> None:
+        self.catalogo[livro_id] = {
+            "titulo": titulo,
+            "quantidade": quantidade,
+        }
+
+    def emprestar_livro(
+        self, livro_id: int
+    ) -> bool:
+        cat = self.catalogo
+        if (
+            livro_id in cat
+            and int(cat[livro_id]["quantidade"]) > 0
+        ):
+            qtd = int(cat[livro_id]["quantidade"])
+            cat[livro_id]["quantidade"] = (
+                qtd - 1
+            )
+            return True
+        return False
+
+    def exportar_inventario(
+        self, caminho_txt: str
+    ) -> bool:
+        with open(
+            caminho_txt,
+            "w",
+            encoding="utf-8",
+        ) as arq:
+            for l_id, d in self.catalogo.items():
+                tit = d["titulo"]
+                qtd = d["quantidade"]
+                arq.write(
+                    f"[{l_id}] {tit} - "
+                    f"{qtd} exemplares\n"
+                )
+            n_tot = len(self.catalogo)
+            arq.write(
+                f"Total de titulos: {n_tot}\n"
+            )
+        return True
+\end{minted}
+
+\fi

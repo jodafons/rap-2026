@@ -1,8 +1,8 @@
-\ifmostrarGabarito{
+\ifmostrarGabarito
 \begin{minted}{python}
 # Resposta Questao 2
 def anexar_evento_diario(caminho_arquivo: str, evento: str) -> None:
     with open(caminho_arquivo, mode='a', encoding='utf-8') as arquivo:
         arquivo.write(f"{evento}\n")
 \end{minted}
-}
+\fi

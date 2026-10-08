@@ -1,0 +1,14 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def somar_pares_intervalo(
+    inicio: int,
+    fim: int
+) -> int:
+    soma = 0
+    for num in range(inicio, fim + 1):
+        if num % 2 == 0:
+            soma += num
+    return soma
+\end{minted}
+
+\fi

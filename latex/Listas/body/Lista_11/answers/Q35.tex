@@ -1,0 +1,15 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def eh_numero_primo(
+    numero: int,
+) -> bool:
+    if numero <= 1:
+        return False
+    lim = int(numero ** 0.5) + 1
+    for d in range(2, lim):
+        if numero % d == 0:
+            return False
+    return True
+\end{minted}
+
+\fi

@@ -1,0 +1,4 @@
+--- DIÁRIO DE BORDO DO SUBMARINO CIAA ---
+Status: Pronto para navegação.
+Evento: Motores iniciados com sucesso.
+Profundidade: 12 metros.

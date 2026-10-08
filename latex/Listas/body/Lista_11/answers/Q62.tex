@@ -1,0 +1,16 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List, Tuple, Dict
+
+def agrupar_por_categoria(
+    itens: List[Tuple[str, str]]
+) -> Dict[str, List[str]]:
+    agrupado: Dict[str, List[str]] = {}
+    for produto, categoria in itens:
+        if categoria not in agrupado:
+            agrupado[categoria] = []
+        agrupado[categoria].append(produto)
+    return agrupado
+\end{minted}
+
+\fi

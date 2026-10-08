@@ -1,0 +1,7 @@
+\ifmostrarGabarito
+\textbf{Resposta: (B)}
+
+\textbf{Justificativa:}
+O método \code{.copy()} (ou fatiamento \code{[:]}) cria uma cópia rasa (\emph{shallow copy}). Ele cria uma nova lista externa, mas os elementos internos (as sublistas) continuam sendo apontados para os mesmos endereços de memória. Para desacoplar completamente estruturas aninhadas, é obrigatório utilizar \code{copy.deepcopy()}.
+
+\fi

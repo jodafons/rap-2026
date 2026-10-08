@@ -1,0 +1,32 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def calcular_media_movel(
+    precos_diarios: List[float],
+    tamanho_janela: int,
+) -> List[float]:
+    if (
+        len(precos_diarios)
+        < tamanho_janela
+    ):
+        return []
+    medias = []
+    n = (
+        len(precos_diarios)
+        - tamanho_janela
+        + 1
+    )
+    for i in range(n):
+        janela = precos_diarios[
+            i : i + tamanho_janela
+        ]
+        val = (
+            sum(janela)
+            / tamanho_janela
+        )
+        medias.append(val)
+    return medias
+\end{minted}
+
+\fi

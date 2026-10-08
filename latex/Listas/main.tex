@@ -3,28 +3,32 @@
 
 % Configuração da flag para exibir ou ocultar o gabarito
 \newboolean{mostrarGabarito}
-\setboolean{mostrarGabarito}{true} % Altere para 'false' para ocultar as respostas
+\ifdefined\comGabarito
+  \setboolean{mostrarGabarito}{\comGabarito}
+\else
+  \setboolean{mostrarGabarito}{true}
+\fi
 
-
+% Número da lista padrão: 11
+\ifdefined\numAula
+\else
+  \def\numAula{11}
+\fi
 
 \begin{document}
 \setlength{\arrayrulewidth}{1.5pt}
 \vspace{0.1cm}
 \begin{tabular}{l|l}
-
 \thispagestyle{empty}
-\multirow{4}{30mm}{
-
-    \vspace*{-1cm}\hspace*{-0.4cm}\includegraphics[width=0.15\textwidth]{logos/ciaa_gray.pdf}
-}  
-& {\bf \Large{Revisão Acelerada de Programação - RAP} \\
- & \bf \Large{RAP-2026, Marinha do Brasil} \\
+\multirow{4}{30mm}{\vspace*{-1cm}\hspace*{-0.4cm}\includegraphics[width=0.15\textwidth]{logos/ciaa_gray.pdf}}
+& {\bf \Large{Revisão Acelerada de Programação - RAP}} \\
+ & {\bf \Large{RAP-2026, Marinha do Brasil}} \\
  & {Centro de Instrução Almirante Alexandrino}\\
  & {Departamento de Aperfeiçoamento Avançado para Oficiais}\\
  & {Curso de Aperfeiçoamento Avançado em Guerra Acústica (C-ApA-Of-GA)}\\
  & {Professor: João Victor da Fonseca Pinto}\\
- & {Descrição do Documento: Lista de Exercícios (Parte 1)}\\
- & {Código da Aula: 2}\\
+ & {Descrição do Documento: Lista de Exercícios \numAula}\\
+ & {Código da Aula: \numAula}\\
 \end{tabular}\\ 
 
 
@@ -32,9 +36,5 @@
 \normalsize
 \vspace{-0.2cm}
 \vspace{0.2cm}
-\input{body/main}
+\input{body/Lista_\numAula/main}
 \end{document}
-
-
-
-

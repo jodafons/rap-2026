@@ -1,0 +1,5 @@
+[08:00] [INFO] Submarino desatracou da base naval do CIAA.
+[10:30] [ALERTA] Oscilacao detectada na pressao do compartimento 3.
+[12:00] [INFO] Manobra de imersao concluida a 100m de profundidade.
+[14:15] [EMERGENCIA] Superaquecimento temporario no reator secundario.
+[16:00] [INFO] Temperatura estabilizada e navegacao em velocidade de cruzeiro retomada.

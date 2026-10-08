@@ -1,0 +1,17 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Dict
+
+def contar_frequencia_palavras(
+    texto: str,
+) -> Dict[str, int]:
+    palavras = texto.strip().split()
+    contagens: Dict[str, int] = {}
+    for p in palavras:
+        contagens[p] = (
+            contagens.get(p, 0) + 1
+        )
+    return contagens
+\end{minted}
+
+\fi

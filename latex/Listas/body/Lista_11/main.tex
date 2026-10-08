@@ -1,0 +1,1126 @@
+\vspace{1cm}
+
+\noindent \textbf{\Large Lista de Exercícios 11 — Revisão Geral do Curso}
+
+\vspace{0.3cm}
+\noindent \textbf{Orientações e Instruções Gerais:}
+\begin{itemize}[leftmargin=*]
+    \item Esta lista consolida os tópicos fundamentais ministrados ao longo de toda a disciplina, totalizando \textbf{100,0 pontos}.
+    \item \textbf{Formato e Entrega:} As resoluções devem ser desenvolvidas e entregues em formato Jupyter Notebook (\texttt{.ipynb}) ou Google Colab na plataforma Google Classroom, na tarefa designada e impreterivelmente até o dia e horário determinados.
+    \item Para questões de implementação de código, utilize os nomes de funções, assinaturas e \textbf{Type Hints} estritamente conforme especificado nos protótipos.
+    \item Respeite as restrições específicas de cada tema (ex: não usar laços no Tema 1 ou no Tema 2).
+    \item A pontuação de cada questão é atribuída de acordo com seu nível: \textbf{Fácil (1,0 ponto)}, \textbf{Médio (1,8 ponto)} e \textbf{Difícil (3,0 pontos)}.
+\end{itemize}
+
+\vspace{0.5cm}
+
+
+\section*{Tema 1: Fundamentos, Variáveis, Operadores e Funções Básicas}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=1]
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Considere a seguinte expressão aritmética executada em Python para calcular o valor total de uma compra com desconto:
+\begin{minted}{python}
+total = 10 + 2 * 3 ** 2 - 8 // 4 + 7 % 3
+\end{minted}
+Qual será o valor final atribuído à variável \code{total}?
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} A ordem de precedência dos operadores aritméticos em Python é: 1º Parênteses \code{()}, 2º Exponenciação \code{**}, 3º Multiplicação \code{*}, Divisão \code{/}, Divisão Inteira \code{//} e Módulo \code{\%} (avaliados da esquerda para a direita), 4º Adição \code{+} e Subtração \code{-} (avaliados da esquerda para a direita). O operador de divisão inteira \code{//} retorna apenas a parte inteira da divisão (ex: \code{8 // 4} resulta em \code{2}), enquanto o operador módulo \code{\%} calcula o resto da divisão inteira (ex: \code{7 \% 3} resulta em \code{1}).
+\end{itemize}
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item 25
+    \item 27
+    \item 28
+    \item 30
+    \item 19
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q1}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Em Python, a conversão explícita de tipos (\emph{type casting}) é muito utilizada ao processar dados de formulários web. Analise as quatro conversões abaixo:
+\begin{minted}{python}
+v1 = int(7.89)
+v2 = float("42.5")
+v3 = bool("")
+v4 = bool(0)
+\end{minted}
+Quais são, respectivamente, os valores e tipos resultantes armazenados em \code{v1}, \code{v2}, \code{v3} e \code{v4}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{7} (int), \code{42.5} (float), \code{False} (bool), \code{False} (bool)
+    \item \code{8} (int), \code{42.5} (float), \code{True} (bool), \code{False} (bool)
+    \item \code{7} (int), \code{42.5} (float), \code{True} (bool), \code{True} (bool)
+    \item \code{7.89} (float), \code{42.5} (float), \code{False} (bool), \code{False} (bool)
+    \item \code{8} (int), \code{42} (int), \code{False} (bool), \code{False} (bool)
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q2}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Sobre a diferença fundamental entre a instrução \code{print()} e o comando \code{return} dentro de uma função em Python, assinale a alternativa \textbf{CORRETA}:
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{print()} armazena o valor em uma variável externa, enquanto \code{return} apenas exibe no terminal.
+    \item \code{print()} apenas exibe uma representação visual no console (efeito colateral), enquanto \code{return} devolve o dado para quem chamou a função e encerra sua execução.
+    \item Toda função que possui \code{print()} necessariamente retorna um valor numérico diferente de \code{None}.
+    \item O comando \code{return} é opcional e, caso omitido, a função sempre retornará a última mensagem impressa pelo \code{print()}.
+    \item \code{return} só pode ser utilizado para retornar números inteiros, enquanto \code{print()} funciona para qualquer tipo.
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q3}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Um viajante está planejando uma viagem internacional e precisa converter a previsão do tempo de graus Celsius para Fahrenheit. A fórmula de conversão é:
+\[
+F = C \times 1.8 + 32
+\]
+Escreva uma função chamada \code{celsius\_para\_fahrenheit} que receba a temperatura em Celsius e retorne o valor equivalente em Fahrenheit.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def celsius\_para\_fahrenheit(celsius: float) -> float:}
+    \item \textbf{Entrada:} \code{25.0}
+    \item \textbf{Saída:} \code{77.0}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q4}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Um supermercado está aplicando descontos percentuais no caixa. Escreva uma função chamada \code{aplicar\_desconto} que receba o preço original de um produto (em reais) e a porcentagem de desconto (de 0 a 100) e retorne o valor final a ser pago pelo consumidor.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def aplicar\_desconto(preco\_original: float, porcentagem\_desconto: float) -> float:}
+    \item \textbf{Entrada:} \code{150.0, 10.0}
+    \item \textbf{Saída:} \code{135.0}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q5}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Em uma clínica de nutrição, o Índice de Massa Corporal (IMC) é calculado pela fórmula:
+\[
+\text{IMC} = \frac{\text{peso}}{\text{altura}^2}
+\]
+onde o peso é dado em quilogramas e a altura em metros. Escreva uma função chamada \code{calcular\_imc} que receba o peso e a altura de um paciente e retorne o valor do seu IMC.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def calcular\_imc(peso\_kg: float, altura\_m: float) -> float:}
+    \item \textbf{Entrada:} \code{70.0, 1.75}
+    \item \textbf{Saída:} \code{22.857142857142858}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q6}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Um grupo de amigos foi a uma pizzaria e deseja dividir a conta em partes iguais. Ao valor consumido, deve ser acrescida a taxa de serviço de $10\%$. Escreva uma função chamada \code{rachar\_conta} que receba o valor total consumido (em reais) e o número de pessoas na mesa, retornando o valor individual a ser pago por cada amigo.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def rachar\_conta(valor\_total: float, num\_pessoas: int) -> float:}
+    \item \textbf{Entrada:} \code{200.0, 4}
+    \item \textbf{Saída:} \code{55.0}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q7}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Em uma disciplina de programação, a média final de um estudante é calculada por uma média ponderada de três avaliações, com pesos 2, 3 e 5, respectivamente:
+\[
+\text{Média} = \frac{N_1 \times 2 + N_2 \times 3 + N_3 \times 5}{2 + 3 + 5}
+\]
+Escreva uma função chamada \code{media\_ponderada\_provas} que receba as três notas em ponto flutuante e retorne a média final ponderada calculada.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def media\_ponderada\_provas(n1: float, n2: float, n3: float) -> float:}
+    \item \textbf{Entrada:} \code{6.0, 7.0, 8.0}
+    \item \textbf{Saída:} \code{7.3}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q8}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Um caixa eletrônico de autoatendimento precisa dispensar o menor número de cédulas possível para um determinado valor de saque inteiro (múltiplo de 10). O caixa dispõe de cédulas de R\$ 50, R\$ 20 e R\$ 10. Sem utilizar laços ou condicionais, escreva uma função chamada \code{sacar\_cedulas} que receba o valor total do saque e retorne uma tupla com a quantidade de cédulas de 50, 20 e 10, nesta ordem.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} O operador de divisão inteira \code{//} obtém a quantidade inteira de vezes que um número cabe no outro (ex.: \code{180 // 50} resulta em \code{3}), enquanto o operador módulo \code{\%} obtém o resto da divisão (ex.: \code{180 \% 50} resulta em \code{30}).
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def sacar\_cedulas(}\\\code{    valor\_reais: int}\\\code{) -> Tuple[int, int, int]:}
+    \item \textbf{Entrada:} \code{180}
+    \item \textbf{Saída:} \code{(3, 1, 1)}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q9}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} Um investidor deseja calcular o montante acumulado em uma aplicação de renda fixa sob o regime de juros compostos. A fórmula matemática do montante é:
+\[
+M = P \times (1 + i)^t
+\]
+onde $P$ é o capital inicial investido, $i$ é a taxa de juros mensal expressa em decimal (ex: 1\% = 0.01) e $t$ é o número de meses de aplicação. Escreva uma função chamada \code{calcular\_montante\_juros\_compostos} que receba o capital inicial, a taxa de juros mensal e o prazo em meses, e retorne o montante final acumulado.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def calcular\_montante\_juros\_compostos(}\\\code{    capital\_inicial: float,}\\\code{    taxa\_mensal: float, meses: int}\\\code{) -> float:}
+    \item \textbf{Entrada:} \code{1000.0, 0.01, 12}
+    \item \textbf{Saída:} \code{1126.8250301319697}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q10}
+
+\vspace{0.4cm}
+
+\end{enumerate}
+
+
+\section*{Tema 2: Estruturas Condicionais e Lógica Booleana}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=11]
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Em Python, a avaliação de expressões lógicas com os operadores \code{and} e \code{or} segue a regra do curto-circuito (\emph{short-circuit evaluation}). Considere as variáveis:
+\begin{minted}{python}
+a = False
+b = True
+c = True
+\end{minted}
+Qual é o resultado da expressão lógica: \code{a and (b or c) or (not a and b)}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{False}
+    \item \code{True}
+    \item \code{None}
+    \item Erro de sintaxe por excesso de parênteses
+    \item \code{1}
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q11}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Considere o seguinte trecho de código em Python:
+\begin{minted}{python}
+x = [1, 2, 3]
+y = [1, 2, 3]
+resultado1 = (x == y)
+resultado2 = (x is y)
+\end{minted}
+Quais são os valores booleanos de \code{resultado1} e \code{resultado2}?
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} O operador \code{==} compara a \textbf{igualdade de valor/conteúdo} entre os objetos, enquanto o operador \code{is} compara a \textbf{identidade}, verificando se as variáveis apontam para a mesma referência/endereço na memória (\code{id(x) == id(y)}).
+\end{itemize}
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{True} e \code{True}
+    \item \code{False} e \code{False}
+    \item \code{True} e \code{False}
+    \item \code{False} e \code{True}
+    \item \code{None} e \code{False}
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q12}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Analise o seguinte bloco condicional em Python:
+\begin{minted}{python}
+pontos = 75
+if pontos >= 90:
+    categoria = "Ouro"
+elif pontos >= 70:
+    categoria = "Prata"
+elif pontos >= 50:
+    categoria = "Bronze"
+else:
+    categoria = "Iniciante"
+\end{minted}
+Qual valor estará armazenado na variável \code{categoria} ao final da execução?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{"Ouro"}
+    \item \code{"Prata"}
+    \item \code{"Bronze"}
+    \item \code{"Iniciante"}
+    \item \code{"Prata"} e em seguida \code{"Bronze"}
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q13}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Uma instituição de ensino adota o seguinte critério de avaliação acadêmica baseado na média final do discente:
+\begin{itemize}
+    \item Média $\ge 7.0$: \code{"APROVADO"}
+    \item $5.0 \le \text{Média} < 7.0$: \code{"RECUPERACAO"}
+    \item Média $< 5.0$: \code{"REPROVADO"}
+\end{itemize}
+Escreva uma função chamada \code{status\_aluno} que receba a média do aluno e retorne a string com seu status correspondente.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def status\_aluno(nota\_media: float) -> str:}
+    \item \textbf{Entrada:} \code{6.4} | \textbf{Saída:} \code{"RECUPERACAO"}
+    \item \textbf{Entrada:} \code{8.5} | \textbf{Saída:} \code{"APROVADO"}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q14}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Para se cadastrar como motorista em uma plataforma de transporte, a pessoa precisa ter no mínimo 18 anos de idade e possuir Carteira Nacional de Habilitação (CNH) válida. Escreva uma função chamada \code{pode\_dirigir} que receba a idade (inteiro) e um booleano indicando se possui CNH, retornando \code{True} se a pessoa estiver apta a dirigir ou \code{False} caso contrário.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def pode\_dirigir(idade: int, possui\_cnh: bool) -> bool:}
+    \item \textbf{Entrada:} \code{19, True} | \textbf{Saída:} \code{True}
+    \item \textbf{Entrada:} \code{17, True} | \textbf{Saída:} \code{False}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q15}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{classificar\_inteiro} que receba um número inteiro e o classifique em uma das quatro categorias: \code{"PAR\_POSITIVO"}, \code{"PAR\_NEGATIVO"}, \code{"IMPAR\_POSITIVO"} ou \code{"IMPAR\_NEGATIVO"}. Caso o número seja zero, a função deve retornar \code{"ZERO"}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def classificar\_inteiro(numero: int) -> str:}
+    \item \textbf{Entrada:} \code{-4} | \textbf{Saída:} \code{"PAR\_NEGATIVO"}
+    \item \textbf{Entrada:} \code{7} | \textbf{Saída:} \code{"IMPAR\_POSITIVO"}
+    \item \textbf{Entrada:} \code{0} | \textbf{Saída:} \code{"ZERO"}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q16}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} No calendário gregoriano comercial, um ano é considerado bissexto se for divisível por 4, exceto se for divisível por 100, a menos que também seja divisível por 400. Escreva uma função chamada \code{eh\_ano\_bissexto} que receba o ano (número inteiro) e retorne \code{True} se for bissexto ou \code{False} caso contrário.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def eh\_ano\_bissexto(ano: int) -> bool:}
+    \item \textbf{Entrada:} \code{2024} | \textbf{Saída:} \code{True}
+    \item \textbf{Entrada:} \code{1900} | \textbf{Saída:} \code{False}
+    \item \textbf{Entrada:} \code{2000} | \textbf{Saída:} \code{True}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q17}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Um e-commerce adota a seguinte política de entrega: o frete é totalmente gratuito (\code{0.0}) se o valor da compra for estritamente superior a R\$ 200,00 ou se o cliente for membro do programa VIP. Em qualquer outro caso, o valor do frete é fixo em R\$ 25,00. Escreva uma função chamada \code{calcular\_frete} que implemente essa regra de negócio.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def calcular\_frete(valor\_compra: float, cliente\_vip: bool) -> float:}
+    \item \textbf{Entrada:} \code{150.0, True} | \textbf{Saída:} \code{0.0}
+    \item \textbf{Entrada:} \code{180.0, False} | \textbf{Saída:} \code{25.0}
+    \item \textbf{Entrada:} \code{250.0, False} | \textbf{Saída:} \code{0.0}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q18}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Para que três segmentos de reta $a, b, c$ formem um triângulo válido, cada lado deve ser estritamente menor que a soma dos outros dois ($a < b + c$, $b < a + c$, $c < a + b$). Caso formem um triângulo, ele pode ser: \code{"EQUILATERO"} (3 lados iguais), \code{"ISOSCELES"} (2 lados iguais) ou \code{"ESCALENO"} (3 lados diferentes). Se não formarem triângulo, retorne \code{"INVALIDO"}. Escreva uma função chamada \code{tipo\_triangulo}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def tipo\_triangulo(a: float, b: float, c: float) -> str:}
+    \item \textbf{Entrada:} \code{5.0, 5.0, 8.0} | \textbf{Saída:} \code{"ISOSCELES"}
+    \item \textbf{Entrada:} \code{1.0, 2.0, 10.0} | \textbf{Saída:} \code{"INVALIDO"}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q19}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Considere uma tabela progressiva de Imposto de Renda mensal simplificada:
+\begin{itemize}
+    \item Até R\$ 2.000,00: Isento (\code{0.0})
+    \item De R\$ 2.000,01 a R\$ 4.000,00: Alíquota de 10\% sobre a parcela que exceder R\$ 2.000,00
+    \item Acima de R\$ 4.000,00: R\$ 200,00 fixos mais 20\% sobre a parcela que exceder R\$ 4.000,00
+\end{itemize}
+Escreva uma função chamada \code{calcular\_ir\_simplificado} que receba o salário bruto e retorne o valor do imposto devido.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def calcular\_ir\_simplificado(salario\_bruto: float) -> float:}
+    \item \textbf{Entrada:} \code{3500.0} | \textbf{Saída:} \code{150.0}
+    \item \textbf{Entrada:} \code{5000.0} | \textbf{Saída:} \code{400.0}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q20}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Um aplicativo de caronas cobra uma tarifa base de R\$ 5,00 mais R\$ 2,50 por quilômetro rodado. Caso a corrida ocorra em horário de pico, aplica-se um acréscimo de 30\% sobre o valor total da corrida. Se estiver chovendo, é somada uma taxa adicional fixa de segurança de R\$ 4,00. Escreva uma função chamada \code{calcular\_corrida} que receba a distância em km, se é horário de pico e se está chovendo, retornando o preço final.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def calcular\_corrida(}\\\code{    distancia\_km: float,}\\\code{    horario\_pico: bool, esta\_chovendo: bool}\\\code{) -> float:}
+    \item \textbf{Entrada:} \code{10.0, True, True} | \textbf{Saída:} \code{43.0}
+    \item \textbf{Entrada:} \code{10.0, False, False} | \textbf{Saída:} \code{30.0}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q21}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Escreva uma função chamada \code{validar\_cadastro\_usuario} que valide os dados de cadastro de um novo cliente em um sistema bancário digital. Os critérios obrigatórios são:
+1. Idade deve ser maior ou igual a 18 e menor ou igual a 120 anos.
+2. O email não pode ser vazio e deve conter o caractere \code{"@"} e pelo menos um caractere \code{"."}.
+3. A renda mensal declarada não pode ser negativa.
+A função deve retornar uma tupla contendo um booleano (\code{True} se todos os critérios forem atendidos, \code{False} caso contrário) e uma mensagem explicativa (\code{"CADASTRO\_VALIDO"} ou a causa da reprovação: \code{"ERRO\_IDADE"}, \code{"ERRO\_EMAIL"} ou \code{"ERRO\_RENDA"}).
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def validar\_cadastro\_usuario(}\\\code{    idade: int, email: str, renda: float}\\\code{) -> Tuple[bool, str]:}
+    \item \textbf{Entrada:} \code{25, "joao@email.com", 3000.0} | \textbf{Saída:} \code{(True, "CADASTRO\_VALIDO")}
+    \item \textbf{Entrada:} \code{16, "ana@email.com", 1500.0} | \textbf{Saída:} \code{(False, "ERRO\_IDADE")}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q22}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} Uma plataforma de streaming deseja recomendar o plano ideal para um usuário com base em suas preferências técnicas:
+\begin{itemize}
+    \item \textbf{Plano Básico:} Suporta no máximo 1 tela simultânea, resolução padrão HD e não permite download offline.
+    \item \textbf{Plano Padrão:} Suporta até 2 telas simultâneas, resolução Full HD (não 4K) e permite download offline.
+    \item \textbf{Plano Premium:} Suporta até 4 telas simultâneas, resolução 4K Ultra HD e permite download offline.
+\end{itemize}
+Escreva uma função chamada \code{recomendar\_plano\_streaming} que receba o número de telas desejadas, se o usuário exige 4K e se exige download offline. A função deve retornar o nome do plano mais econômico que atenda plenamente aos requisitos (\code{"PLANO\_BASICO"}, \code{"PLANO\_PADRAO"}, \code{"PLANO\_PREMIUM"}) ou \code{"PLANO\_CUSTOMIZADO"} se exceder 4 telas.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def recomendar\_plano\_streaming(}\\\code{    num\_telas: int, requer\_4k: bool,}\\\code{    requer\_download: bool}\\\code{) -> str:}
+    \item \textbf{Entrada:} \code{2, False, True} | \textbf{Saída:} \code{"PLANO\_PADRAO"}
+    \item \textbf{Entrada:} \code{1, True, False} | \textbf{Saída:} \code{"PLANO\_PREMIUM"}
+    \item \textbf{Entrada:} \code{5, True, True} | \textbf{Saída:} \code{"PLANO\_CUSTOMIZADO"}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q23}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} Um banco analisa pedidos de empréstimo pessoal com base em quatro variáveis: renda mensal líquida, valor da parcela pretendida, pontuação de score de crédito (0 a 1000) e existência de negativação no cadastro de inadimplentes.
+As regras de aprovação são:
+1. O cliente não pode possuir negativação ativa (\code{tem\_divida\_ativa == False}).
+2. O valor da parcela pretendida não pode ultrapassar $30\%$ da renda mensal líquida.
+3. Se o score for $\ge 700$, o empréstimo é aprovado com juros normais (\code{"APROVADO\_JUROS\_BAIXOS"}).
+4. Se o score estiver entre 500 e 699, o empréstimo é aprovado com taxa de risco (\code{"APROVADO\_JUROS\_ALTOS"}).
+5. Se o score for $< 500$, o empréstimo é recusado por risco de crédito (\code{"RECUSADO\_SCORE"}).
+6. Caso a parcela comprometa mais de 30\% da renda, retorne \code{"RECUSADO\_MARGEM"}. Caso haja dívida ativa, retorne \code{"RECUSADO\_INADIMPLENCIA"}. A prioridade de rejeição é dívida ativa primeiro, depois margem e depois score.
+Escreva a função \code{analisar\_credito\_bancario}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def analisar\_credito\_bancario(}\\\code{    renda\_mensal: float, parcela: float,}\\\code{    score: int, tem\_divida\_ativa: bool}\\\code{) -> Tuple[bool, str]:}
+    \item \textbf{Entrada:} \code{5000.0, 1200.0, 750, False} | \textbf{Saída:} \code{(True, "APROVADO\_JUROS\_BAIXOS")}
+    \item \textbf{Entrada:} \code{4000.0, 1500.0, 800, False} | \textbf{Saída:} \code{(False, "RECUSADO\_MARGEM")}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q24}
+
+\vspace{0.4cm}
+
+\end{enumerate}
+
+
+\section*{Tema 3: Estruturas de Repetição (for e while)}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=25]
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Ao executar a instrução \code{list(range(10, 2, -3))} em Python, qual sequência de números inteiros será gerada?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{[10, 7, 4]}
+    \item \code{[10, 7, 4, 1]}
+    \item \code{[10, 8, 6, 4, 2]}
+    \item \code{[10, 7, 4, 2]}
+    \item \code{[]} (lista vazia)
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q25}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Considere o seguinte trecho de código em Python:
+\begin{minted}{python}
+soma = 0
+for i in range(1, 6):
+    if i == 3:
+        continue
+    if i == 5:
+        break
+    soma += i
+\end{minted}
+Qual será o valor final da variável \code{soma}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item 3
+    \item 7
+    \item 10
+    \item 15
+    \item 6
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q26}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Qual das seguintes situações causa obrigatoriamente um laço infinito (\emph{infinite loop}) em Python?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item Um laço \code{for i in range(1000):} sem o comando \code{break}.
+    \item Um laço \code{while condicao:} em que a variável presente na \code{condicao} nunca é modificada no corpo do laço e a condição permanece verdadeira.
+    \item Um laço que utiliza \code{continue} na primeira linha do corpo do \code{for}.
+    \item Percorrer uma tupla vazia com \code{for item in ():}.
+    \item Executar uma chamada recursiva que atinge seu caso base logo na primeira chamada.
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q27}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Quantas vezes a instrução \code{contador += 1} será executada no trecho abaixo?
+\begin{minted}{python}
+contador = 0
+for i in range(4):
+    for j in range(3):
+        contador += 1
+\end{minted}
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item 7 vezes
+    \item 12 vezes
+    \item 9 vezes
+    \item 16 vezes
+    \item 6 vezes
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q28}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{somar\_pares\_intervalo} que receba dois números inteiros positivos (\code{inicio} e \code{fim}, com $\text{inicio} \le \text{fim}$) e, utilizando um laço de repetição \code{for}, calcule e retorne o somatório de todos os números pares pertencentes a esse intervalo fechado.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def somar\_pares\_intervalo(inicio: int, fim: int) -> int:}
+    \item \textbf{Entrada:} \code{1, 10} | \textbf{Saída:} \code{30} *(2 + 4 + 6 + 8 + 10)*
+    \item \textbf{Entrada:} \code{4, 4} | \textbf{Saída:} \code{4}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q29}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Uma pessoa deseja comprar um equipamento eletrônico e decidiu guardar uma quantia fixa todo mês em um cofrinho (sem juros). Escreva uma função chamada \code{meses\_para\_meta\_financeira} que receba o valor total da meta (em reais) e o valor do aporte mensal constante, utilizando um laço \code{while} para calcular e retornar a quantidade exata de meses necessários para acumular ou ultrapassar a meta.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def meses\_para\_meta\_financeira(meta\_reais: float, aporte\_mensal: float) -> int:}
+    \item \textbf{Entrada:} \code{5000.0, 400.0} | \textbf{Saída:} \code{13}
+    \item \textbf{Entrada:} \code{1200.0, 300.0} | \textbf{Saída:} \code{4}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q30}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{gerar\_tabuada} que receba um número inteiro $N$ e, utilizando um laço \code{for}, retorne uma tupla com os 10 resultados da tabuada de multiplicação de $N$ (de $N \times 1$ até $N \times 10$).
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def gerar\_tabuada(numero: int) -> Tuple[int, ...]:}
+    \item \textbf{Entrada:} \code{7} | \textbf{Saída:} \code{(7, 14, 21, 28, 35, 42, 49, 56, 63, 70)}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q31}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{contar\_digitos\_codigo} que receba uma string representando um código de rastreio de encomenda (por exemplo, \code{"BR-2024-XP99-88"}) e, iterando caractere por caractere com um laço \code{for}, conte e retorne a quantidade de caracteres numéricos (dígitos de 0 a 9) presentes na string.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def contar\_digitos\_codigo(codigo: str) -> int:}
+    \item \textbf{Entrada:} \code{"PED-2024-X99"} | \textbf{Saída:} \code{6}
+    \item \textbf{Entrada:} \code{"SEM\_NUMEROS"} | \textbf{Saída:} \code{0}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q32}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} O fatorial de um número natural $n$ (representado por $n!$) é o produto de todos os inteiros positivos menores ou iguais a $n$, com $0! = 1$. Escreva uma função chamada \code{calcular\_fatorial} que receba um inteiro não negativo $n$ e calcule seu fatorial utilizando um laço \code{while}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def calcular\_fatorial(n: int) -> int:}
+    \item \textbf{Entrada:} \code{5} | \textbf{Saída:} \code{120}
+    \item \textbf{Entrada:} \code{0} | \textbf{Saída:} \code{1}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q33}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Um consumidor possui uma dívida de cartão de crédito que rende juros mensais fixos sobre o saldo restante. Todo mês, os juros são aplicados ao saldo devedor ($saldo = saldo \times (1 + taxa)$) e, logo após, o cliente realiza um pagamento fixo. Escreva uma função chamada \code{simular\_pagamento\_divida} que receba o saldo devedor inicial, a taxa de juros mensal em decimal e o valor do pagamento mensal fixo. A função deve retornar quantos meses serão necessários para quitar totalmente a dívida (saldo $\le 0$). Caso o pagamento mensal seja menor ou igual aos juros do primeiro mês, a dívida nunca será paga; nesse caso, a função deve retornar \code{-1}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def simular\_pagamento\_divida(}\\\code{    saldo\_devedor: float,}\\\code{    taxa\_juros\_mensal: float,}\\\code{    pagamento\_mensal: float}\\\code{) -> int:}
+    \item \textbf{Entrada:} \code{1000.0, 0.02, 200.0} | \textbf{Saída:} \code{6}
+    \item \textbf{Entrada:} \code{1000.0, 0.05, 50.0} | \textbf{Saída:} \code{-1}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q34}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Um número inteiro maior que 1 é primo se for divisível apenas por 1 e por ele mesmo. Escreva uma função chamada \code{eh\_numero\_primo} que receba um número inteiro e utilize um laço \code{for} para verificar se ele é primo, retornando \code{True} ou \code{False}. Números menores ou iguais a 1 não são primos.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def eh\_numero\_primo(numero: int) -> bool:}
+    \item \textbf{Entrada:} \code{17} | \textbf{Saída:} \code{True}
+    \item \textbf{Entrada:} \code{21} | \textbf{Saída:} \code{False}
+    \item \textbf{Entrada:} \code{1} | \textbf{Saída:} \code{False}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q35}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Escreva uma função chamada \code{extremos\_gastos} que receba uma tupla não vazia de valores numéricos representando as despesas do mês e, utilizando apenas estruturas de repetição (sem usar as funções embutidas \code{min()} e \code{max()}), encontre e retorne uma tupla contendo o menor e o maior gasto, exatamente nesta ordem: \code{(menor, maior)}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def extremos\_gastos(gastos: Tuple[float, ...]) -> Tuple[float, float]:}
+    \item \textbf{Entrada:} \code{(120.5, 45.0, 890.0, 15.0, 320.0)} | \textbf{Saída:} \code{(15.0, 890.0)}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q36}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} A sequência de Fibonacci é definida por: $F_0 = 0$, $F_1 = 1$ e $F_n = F_{n-1} + F_{n-2}$ para $n \ge 2$. Escreva uma função chamada \code{gerar\_fibonacci} que receba a quantidade de termos desejada $N$ ($N \ge 1$) e, utilizando um laço de repetição, gere e retorne uma tupla contendo os $N$ primeiros termos da sequência de Fibonacci.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def gerar\_fibonacci(n\_termos: int) -> Tuple[int, ...]:}
+    \item \textbf{Entrada:} \code{8} | \textbf{Saída:} \code{(0, 1, 1, 2, 3, 5, 8, 13)}
+    \item \textbf{Entrada:} \code{2} | \textbf{Saída:} \code{(0, 1)}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q37}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} Em um jogo de adivinhação numérica, o computador escolhe um número inteiro entre $1$ e um limite superior $N$. Um jogador inteligente utiliza a estratégia da Busca Binária para adivinhar o número no menor número de tentativas possível (sempre chutando o ponto médio do intervalo atual). Escreva uma função chamada \code{passos\_busca\_binaria} que receba o número secreto (\code{alvo}) e o \code{limite\_superior}, e utilize um laço \code{while} para simular essa busca binária, retornando a quantidade de chutes/passos até acertar o número.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def passos\_busca\_binaria(alvo: int, limite\_superior: int) -> int:}
+    \item \textbf{Entrada:} \code{73, 100} | \textbf{Saída:} \code{6}
+    \item \textbf{Entrada:} \code{50, 100} | \textbf{Saída:} \code{1}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q38}
+
+\vspace{0.4cm}
+
+\end{enumerate}
+
+
+\section*{Tema 4: Strings, Fatiamento e Tuplas}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=39]
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Dada a string \code{s = "PROGRAMACAO"}, qual será o resultado da operação de fatiamento \code{s[1:8:2]}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{"RMAA"}
+    \item \code{"RGAA"}
+    \item \code{"RGA"}
+    \item \code{"PGMC"}
+    \item \code{"ROAM"}
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q39}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Sobre a imutabilidade de strings e tuplas em Python, assinale a afirmação \textbf{CORRETA}:
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item Podemos alterar um elemento de uma tupla diretamente com \code{t[0] = novo\_valor} desde que o valor seja do mesmo tipo.
+    \item O método \code{texto.replace("a", "b")} modifica a string \code{texto} no mesmo endereço de memória.
+    \item Tanto strings quanto tuplas são objetos imutáveis; qualquer operação de concatenação ou substituição gera um novo objeto na memória.
+    \item Tuplas que contêm apenas números inteiros são mutáveis, mas tuplas com strings são imutáveis.
+    \item É possível deletar um caractere de uma string usando a instrução \code{del texto[0]}.
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q40}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Considere a string \code{frase = "  banana,maca,uva  "}. Ao executar o comando:
+\begin{minted}{python}
+itens = frase.strip().split(",")
+\end{minted}
+Qual será o valor armazenado na variável \code{itens}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{"banana,maca,uva"}
+    \item \code{("banana", "maca", "uva")}
+    \item \code{["banana", "maca", "uva"]}
+    \item \code{["  banana", "maca", "uva  "]}
+    \item \code{"banana maca uva"}
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q41}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Uma palavra ou frase é chamada de palíndromo se for lida da mesma maneira da esquerda para a direita e da direita para a esquerda, desconsiderando espaços em branco e diferenças entre maiúsculas e minúsculas. Escreva uma função chamada \code{eh\_palindromo} que receba uma string e retorne \code{True} se for palíndromo ou \code{False} caso contrário.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def eh\_palindromo(texto: str) -> bool:}
+    \item \textbf{Entrada:} \code{"Apos a sopa"} | \textbf{Saída:} \code{True}
+    \item \textbf{Entrada:} \code{"Python"} | \textbf{Saída:} \code{False}
+    \item \textbf{Entrada:} \code{"Socorram me subi no onibus em Marrocos"} | \textbf{Saída:} \code{True}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q42}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Em trabalhos acadêmicos, a citação de autores no texto segue frequentemente o formato: \code{"SOBRENOME, P."} onde \code{SOBRENOME} é o último sobrenome em maiúsculas e \code{P.} é a primeira letra do primeiro nome seguida de ponto. Escreva uma função chamada \code{formatar\_citacao\_bibliografica} que receba o nome completo de um autor e retorne a citação formatada.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def formatar\_citacao\_bibliografica(nome\_completo: str) -> str:}
+    \item \textbf{Entrada:} \code{"Carlos Eduardo Souza"} | \textbf{Saída:} \code{"SOUZA, C."}
+    \item \textbf{Entrada:} \code{"Alan Turing"} | \textbf{Saída:} \code{"TURING, A."}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q43}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{extrair\_dominio\_email} que receba uma string contendo um endereço de e-mail válido (ex: \code{"cliente.vip@lojaonline.com.br"}) e utilize os métodos de string para extrair e retornar apenas o domínio (a parte após o símbolo \code{"@"}).
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def extrair\_dominio\_email(email: str) -> str:}
+    \item \textbf{Entrada:} \code{"contato@empresa.com.br"} | \textbf{Saída:} \code{"empresa.com.br"}
+    \item \textbf{Entrada:} \code{"usuario@gmail.com"} | \textbf{Saída:} \code{"gmail.com"}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q44}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Uma loja armazena as informações básicas de cada produto em uma tupla com quatro posições: \code{(codigo: int, nome: str, preco: float, categoria: str)}. Escreva uma função chamada \code{formatar\_etiqueta\_produto} que receba essa tupla, desempacote seus valores e retorne uma string formatada no padrão: \code{"[CATEGORIA] NOME - R\$ PRECO (Cod: CODIGO)"}, onde o preço deve ser exibido com duas casas decimais.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def formatar\_etiqueta\_produto(produto: Tuple[int, str, float, str]) -> str:}
+    \item \textbf{Entrada:} \code{(102, "Teclado Mecanico", 250.0, "Perifericos")}
+    \item \textbf{Saída:} \code{"[Perifericos] Teclado Mecanico - R\$ 250.00 (Cod: 102)"}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q45}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Um servidor web registra cada requisição em uma linha de log formatada por pares chave=valor separados por ponto e vírgula:
+\code{"IP=192.168.1.1; STATUS=200; BYTES=4096; PATH=/home"}
+Escreva uma função chamada \code{parse\_log\_web} que receba essa string e faça a extração dos valores, retornando uma tupla tipada contendo \code{(ip: str, status: int, bytes: int, path: str)}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def parse\_log\_web(linha\_log: str) -> Tuple[str, int, int, str]:}
+    \item \textbf{Entrada:} \\\code{"IP=192.168.1.1; STATUS=200; BYTES=4096; PATH=/home"}
+    \item \textbf{Saída:} \\\code{("192.168.1.1", 200, 4096, "/home")}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q46}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} A Cifra de César é uma técnica clássica de criptografia por substituição na qual cada letra de uma mensagem em maiúsculas é deslocada um número fixo de posições no alfabeto (considerando o alfabeto de 'A' a 'Z' de 26 letras de forma circular). Caracteres que não sejam letras maiúsculas (como espaços) devem ser mantidos inalterados. Escreva uma função chamada \code{cifrar\_texto} que receba a mensagem e o deslocamento inteiro, retornando o texto cifrado.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def cifrar\_texto(mensagem: str, deslocamento: int) -> str:}
+    \item \textbf{Entrada:} \code{"COMPUTADOR", 3} | \textbf{Saída:} \code{"FRPSXWDGRU"}
+    \item \textbf{Entrada:} \code{"ZEBRA", 1} | \textbf{Saída:} \code{"AFCSB"}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q47}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} No algoritmo oficial do Cadastro de Pessoas Físicas (CPF), o primeiro dígito verificador (o $10^\circ$ dígito) é calculado com base nos 9 primeiros dígitos:
+1. Multiplica-se o $1^\circ$ dígito por 10, o $2^\circ$ por 9, o $3^\circ$ por 8, e assim por diante até o $9^\circ$ dígito multiplicado por 2.
+2. Soma-se todos os 9 produtos parciais.
+3. O resto da divisão dessa soma por 11 é calculado ($R = \text{soma} \pmod{11}$).
+4. Se $R < 2$, o primeiro dígito verificador esperado é $0$; caso contrário, é $11 - R$.
+Escreva uma função chamada \code{validar\_primeiro\_digito\_cpf} que receba uma string de exatamente 11 dígitos numéricos e retorne \code{True} se o $10^\circ$ dígito estiver correto ou \code{False} caso contrário.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def validar\_primeiro\_digito\_cpf(cpf\_str: str) -> bool:}
+    \item \textbf{Entrada:} \code{"12345678909"} | \textbf{Saída:} \code{True}
+    \item \textbf{Entrada:} \code{"11144477705"} | \textbf{Saída:} \code{False}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q48}
+
+\vspace{0.4cm}
+
+\end{enumerate}
+
+
+\section*{Tema 5: Listas, Mutabilidade e Matrizes}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=49]
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Considere duas listas: \code{a = [1, 2]} e \code{b = [3, 4]}. Qual é a diferença fundamental entre executar \code{a.append(b)} e \code{a.extend(b)}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{a.append(b)} insere os elementos 3 e 4 individualmente no final de \code{a}, enquanto \code{a.extend(b)} cria uma cópia profunda.
+    \item \code{a.append(b)} insere a lista \code{b} inteira como um único elemento no final de \code{a} (resultando em \code{[1, 2, [3, 4]]}), enquanto \code{a.extend(b)} itera sobre \code{b} e anexa cada elemento individualmente (resultando em \code{[1, 2, 3, 4]}).
+    \item Não há nenhuma diferença prática; ambos os métodos resultam exatamente na lista \code{[1, 2, 3, 4]}.
+    \item \code{a.extend(b)} só funciona para listas de strings, enquanto \code{a.append(b)} funciona para qualquer tipo.
+    \item \code{a.append(b)} modifica \code{a} e retorna a nova lista, enquanto \code{a.extend(b)} não altera \code{a}.
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q49}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Analise o seguinte trecho de código em Python:
+\begin{minted}{python}
+matriz_original = [[1, 2], [3, 4]]
+matriz_copia = matriz_original.copy()
+matriz_copia[0][0] = 99
+\end{minted}
+Qual será o valor de \code{matriz\_original[0][0]} após essa alteração?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item 1, pois \code{.copy()} cria uma cópia totalmente independente de todos os níveis.
+    \item 99, pois \code{.copy()} realiza uma cópia rasa (\emph{shallow copy}), compartilhando as referências das sublistas internas.
+    \item \code{None}, pois a lista original é limpa após a cópia.
+    \item Ocorre um erro de execução (\code{TypeError}) na linha 3.
+    \item 0.
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q50}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Qual das seguintes expressões em Python utiliza corretamente Compreensão de Listas (\emph{List Comprehension}) para criar uma lista com o quadrado apenas dos números ímpares presentes na lista \code{numeros = [1, 2, 3, 4, 5, 6]}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{[x ** 2 for x in numeros if x \% 2 != 0]}
+    \item \code{[for x in numeros if x \% 2 != 0: x ** 2]}
+    \item \code{[x ** 2 if x \% 2 != 0 for x in numeros]}
+    \item \code{[x * 2 for x in numeros while x \% 2 != 0]}
+    \item \code{list(x ** 2 for x in numeros and x \% 2 != 0)}
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q51}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Um sistema de controle de vendas recebeu uma lista de preços com algumas entradas corrompidas contendo valores negativos ou iguais a zero. Escreva uma função chamada \code{limpar\_precos\_invalidos} que receba uma lista de preços em ponto flutuante e retorne uma nova lista contendo apenas os preços estritamente positivos ($> 0.0$).
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def limpar\_precos\_invalidos(precos: List[float]) -> List[float]:}
+    \item \textbf{Entrada:} \code{[29.9, -5.0, 0.0, 45.5, 12.0]} | \textbf{Saída:} \code{[29.9, 45.5, 12.0]}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q52}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Em uma competição esportiva, a nota de um competidor é calculada descartando apenas uma ocorrência da menor nota e uma ocorrência da maior nota atribuída pelos jurados, e calculando a média aritmética das notas restantes. Escreva uma função chamada \code{media\_sem\_extremos} que receba uma lista com pelo menos 3 notas e retorne a média aparada resultante.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def media\_sem\_extremos(notas: List[float]) -> float:}
+    \item \textbf{Entrada:} \code{[8.5, 9.0, 6.0, 10.0, 7.5]} | \textbf{Saída:} \code{8.333333333333334}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q53}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{intercalar\_listas} que receba duas listas de mesmo comprimento (\code{fila\_a} e \code{fila\_b}) e retorne uma nova lista contendo os elementos intercalados alternadamente (o primeiro de A, depois o primeiro de B, o segundo de A, o segundo de B, e assim por diante).
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def intercalar\_listas(fila\_a: List[str], fila\_b: List[str]) -> List[str]:}
+    \item \textbf{Entrada:} \code{["Ana", "Carlos"], ["Bia", "Daniel"]}
+    \item \textbf{Saída:} \code{["Ana", "Bia", "Carlos", "Daniel"]}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q54}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{trocar\_pares\_adjacentes} que receba uma lista de inteiros com quantidade par de elementos e retorne uma nova lista na qual as posições dos pares vizinhos estejam invertidas: o elemento no índice 0 troca com o índice 1, o elemento no índice 2 troca com o índice 3, e assim por diante.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def trocar\_pares\_adjacentes(lista\_itens: List[int]) -> List[int]:}
+    \item \textbf{Entrada:} \code{[10, 20, 30, 40]} | \textbf{Saída:} \code{[20, 10, 40, 30]}
+    \item \textbf{Entrada:} \code{[1, 2, 3, 4, 5, 6]} | \textbf{Saída:} \code{[2, 1, 4, 3, 6, 5]}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q55}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Uma imagem digital monocromática é representada por uma matriz bidimensional de dimensões $M \times N$ (uma lista de $M$ listas, cada uma com $N$ inteiros correspondentes aos tons de cinza). A rotação e transposição dessa imagem exige converter as linhas em colunas. Escreva uma função chamada \code{transpor\_imagem} que receba essa matriz e retorne a matriz transposta de dimensão $N \times M$.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def transpor\_imagem(matriz\_pixels: List[List[int]]) -> List[List[int]]:}
+    \item \textbf{Entrada:} \code{[[1, 2, 3], [4, 5, 6]]} | \textbf{Saída:} \code{[[1, 4], [2, 5], [3, 6]]}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q56}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Uma rede de lojas armazena em uma matriz as quantidades de produtos vendidos em cada filial (cada linha representa uma filial e cada coluna um tipo de produto). Um vetor unidimensional armazena o preço unitário de cada produto. Escreva uma função chamada \code{faturamento\_por\_departamento} que realize a multiplicação da matriz de vendas pelo vetor de preços, retornando uma lista com o faturamento total arrecadado por cada filial.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def faturamento\_por\_departamento(}\\\code{    matriz\_vendas: List[List[float]],}\\\code{    vetor\_precos: List[float]}\\\code{) -> List[float]:}
+    \item \textbf{Entrada:} \code{[[2.0, 1.0], [0.0, 3.0]], [10.0, 20.0]} | \textbf{Saída:} \code{[40.0, 60.0]}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q57}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} No mercado financeiro, a Média Móvel Simples é muito utilizada para suavizar oscilações diárias de preços. Dada uma lista de preços históricos de uma ação e um tamanho de janela $K$ ($K \ge 1$), a média móvel no dia $i$ é a média aritmética dos $K$ valores compreendidos entre o dia $i - K + 1$ e o dia $i$. Escreva uma função chamada \code{calcular\_media\_movel} que receba a lista de preços e a janela $K$, e retorne uma lista contendo as médias móveis calculadas a partir do momento em que a primeira janela completa estiver disponível.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def calcular\_media\_movel(precos\_diarios: List[float], tamanho\_janela: int) -> List[float]:}
+    \item \textbf{Entrada:} \code{[100.0, 102.0, 104.0, 106.0, 108.0], 3} | \textbf{Saída:} \code{[102.0, 104.0, 106.0]}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q58}
+
+\vspace{0.4cm}
+
+\end{enumerate}
+
+
+\section*{Tema 6: Dicionários e Conjuntos (dict e set)}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=59]
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Dado o dicionário \code{precos = \{"arroz": 5.50, "feijao": 8.00\}}, qual é a forma segura de consultar o preço do item \code{"batata"} sem provocar uma exceção de erro do tipo \code{KeyError} caso ele não esteja cadastrado?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{precos["batata"]}
+    \item \code{precos.get("batata", 0.0)}
+    \item \code{precos.pop("batata")}
+    \item \code{precos.find("batata")}
+    \item \code{precos.search("batata")}
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q59}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{contar\_frequencia\_palavras} que receba uma string contendo um texto em minúsculas com palavras separadas por espaços e retorne um dicionário no qual cada chave é uma palavra e o valor correspondente é a quantidade de vezes que ela apareceu no texto.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Dict}\\\code{def contar\_frequencia\_palavras(texto: str) -> Dict[str, int]:}
+    \item \textbf{Entrada:} \code{"otimo produto produto excelente otimo produto"}
+    \item \textbf{Saída:} \code{\{"otimo": 2, "produto": 3, "excelente": 1\}}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q60}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{inverter\_dicionario} que receba um dicionário cujas chaves e valores sejam strings (assumindo que todos os valores são distintos) e retorne um novo dicionário no qual as chaves originais tornam-se valores e os valores tornam-se as novas chaves.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Dict}\\\code{def inverter\_dicionario(dicionario\_original: Dict[str, str]) -> Dict[str, str]:}
+    \item \textbf{Entrada:} \code{\{"BR": "Brasil", "FR": "Franca"\}}
+    \item \textbf{Saída:} \code{\{"Brasil": "BR", "Franca": "FR"\}}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q61}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Um catálogo de supermercado possui itens cadastrados em uma lista de tuplas no formato \code{(nome\_produto, categoria)}. Escreva uma função chamada \code{agrupar\_por\_categoria} que receba essa lista e retorne um dicionário no qual cada chave é o nome de uma categoria e o valor é a lista de produtos pertencentes àquela categoria.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List, Tuple, Dict}\\\code{def agrupar\_por\_categoria(}\\\code{    itens: List[Tuple[str, str]]}\\\code{) -> Dict[str, List[str]]:}
+    \item \textbf{Entrada:} \\\code{[("Arroz", "Alimentos"), ("Sabonete", "Higiene"), ("Feijao", "Alimentos")]}
+    \item \textbf{Saída:} \\\code{\{"Alimentos": ["Arroz", "Feijao"], "Higiene": ["Sabonete"]\}}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q62}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Duas filiais de uma rede de lojas precisam consolidar seus estoques ao final do expediente. Cada estoque é representado por um dicionário no formato \code{\{"produto": quantidade\}}. Escreva uma função chamada \code{consolidar\_estoques} que receba os dois dicionários e retorne um novo dicionário consolidado contendo a soma das quantidades para produtos que existirem em ambas as lojas, e a quantidade original para os produtos exclusivos de uma única loja.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Dict}\\\code{def consolidar\_estoques(}\\\code{    estoque\_loja1: Dict[str, int],}\\\code{    estoque\_loja2: Dict[str, int]}\\\code{) -> Dict[str, int]:}
+    \item \textbf{Entrada:} \code{\{"Camisa": 10, "Calca": 5\}, \{"Camisa": 8, "Tenis": 3\}}
+    \item \textbf{Saída:} \code{\{"Camisa": 18, "Calca": 5, "Tenis": 3\}}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q63}
+
+\vspace{0.4cm}
+
+\end{enumerate}
+
+
+\section*{Tema 7: Programação Orientada a Objetos e Manipulação de Arquivos}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=64]
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Em Programação Orientada a Objetos em Python, qual é o papel do primeiro parâmetro \code{self} na definição dos métodos de instância dentro de uma classe?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{self} é uma palavra-chave reservada que faz referência direta à classe mãe (superclasse).
+    \item \code{self} representa a instância específica do objeto que está invocando o método, permitindo acessar e manipular seus atributos e outros métodos.
+    \item \code{self} serve exclusivamente para definir variáveis estáticas compartilhadas entre todas as instâncias da classe.
+    \item O uso de \code{self} é opcional e pode ser substituído pela palavra-chave \code{global} para criar atributos públicos.
+    \item \code{self} é o nome do método construtor padrão executado para alocar memória ao objeto.
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q64}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - Múltipla Escolha - 1,0 ponto]} Por que a comunidade de desenvolvedores Python recomenda fortemente o uso do gerenciador de contexto \code{with open(...) as f:} ao invés de usar \code{f = open(...)} seguido de \code{f.close()}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item Porque a instrução \code{with} lê o arquivo de forma assíncrona mais rápida.
+    \item Porque o gerenciador de contexto \code{with} garante o fechamento automático e a liberação dos recursos do arquivo no sistema operacional, mesmo se ocorrer uma exceção ou erro durante o processamento.
+    \item Porque a função \code{open()} tradicional é considerada obsoleta no Python 3.
+    \item Porque arquivos abertos com \code{with} não ocupam memória RAM.
+    \item Porque o \code{with} converte automaticamente o arquivo de texto para formato binário criptografado.
+\end{enumerate}
+
+\input{body/Lista_11/answers/Q65}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Implemente uma classe chamada \code{Livro} que represente um exemplar de leitura de uma biblioteca com os seguintes requisitos:
+1. Construtor \code{\_\_init\_\_(self, titulo: str, autor: str, total\_paginas: int)} que inicialize os atributos e crie o atributo \code{paginas\_lidas: int} iniciado em $0$.
+2. Método \code{ler\_paginas(self, quantidade: int) -> int} que adicione a quantidade lida a \code{paginas\_lidas} (sem ultrapassar \code{total\_paginas}) e retorne quantas páginas ainda faltam para concluir o livro.
+3. Método \code{print(self) -> None} que exiba na tela a mensagem formatada: \code{"'TITULO' por AUTOR (Lidas: X/TOTAL)"}.
+
+\textbf{Exemplo de Uso:}
+\begin{minted}{python}
+livro = Livro("1984", "George Orwell", 300)
+faltam = livro.ler_paginas(50)  # retorna 250
+livro.print()  # exibe: '1984' por George Orwell (Lidas: 50/300)
+\end{minted}
+
+\input{body/Lista_11/answers/Q66}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{contar\_erros\_log} que receba o caminho de um arquivo de texto \code{.txt} de log de uma aplicação web. Utilizando o gerenciador de contexto \code{with}, a função deve abrir o arquivo no modo leitura (\code{'r'}), percorrer todas as linhas e contar quantas contêm a palavra \code{"ERROR"} (em maiúsculas), retornando essa contagem como um número inteiro.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{def contar\_erros\_log(caminho\_arquivo: str) -> int:}
+    \item \textbf{Entrada:} \code{"servidor.log"} (arquivo contendo 5 ocorrências de \code{"ERROR"})
+    \item \textbf{Saída:} \code{5}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q67}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Escreva uma função chamada \code{salvar\_produtos\_csv} que receba o caminho de um arquivo de saída e uma lista de tuplas contendo \code{(nome\_produto: str, preco: float)}. A função deve utilizar a cláusula \code{with} no modo de escrita (\code{'w'}) para gravar um arquivo CSV com cabeçalho \code{"produto,preco"} e cada item em uma nova linha com o preço formatado em duas casas decimais, retornando \code{True} após finalizar a gravação.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List, Tuple}\\\code{def salvar\_produtos\_csv(caminho\_arquivo: str, produtos: List[Tuple[str, float]]) -> bool:}
+    \item \textbf{Entrada:} \code{"precos.csv", [("Mouse", 80.0), ("Teclado", 150.0)]}
+    \item \textbf{Saída:} \code{True} (e o arquivo \code{"precos.csv"} salvo no disco)
+\end{itemize}
+
+\input{body/Lista_11/answers/Q68}
+
+\vspace{0.4cm}
+
+\item \textbf{[Fácil - 1,0 ponto]} Implemente uma classe chamada \code{ContaBancaria} que gerencie o saldo de um cliente com os seguintes métodos e atributos:
+1. Construtor \code{\_\_init\_\_(self, titular: str, saldo\_inicial: float = 0.0)} que inicialize o titular e o saldo da conta.
+2. Método \code{depositar(self, valor: float) -> float} que adicione o valor ao saldo (se o valor for positivo) e retorne o novo saldo atualizado.
+3. Método \code{sacar(self, valor: float) -> bool} que debite o valor do saldo se houver saldo suficiente ($saldo \ge valor$ e $valor > 0$) retornando \code{True}. Caso contrário, não altera o saldo e retorna \code{False}.
+4. Método \code{print(self) -> None} que exiba na tela a mensagem formatada: \code{"Conta de TITULAR - Saldo: R\$ X.XX"}.
+
+\textbf{Exemplo de Uso:}
+\begin{minted}{python}
+conta = ContaBancaria("Maria", 100.0)
+conta.depositar(50.0)  # Saldo: 150.0
+sucesso = conta.sacar(200.0)  # Retorna False (saldo insuficiente)
+conta.print()  # Exibe: Conta de Maria - Saldo: R$ 150.00
+\end{minted}
+
+\input{body/Lista_11/answers/Q69}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Modele uma hierarquia de classes para uma concessionária de veículos:
+1. Superclasse \code{Veiculo}:
+   * Construtor \code{\_\_init\_\_(self, marca: str, modelo: str, preco: float)}.
+   * Método \code{exibir\_ficha(self) -> str} que retorne \code{"MARCA MODELO - R\$ PRECO"}.
+2. Subclasse \code{CarroEletrico} (que herda de \code{Veiculo}):
+   * Construtor \code{\_\_init\_\_(self, marca: str, modelo: str, preco: float, capacidade\_kwh: float)} utilizando \code{super()} para os atributos herdados.
+   * Método \code{estimar\_autonomia(self, consumo\_kwh\_por\_km: float) -> float} que retorne o alcance estimado em km ($\frac{\text{capacidade\_kwh}}{\text{consumo\_kwh\_por\_km}}$).
+
+\textbf{Exemplo de Uso:}
+\begin{minted}{python}
+carro = CarroEletrico(
+    "Tesla", "Model 3", 280000.0, 75.0
+)
+# Ficha: Tesla Model 3 - R$ 280000.00
+print(carro.exibir_ficha())
+# Autonomia estimada: 500.0 km
+autonomia = carro.estimar_autonomia(0.15)
+\end{minted}
+
+\input{body/Lista_11/answers/Q70}
+
+\vspace{0.4cm}
+
+\item \textbf{[Médio - 1,8 ponto]} Uma plataforma de e-commerce mantém seus pedidos salvos em um arquivo CSV formatado com cabeçalho:
+\begin{verbatim}
+id,cliente,valor
+1,Maria Silva,120.50
+2,Joao Souza,45.00
+\end{verbatim}
+Escreva uma função chamada \code{carregar\_pedidos\_csv} que leia o arquivo informado via parâmetro usando \code{with} e retorne uma lista de dicionários tipados no formato \code{[\{"id": int, "cliente": str, "valor": float\}]}. Linhas em branco devem ser ignoradas.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List, Dict, Union}\\\code{def carregar\_pedidos\_csv(}\\\code{    caminho\_csv: str}\\\code{) -> List[Dict[str, Union[int, str, float]]]:}
+    \item \textbf{Entrada:} \code{"pedidos.csv"}
+    \item \textbf{Saída:} \\\code{[\{"id": 1, "cliente": "Maria Silva", "valor": 120.50\}, \{"id": 2, "cliente": "Joao Souza", "valor": 45.00\}]}
+\end{itemize}
+
+\input{body/Lista_11/answers/Q71}
+
+\vspace{0.4cm}
+
+\item \textbf{[Difícil - 3,0 pontos]} Desenvolva um sistema completo de controle de acervo para uma biblioteca comunitária criando a classe \code{Biblioteca}:
+\begin{enumerate}
+    \item Construtor \code{\_\_init\_\_(self, nome\_biblioteca: str)}: inicializa o nome e o catálogo interno \code{self.catalogo: Dict[int, Dict[str, Union[str, int]]]}.
+    \item Método \code{cadastrar\_livro(self, livro\_id: int,}\\\code{    titulo: str, quantidade: int) -> None}: adiciona ou atualiza os dados do livro no catálogo.
+    \item Método \code{emprestar\_livro(self, livro\_id: int) -> bool}: se o livro existir e possuir quantidade disponível ($> 0$), decrementa em 1 unidade e retorna \code{True}. Caso contrário, retorna \code{False}.
+    \item Método \code{exportar\_inventario(self, caminho\_txt: str) -> bool}: grava um arquivo de texto com a lista de todos os livros no formato \code{"[ID] TITULO - QTD exemplares"} e encerra com a linha final \code{"Total de titulos: N"}, retornando \code{True}.
+\end{enumerate}
+
+\textbf{Exemplo de Uso:}
+\begin{minted}{python}
+bib = Biblioteca("Biblioteca Central")
+bib.cadastrar_livro(101, "Dom Casmurro", 3)
+# Empresta: qtd vira 2, retorna True
+bib.emprestar_livro(101)
+# Grava inventario no disco
+bib.exportar_inventario("inventario.txt")
+\end{minted}
+
+\input{body/Lista_11/answers/Q72}
+
+\vspace{0.4cm}
+
+\end{enumerate}

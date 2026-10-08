@@ -28,8 +28,39 @@
 \usepackage{xcolor}
 \usepackage{ragged2e}
 
-\definecolor{cinza-codigo}{gray}{0.9}
-\newcommand{\code}[1]{\colorbox{cinza-codigo}{\texttt{#1}}}
+\definecolor{cinza-codigo}{gray}{0.92}
+\setlength{\fboxsep}{1.2pt}
+
+\ExplSyntaxOn
+\cs_new_protected:Npn \__code_word:n #1 {
+  \tl_if_empty:nF { #1 }
+   {
+     \colorbox{cinza-codigo}{\texttt{#1}}
+   }
+}
+
+\NewDocumentCommand{\code}{m}
+ {
+   \seq_set_split:Nnn \l_tmpa_seq { ~ } { #1 }
+   \int_set:Nn \l_tmpa_int { 0 }
+   \seq_map_inline:Nn \l_tmpa_seq
+    {
+      \int_incr:N \l_tmpa_int
+      \int_compare:nF { \l_tmpa_int == 1 } { \allowbreak\ \hspace{0pt} }
+      \tl_set:Nn \l_tmpa_tl { ##1 }
+      \tl_replace_all:Nnn \l_tmpa_tl { \_ } { \__code_word:n { \_ } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { ( } { \__code_word:n { ( } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { ) } { \__code_word:n { ) } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { [ } { \__code_word:n { [ } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { ] } { \__code_word:n { ] } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { , } { \__code_word:n { , } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { : } { \__code_word:n { : } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { / } { \__code_word:n { / } \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { . } { \__code_word:n { . } \allowbreak }
+      \__code_word:n { \l_tmpa_tl }
+    }
+ }
+\ExplSyntaxOff
 
 % 2. Configurar o estilo do bloco de código
 \lstset{
@@ -80,12 +111,9 @@
 \begin{tabular}{l|l}
 
 \thispagestyle{empty}
-\multirow{4}{30mm}{
-
-    \vspace*{-1cm}\hspace*{-0.4cm}\includegraphics[width=0.15\textwidth]{logos/ciaa_gray.pdf}
-}  
-& {\bf \Large{Revisão Acelerada de Programação - RAP} \\
- & \bf \Large{RAP-2026, Marinha do Brasil} \\
+\multirow{4}{30mm}{\vspace*{-1cm}\hspace*{-0.4cm}\includegraphics[width=0.15\textwidth]{logos/ciaa_gray.pdf}}
+& {\bf \Large{Revisão Acelerada de Programação - RAP}} \\
+ & {\bf \Large{RAP-2026, Marinha do Brasil}} \\
  & {Centro de Instrução Almirante Alexandrino}\\
  & {Departamento de Aperfeiçoamento Avançado para Oficiais}\\
  & {Curso de Aperfeiçoamento Avançado em Guerra Acústica (C-ApA-Of-GA)}\\

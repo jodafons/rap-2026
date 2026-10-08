@@ -1,0 +1,16 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def calcular_corrida(
+    distancia_km: float,
+    horario_pico: bool,
+    esta_chovendo: bool
+) -> float:
+    valor_base = 5.0 + (distancia_km * 2.50)
+    if horario_pico:
+        valor_base *= 1.30
+    if esta_chovendo:
+        valor_base += 4.0
+    return valor_base
+\end{minted}
+
+\fi

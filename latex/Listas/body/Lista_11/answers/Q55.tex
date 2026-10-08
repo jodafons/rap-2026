@@ -1,0 +1,17 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def trocar_pares_adjacentes(
+    lista_itens: List[int],
+) -> List[int]:
+    res = list(lista_itens)
+    for i in range(0, len(res), 2):
+        res[i], res[i + 1] = (
+            res[i + 1],
+            res[i],
+        )
+    return res
+\end{minted}
+
+\fi

@@ -1,0 +1,22 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def passos_busca_binaria(
+    alvo: int,
+    limite_superior: int,
+) -> int:
+    inicio = 1
+    fim = limite_superior
+    passos = 0
+    while inicio <= fim:
+        passos += 1
+        meio = (inicio + fim) // 2
+        if meio == alvo:
+            return passos
+        elif meio < alvo:
+            inicio = meio + 1
+        else:
+            fim = meio - 1
+    return passos
+\end{minted}
+
+\fi

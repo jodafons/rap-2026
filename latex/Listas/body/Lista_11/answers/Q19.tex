@@ -1,0 +1,25 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def tipo_triangulo(
+    a: float,
+    b: float,
+    c: float,
+) -> str:
+    if not (
+        a < b + c
+        and b < a + c
+        and c < a + b
+    ):
+        return "INVALIDO"
+    
+    if a == b == c:
+        return "EQUILATERO"
+    elif (
+        a == b or a == c or b == c
+    ):
+        return "ISOSCELES"
+    else:
+        return "ESCALENO" 
+\end{minted}
+
+\fi

@@ -28,14 +28,72 @@
 \usepackage{enumitem}
 \usepackage{ifthen}
 \usepackage{minted}
+\setminted{
+    fontsize=\footnotesize,
+    breaklines=true,
+    tabsize=4
+}
 \usepackage{pythonhighlight}
 \usepackage[utf8]{inputenc} 
-\usepackage[brazil]{babel}
+\usepackage[shorthands=off,brazil]{babel}
+\AtBeginDocument{\shorthandoff{"}}
 \usepackage{ifthen}
 
 
-\definecolor{cinza-codigo}{gray}{0.9}
-\newcommand{\code}[1]{\colorbox{cinza-codigo}{\texttt{#1}}}
+\definecolor{cinza-codigo}{gray}{0.92}
+\setlength{\fboxsep}{0.8pt}
+\emergencystretch 2em
+
+\ExplSyntaxOn
+\cs_new_protected:Npn \__code_box:n #1 {
+  \tl_if_empty:nF { #1 }
+   {
+     \colorbox{cinza-codigo}{\texttt{#1}}
+   }
+}
+
+\NewDocumentCommand{\code}{m}
+ {
+   \seq_set_split:Nnn \l_tmpa_seq { ~ } { #1 }
+   \int_set:Nn \l_tmpa_int { 0 }
+   \seq_map_inline:Nn \l_tmpa_seq
+    {
+      \int_incr:N \l_tmpa_int
+      \int_compare:nF { \l_tmpa_int == 1 } { \allowbreak\ \hspace{0pt} }
+      
+      \tl_set:Nn \l_tmpa_tl { ##1 }
+      \tl_replace_all:Nnn \l_tmpa_tl { \_ } { \allowbreak \_ \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { ; } { ; \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { , } { , \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { : } { : \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { / } { / \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { . } { . \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { ( } { ( \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { ) } { ) \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { [ } { [ \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { ] } { ] \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { \{ } { \{ \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { \} } { \} \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { " } { \allowbreak " \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { = } { \allowbreak = \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { -> } { -> \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { < } { < \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { > } { > \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { + } { + \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { - } { - \allowbreak }
+      \tl_replace_all:Nnn \l_tmpa_tl { * } { * \allowbreak }
+      
+      \seq_set_split:Nnn \l_tmpb_seq { \allowbreak } { \l_tmpa_tl }
+      \int_set:Nn \l_tmpb_int { 0 }
+      \seq_map_inline:Nn \l_tmpb_seq
+       {
+         \int_incr:N \l_tmpb_int
+         \int_compare:nF { \l_tmpb_int == 1 } { \allowbreak }
+         \__code_box:n { ####1 }
+       }
+    }
+ }
+\ExplSyntaxOff
 
 % 2. Configurar o estilo do bloco de código
 \lstset{

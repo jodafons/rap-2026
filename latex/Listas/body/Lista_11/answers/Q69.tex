@@ -1,0 +1,30 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+class ContaBancaria:
+    def __init__(
+        self,
+        titular: str,
+        saldo_inicial: float = 0.0
+    ) -> None:
+        self.titular: str = titular
+        self.saldo: float = saldo_inicial
+
+    def depositar(self, valor: float) -> float:
+        if valor > 0:
+            self.saldo += valor
+        return self.saldo
+
+    def sacar(self, valor: float) -> bool:
+        if 0 < valor <= self.saldo:
+            self.saldo -= valor
+            return True
+        return False
+
+    def print(self) -> None:
+        print(
+            f"Conta de {self.titular} - "
+            f"Saldo: R$ {self.saldo:.2f}"
+        )
+\end{minted}
+
+\fi

@@ -1,0 +1,10 @@
+{
+    "nome": "CIAA-LPS-Sub-1",
+    "reator_ativo": true,
+    "sensores_operacionais": [
+        "Sonar-1",
+        "Sonar-2",
+        "Pressao-3"
+    ],
+    "profundidade_limite": 400.0
+}

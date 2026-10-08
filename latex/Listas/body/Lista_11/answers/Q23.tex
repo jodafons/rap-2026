@@ -1,0 +1,26 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def recomendar_plano_streaming(
+    num_telas: int,
+    requer_4k: bool,
+    requer_download: bool,
+) -> str:
+    if num_telas > 4:
+        return "PLANO_CUSTOMIZADO"
+    
+    if (
+        requer_4k
+        or num_telas > 2
+    ):
+        return "PLANO_PREMIUM"
+    
+    if (
+        requer_download
+        or num_telas > 1
+    ):
+        return "PLANO_PADRAO"
+    
+    return "PLANO_BASICO" 
+\end{minted}
+
+\fi

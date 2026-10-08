@@ -1,0 +1,38 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+class Livro:
+    def __init__(
+        self,
+        titulo: str,
+        autor: str,
+        total_paginas: int,
+    ) -> None:
+        self.titulo: str = titulo
+        self.autor: str = autor
+        self.total_paginas: int = (
+            total_paginas
+        )
+        self.paginas_lidas: int = 0
+
+    def ler_paginas(
+        self, quantidade: int
+    ) -> int:
+        self.paginas_lidas = min(
+            self.total_paginas,
+            self.paginas_lidas + quantidade,
+        )
+        return (
+            self.total_paginas
+            - self.paginas_lidas
+        )
+
+    def print(self) -> None:
+        print(
+            f"'{self.titulo}' por "
+            f"{self.autor} (Lidas: "
+            f"{self.paginas_lidas}/"
+            f"{self.total_paginas})"
+        )
+\end{minted}
+
+\fi
