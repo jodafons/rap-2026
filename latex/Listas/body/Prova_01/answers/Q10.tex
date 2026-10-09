@@ -1,0 +1,21 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+def cifrar_texto(mensagem: str, deslocamento: int) -> str:
+    resultado = []
+    for c in mensagem:
+        if 'A' <= c <= 'Z':
+            novo_ord = (ord(c) - ord('A') + deslocamento) % 26 + ord('A')
+            resultado.append(chr(novo_ord))
+        else:
+            resultado.append(c)
+    return "".join(resultado)
+\end{minted}
+
+\textbf{Explicação:}
+Iteramos pelos caracteres da mensagem. Se o caractere for uma letra maiúscula ('A' a 'Z'), calculamos a posição relativa no alfabeto (0 a 25), somamos o deslocamento com aritmética modular (\texttt{\% 26}) e reconvertemos para caractere. Caracteres não alfabéticos são mantidos inalterados.
+\else
+\linhasResposta{18}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q10]{30}
+\clearpage
+\fi

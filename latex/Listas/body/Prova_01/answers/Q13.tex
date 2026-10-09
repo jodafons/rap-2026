@@ -1,0 +1,35 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List, Dict, Tuple
+
+def analisar_logs_servidor(
+    linhas_log: List[str]
+) -> Tuple[Dict[str, int], float]:
+    if not linhas_log:
+        return ({}, 0.0)
+        
+    contagem_metodos = {}
+    soma_tempos = 0.0
+    total_linhas = len(linhas_log)
+    
+    for linha in linhas_log:
+        partes = linha.strip().split()
+        if len(partes) >= 4:
+            metodo = partes[0]
+            tempo_ms = float(partes[2])
+            
+            contagem_metodos[metodo] = contagem_metodos.get(metodo, 0) + 1
+            soma_tempos += tempo_ms
+            
+    tempo_medio = round(soma_tempos / total_linhas, 2)
+    return (contagem_metodos, tempo_medio)
+\end{minted}
+
+\textbf{Explicação:}
+Quebramos cada linha de log com \texttt{.split()}, extraímos a primeira posição como o método HTTP e a terceira como o tempo em milissegundos. Usamos o método \texttt{.get()} para contagem no dicionário e calculamos a média global.
+\else
+\linhasResposta{17}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q13]{30}
+\clearpage
+\fi

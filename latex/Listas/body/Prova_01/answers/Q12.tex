@@ -1,0 +1,32 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def eh_primo(n: int) -> bool:
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    for divisor in range(3, int(n**0.5) + 1, 2):
+        if n % divisor == 0:
+            return False
+    return True
+
+def filtrar_primos_intervalo(inicio: int, fim: int) -> List[int]:
+    primos = []
+    for num in range(inicio, fim + 1):
+        if eh_primo(num):
+            primos.append(num)
+    return primos
+\end{minted}
+
+\textbf{Explicação:}
+A função auxiliar \texttt{eh\_primo} descarta números $\le 1$ e pares maiores que 2, testando divisores ímpares até $\sqrt{n}$. A função principal itera por todos os inteiros de \texttt{inicio} a \texttt{fim}, acumulando os primos encontrados.
+\else
+\linhasResposta{18}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q12]{30}
+\clearpage
+\fi

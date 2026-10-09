@@ -1,0 +1,48 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+class ContaBancaria:
+    def __init__(self, titular: str, numero_conta: int, saldo_inicial: float = 0.0):
+        self.titular = titular
+        self.numero_conta = numero_conta
+        self.saldo = float(saldo_inicial)
+        
+    def depositar(self, valor: float) -> bool:
+        if valor > 0:
+            self.saldo += valor
+            return True
+        return False
+        
+    def sacar(self, valor: float) -> bool:
+        if 0 < valor <= self.saldo:
+            self.saldo -= valor
+            return True
+        return False
+        
+    def __str__(self) -> str:
+        return f"Conta {self.numero_conta} - Titular: {self.titular} - Saldo: R$ {self.saldo:.2f}"
+
+
+class ContaEspecial(ContaBancaria):
+    def __init__(self, titular: str, numero_conta: int, saldo_inicial: float = 0.0, limite_cheque_especial: float = 500.0):
+        super().__init__(titular, numero_conta, saldo_inicial)
+        self.limite = float(limite_cheque_especial)
+        
+    def sacar(self, valor: float) -> bool:
+        if 0 < valor <= (self.saldo + self.limite):
+            self.saldo -= valor
+            return True
+        return False
+        
+    def __str__(self) -> str:
+        base_str = super().__str__()
+        return f"{base_str} (Limite: R$ {self.limite:.2f})"
+\end{minted}
+
+\textbf{Explicação:}
+A classe \texttt{ContaBancaria} estabelece o modelo base com encapsulamento de estado e método especial \texttt{\_\_str\_\_}. A subclasse \texttt{ContaEspecial} reutiliza o construtor da mãe com \texttt{super().\_\_init\_\_}, sobrescreve \texttt{sacar} para incorporar a margem de limite especial e especializa \texttt{\_\_str\_\_} estendendo a representação da superclasse.
+\else
+\linhasResposta{15}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q15]{30}
+\clearpage
+\fi

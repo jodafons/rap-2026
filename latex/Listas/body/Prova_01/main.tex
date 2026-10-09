@@ -1,0 +1,341 @@
+\vspace{0.8cm}
+
+\noindent \textbf{\Large Avaliação Escrita 01 — Revisão Acelerada de Programação (RAP)}
+
+\vspace{0.3cm}
+\noindent \textbf{Orientações e Instruções para a Realização da Prova:}
+\begin{itemize}[leftmargin=*]
+    \item Esta avaliação é composta por \textbf{15 questões} e totaliza \textbf{100,0 pontos}.
+    \item \textbf{Estrutura da Prova:}
+    \begin{itemize}
+        \item \textbf{Parte I (Questões 1 a 7):} 7 Questões de Múltipla Escolha (Total: \textbf{30,0 pontos}).
+        \item \textbf{Parte II (Questões 8 a 15):} 8 Questões Discursivas e de Implementação em Python (Total: \textbf{70,0 pontos}).
+    \end{itemize}
+    \item \textbf{Critérios de Correção e Resolução:}
+    \begin{itemize}
+        \item Nas questões de múltipla escolha, assinale com clareza a alternativa correta no espaço indicado.
+        \item Nas questões discursivas, escreva o código Python de forma legível respeitando a indentação obrigatória, nomes de funções e parâmetros indicados nos protótipos.
+        \item É proibido o uso de módulos externos não autorizados (utilize apenas funções nativas do Python).
+    \end{itemize}
+\end{itemize}
+
+\vspace{0.4cm}
+
+\section*{Parte I: Questões de Múltipla Escolha (Q1 a Q7 — 30,0 Pontos)}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=1]
+
+% Q1 - 4,0 pontos (Copiada da Lista 11 Q1)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Considere a seguinte expressão aritmética executada em Python para calcular o valor total de uma compra com desconto:
+\begin{minted}{python}
+total = 10 + 2 * 3 ** 2 - 8 // 4 + 7 % 3
+\end{minted}
+Qual será o valor final atribuído à variável \code{total}?
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} A ordem de precedência dos operadores aritméticos em Python é: 1º Parênteses \code{()}, 2º Exponenciação \code{**}, 3º Multiplicação \code{*}, Divisão \code{/}, Divisão Inteira \code{//} e Módulo \code{\%} (avaliados da esquerda para a direita), 4º Adição \code{+} e Subtração \code{-} (avaliados da esquerda para a direita). O operador de divisão inteira \code{//} retorna apenas a parte inteira da divisão (ex: \code{8 // 4} resulta em \code{2}), enquanto o operador módulo \code{\%} calcula o resto da divisão inteira (ex: \code{7 \% 3} resulta em \code{1}).
+\end{itemize}
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item 25
+    \item 27
+    \item 28
+    \item 30
+    \item 19
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q1}
+
+\vspace{0.4cm}
+
+% Q2 - 4,0 pontos (Copiada da Lista 11 Q11)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Em Python, a avaliação de expressões lógicas com os operadores \code{and} e \code{or} segue a regra do curto-circuito (\emph{short-circuit evaluation}). Considere as variáveis:
+\begin{minted}{python}
+x = 0
+y = 10
+z = 20
+\end{minted}
+Analise a expressão lógica:
+\begin{minted}{python}
+resultado = (x != 0 and (y / x) > 2) or (z > y and y > 0)
+\end{minted}
+Qual é o valor final atribuído a \code{resultado} e qual comportamento ocorre durante a execução?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item Ocorre um erro de divisão por zero (\code{ZeroDivisionError}) ao tentar avaliar \code{y / x}.
+    \item O valor é \code{True}, pois a primeira parte da conjunção \code{x != 0} é \code{False}, evitando a divisão por zero, e a segunda parte do \code{or} é \code{True}.
+    \item O valor é \code{False}, pois a primeira expressão é falsa e invalida todo o teste lógico.
+    \item O valor é \code{None}, pois expressões com curto-circuito em Python não retornam valores booleanos puros.
+    \item O programa trava em um laço infinito aguardando a definição do operador de curto-circuito.
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q2}
+
+\vspace{0.4cm}
+
+% Q3 - 4,0 pontos (Copiada da Lista 11 Q31)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Dada a string \code{s = "PROGRAMACAO"}, qual será o resultado da operação de fatiamento \code{s[1:8:2]}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{"RPAM"}
+    \item \code{"ROAM"}
+    \item \code{"PGMA"}
+    \item \code{"RMA"}
+    \item \code{"ROMA"}
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q3}
+
+\vspace{0.4cm}
+
+% Q4 - 4,0 pontos (Copiada da Lista 11 Q42)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Em Python, a atribuição direta entre variáveis que apontam para listas cria uma referência (\emph{alias}), enquanto o método \code{.copy()} ou o fatiamento \texttt{[:]} cria uma cópia rasa (\emph{shallow copy}). Analise o código abaixo:
+\begin{minted}{python}
+lista_a = [10, 20, 30]
+lista_b = lista_a
+lista_c = lista_a.copy()
+
+lista_b.append(40)
+lista_c.append(50)
+\end{minted}
+Quais serão os valores finais de \code{lista\_a}, \code{lista\_b} e \code{lista\_c}, respectivamente?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \texttt{[10, 20, 30]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30, 50]}
+    \item \texttt{[10, 20, 30, 40, 50]}, \texttt{[10, 20, 30, 40, 50]} e \texttt{[10, 20, 30, 50]}
+    \item \texttt{[10, 20, 30]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30]}
+    \item \texttt{[10, 20, 30, 40]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30, 50]}
+    \item \texttt{[10, 20, 30, 50]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30, 50]}
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q4}
+
+\vspace{0.4cm}
+
+% Q5 - 4,0 pontos (Nova Questão - Dicionários & Sets)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Sobre a eficiência temporal da busca de elementos com o operador \code{in} e as propriedades estruturais de \textbf{Listas}, \textbf{Dicionários} e \textbf{Conjuntos (\emph{Sets})} em Python, assinale a alternativa \textbf{CORRETA}:
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item A verificação \texttt{item in lista} tem complexidade média $O(1)$ (tempo constante), pois listas utilizam tabelas de dispersão (\emph{hash tables}) internamente.
+    \item Qualquer tipo de dado do Python pode ser utilizado como chave de um dicionário, inclusive listas e outros dicionários mutáveis.
+    \item A verificação \texttt{chave in dicionario} e \texttt{elemento in conjunto} tem complexidade média $O(1)$, pois ambos utilizam tabelas hash indexadas pelo valor de hash (\code{hash()}) dos seus elementos imutáveis.
+    \item Conjuntos (\emph{sets}) mantêm estritamente a ordem de inserção dos elementos e permitem o armazenamento de itens duplicados.
+    \item Dicionários em Python não permitem a alteração dinâmica de seus valores após a instanciação inicial.
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q5}
+
+\vspace{0.4cm}
+
+% Q6 - 5,0 pontos (Nova Questão - Escopo & Funções)
+\item \textbf{[Múltipla Escolha - 5,0 pontos]} Analise a execução do seguinte trecho de código em Python envolvendo escopo de variáveis e funções:
+\begin{minted}{python}
+taxa = 1.10
+
+def atualizar_precos(valores: list[float]) -> float:
+    global taxa
+    taxa = 1.20
+    soma = 0.0
+    for i in range(len(valores)):
+        valores[i] = valores[i] * taxa
+        soma += valores[i]
+    return soma
+
+precos = [10.0, 20.0]
+total_calculado = atualizar_precos(precos)
+\end{minted}
+Após a execução completa, quais serão os valores de \code{precos}, \code{total\_calculado} e da variável global \code{taxa}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \texttt{precos = [10.0, 20.0]}, \texttt{total\_calculado = 33.0} e \texttt{taxa = 1.10}
+    \item \texttt{precos = [12.0, 24.0]}, \texttt{total\_calculado = 36.0} e \texttt{taxa = 1.20}
+    \item \texttt{precos = [11.0, 22.0]}, \texttt{total\_calculado = 33.0} e \texttt{taxa = 1.20}
+    \item \texttt{precos = [12.0, 24.0]}, \texttt{total\_calculado = 36.0} e \texttt{taxa = 1.10}
+    \item Ocorre um erro de compilação (\texttt{UnboundLocalError}) devido ao uso de \texttt{global taxa}.
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q6}
+
+\vspace{0.4cm}
+
+% Q7 - 5,0 pontos (Nova Questão - POO)
+\item \textbf{[Múltipla Escolha - 5,0 pontos]} Na Programação Orientada a Objetos em Python, considere o seguinte modelo de classes:
+\begin{minted}{python}
+class Sensor:
+    def __init__(self, identificador: str):
+        self.id = identificador
+    
+    def obter_status(self) -> str:
+        return f"Sensor {self.id}: ATIVO"
+
+class SensorSonar(Sensor):
+    def __init__(self, identificador: str, profundidade_max: float):
+        super().__init__(identificador)
+        self.profundidade = profundidade_max
+    
+    def obter_status(self) -> str:
+        msg_base = super().obter_status()
+        return f"{msg_base} (Prof: {self.profundidade}m)"
+\end{minted}
+Ao instanciar \texttt{s = SensorSonar("SN-01", 300.0)} e executar \texttt{s.obter\_status()}, qual será o retorno produzido?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \texttt{"Sensor SN-01: ATIVO"}
+    \item \texttt{"(Prof: 300.0m)"}
+    \item Ocorre um erro de execução (\texttt{AttributeError}), pois \texttt{super()} não pode acessar métodos com o mesmo nome.
+    \item \texttt{"Sensor SN-01: ATIVO (Prof: 300.0m)"}
+    \item \texttt{"Sensor: None (Prof: 300.0m)"}
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q7}
+
+\ifmostrarGabarito\else\clearpage\fi
+
+\section*{Parte II: Questões Discursivas e de Programação (Q8 a Q15 — 70,0 Pontos)}
+
+% Q8 - 8,0 pontos (Copiada da Lista 11 Q9)
+\item \textbf{[Discursiva - 8,0 pontos]} Um caixa eletrônico de autoatendimento precisa dispensar o menor número de cédulas possível para um determinado valor de saque inteiro (múltiplo de 10). O caixa dispõe de cédulas de R\$ 50, R\$ 20 e R\$ 10. Sem utilizar laços ou condicionais, escreva uma função chamada \code{sacar\_cedulas} que receba o valor total do saque e retorne uma tupla com a quantidade de cédulas de 50, 20 e 10, nesta ordem.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} O operador de divisão inteira \code{//} obtém a quantidade inteira de vezes que um número cabe no outro (ex.: \code{180 // 50} resulta em \code{3}), enquanto o operador módulo \code{\%} obtém o resto da divisão (ex.: \code{180 \% 50} resulta em \code{30}).
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def sacar\_cedulas(}\\\code{    valor\_reais: int}\\\code{) -> Tuple[int, int, int]:}
+    \item \textbf{Exemplo de Entrada:} \code{180} \quad | \quad \textbf{Saída Esperada:} \code{(3, 1, 1)}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q8}
+
+\vspace{0.5cm}
+
+% Q9 - 8,0 pontos (Copiada da Lista 11 Q22)
+\item \textbf{[Discursiva - 8,0 pontos]} Escreva uma função chamada \code{validar\_cadastro\_usuario} que valide os dados de cadastro de um novo cliente em um sistema bancário digital. Os critérios obrigatórios são:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1.} O nome não pode ser vazio e deve ter pelo menos 3 caracteres.
+    \item \textbf{2.} A idade deve ser maior ou igual a 18 anos.
+    \item \textbf{3.} O e-mail deve conter obrigatoriamente o caractere \code{"@"} e pelo menos um caractere ponto \code{"."}.
+    \item \textbf{4.} A renda mensal informada deve ser estritamente positiva ($> 0$).
+\end{itemize}
+A função deve retornar uma tupla \code{(valido: bool, motivo: str)}. Se todos os critérios forem atendidos, retorne \texttt{(True, "CADASTRO\_APROVADO")}. Caso algum critério seja violado, retorne \code{False} acompanhado do primeiro motivo de recusa correspondente: \texttt{"NOME\_INVALIDO"}, \texttt{"MENOR\_DE\_IDADE"}, \texttt{"EMAIL\_INVALIDO"} ou \texttt{"RENDA\_INVALIDA"}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def validar\_cadastro\_usuario(}\\\code{    nome: str,}\\\code{    idade: int,}\\\code{    email: str,}\\\code{    renda: float}\\\code{) -> Tuple[bool, str]:}
+    \item \textbf{Exemplo de Entrada:} \code{("Carlos Silva", 25, "carlos@banco.com", 3500.0)}
+    \item \textbf{Saída Esperada:} \texttt{(True, "CADASTRO\_APROVADO")}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q9}
+
+\vspace{0.5cm}
+
+% Q10 - 8,0 pontos (Copiada da Lista 11 Q37)
+\item \textbf{[Discursiva - 8,0 pontos]} A Cifra de César é uma técnica clássica de criptografia por substituição na qual cada letra de uma mensagem em maiúsculas é deslocada um número fixo de posições no alfabeto (considerando o alfabeto de 'A' a 'Z' de 26 letras de forma circular). Caracteres que não sejam letras maiúsculas (como espaços, números e pontuações) devem ser mantidos inalterados. Escreva uma função chamada \code{cifrar\_texto} que receba a mensagem e o deslocamento inteiro, retornando o texto cifrado.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} A função \code{ord('A')} retorna 65 e \code{chr(65)} retorna \code{'A'}. Para calcular a nova letra com deslocamento circular, você pode usar a fórmula: \code{chr((ord(c) - ord('A') + deslocamento) \% 26 + ord('A'))}.
+    \item \textbf{Protótipo:}\newline \code{def cifrar\_texto(}\\\code{    mensagem: str,}\\\code{    deslocamento: int}\\\code{) -> str:}
+    \item \textbf{Exemplo de Entrada:} \code{("PYTHON 2026", 3)} \quad | \quad \textbf{Saída Esperada:} \code{"SBWKRQ 2026"}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q10}
+
+\vspace{0.5cm}
+
+% Q11 - 8,0 pontos (Copiada da Lista 11 Q57)
+\item \textbf{[Discursiva - 8,0 pontos]} Um sistema de e-commerce recebe uma lista de dicionários representando pedidos concluídos. Cada pedido contém: \code{"categoria"} (string) e \code{"valor"} (float). Escreva uma função chamada \code{consolidar\_vendas\_categoria} que processe essa lista e retorne um dicionário onde cada chave é o nome da categoria e o valor é outro dicionário contendo o total faturado (\code{"total"}), a quantidade de itens vendidos (\code{"quantidade"}) e o valor médio por item (\code{"media"}), com a média arredondada para duas casas decimais.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List, Dict, Any}\\\code{def consolidar\_vendas\_categoria(}\\\code{    vendas: List[Dict[str, Any]]}\\\code{) -> Dict[str, Dict[str, Any]]:}
+    \item \textbf{Exemplo de Entrada:}\newline
+    \texttt{vendas = [\{"categoria": "Eletronicos", "valor": 1200.0\}, \{"categoria": "Livros", "valor": 50.0\}]}
+    \item \textbf{Saída Esperada:}\newline
+    \texttt{\{"Eletronicos": \{"total": 1200.0, "quantidade": 1, "media": 1200.0\}, "Livros": \{...\}\}}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q11}
+
+\vspace{0.5cm}
+
+% Q12 - 9,0 pontos (Nova Questão - Laços & Números Primos)
+\item \textbf{[Discursiva - 9,0 pontos]} Um número natural maior do que 1 é dito \textbf{primo} se for divisível apenas por 1 e por ele mesmo. Escreva uma função em Python chamada \code{filtrar\_primos\_intervalo} que receba dois números inteiros positivos \code{inicio} e \code{fim} (com $\text{inicio} \le \text{fim}$) e, utilizando laços de repetição (\code{for} ou \code{while}) e lógica booleana, retorne uma \textbf{lista} contendo todos os números primos existentes no intervalo fechado $[\text{inicio}, \text{fim}]$ em ordem crescente. Caso não haja nenhum primo no intervalo, retorne uma lista vazia \code{[]}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} Para verificar se um número $n$ é primo, basta testar se algum inteiro $d$ no intervalo $2 \le d \le \sqrt{n}$ divide $n$ de forma exata ($n \pmod d == 0$). Lembre-se de que números $\le 1$ não são primos.
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def filtrar\_primos\_intervalo(}\\\code{    inicio: int,}\\\code{    fim: int}\\\code{) -> List[int]:}
+    \item \textbf{Exemplo de Entrada:} \code{(10, 30)} \quad | \quad \textbf{Saída Esperada:} \code{[11, 13, 17, 19, 23, 29]}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q12}
+
+\vspace{0.5cm}
+
+% Q13 - 9,0 pontos (Nova Questão - Parsing de Log Web & Dicionários)
+\item \textbf{[Discursiva - 9,0 pontos]} Um servidor de microsserviços gera linhas de log de acesso no formato: \texttt{"METODO /endpoint TEMPO\_MS STATUS"}. Por exemplo: \code{"GET /api/v1/usuarios 45.2 200"} ou \code{"POST /api/v1/login 120.0 200"}.
+
+Escreva uma função chamada \code{analisar\_logs\_servidor} que receba uma lista de strings de log e retorne uma tupla contendo:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1.} Um dicionário mapeando cada método HTTP (\code{"GET"}, \code{"POST"}, \code{"PUT"}, etc.) à quantidade total de requisições registradas para esse método.
+    \item \textbf{2.} O tempo médio de resposta de todas as requisições (em milissegundos), arredondado para duas casas decimais. Caso a lista esteja vazia, o tempo médio deve ser \code{0.0}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List, Dict, Tuple}\\\code{def analisar\_logs\_servidor(}\\\code{    linhas\_log: List[str]}\\\code{) -> Tuple[Dict[str, int], float]:}
+    \item \textbf{Exemplo de Entrada:} \code{["GET /home 30.0 200", "POST /login 90.0 200", "GET /dados 60.0 200"]}
+    \item \textbf{Saída Esperada:} \code{({"GET": 2, "POST": 1}, 60.0)}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q13}
+
+\vspace{0.5cm}
+
+% Q14 - 10,0 pontos (Nova Questão - Tratamento de Exceções & Transações)
+\item \textbf{[Discursiva - 10,0 pontos]} Em um sistema de pagamentos, transações são representadas por dicionários com os campos: \code{"id"} (int), \code{"tipo"} (\code{"DEPOSITO"} ou \code{"SAQUE"}) e \code{"valor"} (float).
+
+Escreva a função \code{processar\_transacoes\_bancarias(transacoes, saldo\_inicial)} aplicando tratamento explícito de exceções (\code{try} / \code{except}):
+\begin{itemize}[leftmargin=*]
+    \item Se faltar alguma chave obrigatória (\code{"id"}, \code{"tipo"} ou \code{"valor"}), capture o \code{KeyError} e adicione \code{"Erro na transacao: Chave ausente"} à lista de erros.
+    \item Se o \code{"valor"} for $\le 0$, lance e capture \code{ValueError} adicionando \code{"Transacao <id>: Valor invalido"} à lista de erros.
+    \item Se for um \code{"SAQUE"} com saldo insuficiente, lance e capture \code{ValueError} com a mensagem \code{"Transacao <id>: Saldo insuficiente"}.
+    \item Se for válida: atualize o saldo e adicione o \code{"id"} à lista de sucessos.
+\end{itemize}
+Retorne a tupla: \code{(saldo\_final: float, ids\_sucesso: list[int], erros: list[str])}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List, Dict, Any, Tuple}\\\code{def processar\_transacoes\_bancarias(}\\\code{    transacoes: List[Dict[str, Any]],}\\\code{    saldo\_inicial: float}\\\code{) -> Tuple[float, List[int], List[str]]:}
+    \item \textbf{Exemplo de Entrada:}\newline
+    \texttt{trans = [\{"id": 1, "tipo": "DEPOSITO", "valor": 500.0\},}\\\texttt{\phantom{trans = [}\{\"id\": 2, \"tipo\": \"SAQUE\", \"valor\": 700.0\}]}\\\texttt{processar\_transacoes\_bancarias(trans, saldo\_inicial=100.0)}
+    \item \textbf{Saída Esperada:}\newline
+    \texttt{(600.0, [1], ["Transacao 2: Saldo insuficiente"])}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q14}
+
+\vspace{0.5cm}
+
+% Q15 - 10,0 pontos (Nova Questão - POO Avançada com Herança & Polimorfismo)
+\item \textbf{[Discursiva - 10,0 pontos]} Modele um sistema orientado a objetos para gerenciar contas de clientes em um banco digital. Implemente a seguinte hierarquia de classes:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1. Classe \code{ContaBancaria}}:\newline
+    \begin{itemize}
+        \item Construtor:\newline \texttt{\_\_init\_\_(self, titular: str, numero\_conta: int, saldo=0.0)}
+        \item Método \code{depositar(self, valor: float) -> bool}: se \code{valor > 0}, soma ao saldo e retorna \code{True}; caso contrário, retorna \code{False}.
+        \item Método \code{sacar(self, valor: float) -> bool}: se \code{0 < valor <= self.saldo}, desconta do saldo e retorna \code{True}; caso contrário, retorna \code{False}.
+        \item Método especial \texttt{\_\_str\_\_(self) -> str}: retorna string no formato:\newline
+        \texttt{"Conta <num> - Titular: <nome> - Saldo: R\$ <saldo>"}
+    \end{itemize}
+    \item \textbf{2. Classe \code{ContaEspecial}} (herda de \code{ContaBancaria}):\newline
+    \begin{itemize}
+        \item Construtor:\newline \texttt{\_\_init\_\_(self, titular: str, num: int, saldo=0.0, limite=500.0)}\newline
+        Chama o construtor da superclasse via \texttt{super().\_\_init\_\_} e inicializa \code{limite}.
+        \item Sobrescrita de \code{sacar(self, valor: float) -> bool}: permite o saque se \code{0 < valor <= (self.saldo + self.limite)}. Desconta do saldo e retorna \code{True}; caso contrário, retorna \code{False}.
+        \item Sobrescrita de \texttt{\_\_str\_\_(self) -> str}: chama \texttt{super().\_\_str\_\_()} e concatena o limite: \texttt{"<msg\_base> (Limite: R\$ <limite>)"}.
+    \end{itemize}
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Exemplo de Uso:}\newline
+    \texttt{c = ContaEspecial("Ana Costa", 1001, saldo\_inicial=200.0,}\\\texttt{\phantom{c = ContaEspecial(}limite\_cheque\_especial=300.0)}\\\texttt{c.sacar(450.0)  \# Retorna True e o saldo fica -250.0}\\\texttt{print(str(c))    \# 'Conta 1001 - Titular: Ana Costa (Limite: R\$ 300.00)'}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q15}
+
+\end{enumerate}

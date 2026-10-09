@@ -1,0 +1,20 @@
+\ifmostrarGabarito
+\textbf{Resposta: (B)}
+
+\textbf{Justificativa:}
+Em Python, na expressão \texttt{(x != 0 and (y / x) > 2)}, o termo \texttt{x != 0} é \texttt{False}. Pela regra do curto-circuito do operador \texttt{and}, a segunda parte \texttt{(y / x) > 2} nunca é executada, evitando o erro de divisão por zero.
+Em seguida, o operador \texttt{or} avalia o lado direito: \texttt{(z > y and y > 0)}, que resulta em \texttt{(20 > 10 and 10 > 0) -> True and True -> True}. Logo, o resultado final é \texttt{True}.
+\else
+\par\vspace{0.15cm}
+\begin{tikzpicture}
+  \draw[rounded corners=3pt, draw=black!60, line width=0.7pt, fill=gray!3] (0,0) rectangle (\linewidth, -2.6cm);
+  \node[anchor=north west, font=\tiny\bfseries\color{black!70}] at (0.25cm, -0.08cm) {RESPOSTA DA QUESTÃO:};
+  \node[anchor=west, font=\footnotesize\bfseries] at (0.6cm, -0.65cm) {Assinale a alternativa: \quad [ \hspace{0.3cm} ] A \qquad [ \hspace{0.3cm} ] B \qquad [ \hspace{0.3cm} ] C \qquad [ \hspace{0.3cm} ] D \qquad [ \hspace{0.3cm} ] E};
+  \node[anchor=north west, font=\tiny\bfseries\color{gray!80}] at (0.25cm, -1.05cm) {RASCUNHO / MEMÓRIA DE CÁLCULO:};
+  \draw[gray!35, line width=0.4pt] (0.8cm, -1.65cm) -- (\linewidth-0.25cm, -1.65cm);
+  \draw[gray!35, line width=0.4pt] (0.8cm, -2.25cm) -- (\linewidth-0.25cm, -2.25cm);
+  \node[anchor=east, font=\scriptsize\ttfamily\color{gray!80}] at (0.65cm, -1.5cm) {1};
+  \node[anchor=east, font=\scriptsize\ttfamily\color{gray!80}] at (0.65cm, -2.1cm) {2};
+\end{tikzpicture}
+\par\vspace{0.2cm}
+\fi

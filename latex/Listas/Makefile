@@ -6,8 +6,9 @@ IMAGE_NAME ?= rap-latex:latest
 # Listas disponíveis
 LISTAS_ALL := 1 2 3 4 5 6 7 8 9 10 11
 LISTAS_TARGETS := 1 2 3 4 5 6 7 8 9 10 11 01 02 03 04 05 06 07 08 09
+PROVAS_TARGETS := prova1 prova01 prova_01 prova_1
 
-.PHONY: all all-listas $(LISTAS_TARGETS) compile_lista build-image shell clean clean-temp distclean help _docker_compile_lista
+.PHONY: all all-listas $(LISTAS_TARGETS) $(PROVAS_TARGETS) compile_lista compile_prova build-image shell clean clean-temp distclean help _docker_compile_lista _docker_compile_prova
 
 # Alvo padrão: compila todas as listas (01 a 11)
 all: all-listas
@@ -24,6 +25,10 @@ all-listas:
 $(LISTAS_TARGETS):
 	@$(MAKE) compile_lista NUM=$@
 
+# Regras dinâmicas para compilar provas
+$(PROVAS_TARGETS):
+	@$(MAKE) compile_prova NUM=01
+
 # Compilação via Docker de uma lista específica
 compile_lista:
 	@if [ -z "$(NUM)" ]; then \
@@ -39,6 +44,22 @@ compile_lista:
 	docker run --rm -v "$$(pwd):/workspace" $(IMAGE_NAME) make _docker_compile_lista NUM=$$NUM_FMT; \
 	$(MAKE) clean-temp; \
 	echo "✅ Lista $$NUM_FMT compilada com sucesso e arquivos temporários limpos!"
+
+# Compilação via Docker de uma prova específica
+compile_prova:
+	@if [ -z "$(NUM)" ]; then \
+		echo "❌ Especifique o número da prova. Ex: make prova1"; \
+		exit 1; \
+	fi; \
+	NUM_FMT=$$(python3 -c "print(f'{int(\"$(NUM)\"):02d}')"); \
+	if [ -z "$$(docker images -q $(IMAGE_NAME) 2> /dev/null)" ]; then \
+		echo "🐳 Imagem $(IMAGE_NAME) não encontrada. Construindo imagem Docker..."; \
+		docker build -t $(IMAGE_NAME) .; \
+	fi; \
+	echo "🐳 Compilando Prova $$NUM_FMT (Com e Sem Gabarito) no contêiner Docker..."; \
+	docker run --rm -v "$$(pwd):/workspace" $(IMAGE_NAME) make _docker_compile_prova NUM=$$NUM_FMT; \
+	$(MAKE) clean-temp; \
+	echo "✅ Prova $$NUM_FMT compilada com sucesso e arquivos temporários limpos!"
 
 # Construção da imagem Docker
 build-image:
@@ -65,6 +86,22 @@ _docker_compile_lista:
 	echo "📄 [Docker] Compilando '$$PDF_ALU'..."; \
 	pdflatex -shell-escape -interaction=nonstopmode -jobname="main_aluno" "\def\numAula{$$NUM_FMT}\def\comGabarito{false}\input{main.tex}" > /dev/null; \
 	pdflatex -shell-escape -interaction=nonstopmode -jobname="main_aluno" "\def\numAula{$$NUM_FMT}\def\comGabarito{false}\input{main.tex}"; \
+	cp main_aluno.pdf "$$PDF_ALU"; \
+	echo "✅ [Docker] Gerado: '$$PDF_ALU'"; \
+	rm -rf _minted* *.aux *.log *.out *.toc *.nav *.snm *.vrb *.fls *.fdb_latexmk *.synctex.gz *.bbl *.blg *.dvi *.ps *.pyg main_gabarito* main_aluno* main.pdf *.w18
+
+_docker_compile_prova:
+	@NUM_FMT=$$(python3 -c "print(f'{int(\"$(NUM)\"):02d}')"); \
+	PDF_GAB="Prova $$NUM_FMT - Avaliação Escrita (Gabarito).pdf"; \
+	PDF_ALU="Prova $$NUM_FMT - Avaliação Escrita.pdf"; \
+	echo "📄 [Docker] Compilando '$$PDF_GAB'..."; \
+	pdflatex -shell-escape -interaction=nonstopmode -jobname="main_gabarito" "\def\isProva{true}\def\numProva{$$NUM_FMT}\def\comGabarito{true}\input{main.tex}" > /dev/null; \
+	pdflatex -shell-escape -interaction=nonstopmode -jobname="main_gabarito" "\def\isProva{true}\def\numProva{$$NUM_FMT}\def\comGabarito{true}\input{main.tex}"; \
+	cp main_gabarito.pdf "$$PDF_GAB"; \
+	echo "✅ [Docker] Gerado: '$$PDF_GAB'"; \
+	echo "📄 [Docker] Compilando '$$PDF_ALU'..."; \
+	pdflatex -shell-escape -interaction=nonstopmode -jobname="main_aluno" "\def\isProva{true}\def\numProva{$$NUM_FMT}\def\comGabarito{false}\input{main.tex}" > /dev/null; \
+	pdflatex -shell-escape -interaction=nonstopmode -jobname="main_aluno" "\def\isProva{true}\def\numProva{$$NUM_FMT}\def\comGabarito{false}\input{main.tex}"; \
 	cp main_aluno.pdf "$$PDF_ALU"; \
 	echo "✅ [Docker] Gerado: '$$PDF_ALU'"; \
 	rm -rf _minted* *.aux *.log *.out *.toc *.nav *.snm *.vrb *.fls *.fdb_latexmk *.synctex.gz *.bbl *.blg *.dvi *.ps *.pyg main_gabarito* main_aluno* main.pdf *.w18

@@ -1,0 +1,54 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List, Dict, Any, Tuple
+
+def processar_transacoes_bancarias(
+    transacoes: List[Dict[str, Any]],
+    saldo_inicial: float
+) -> Tuple[float, List[int], List[str]]:
+    saldo_atual = float(saldo_inicial)
+    sucessos = []
+    erros = []
+    
+    for t in transacoes:
+        try:
+            # Validação de presença das chaves
+            if "id" not in t or "tipo" not in t or "valor" not in t:
+                raise KeyError("Chave ausente")
+                
+            t_id = t["id"]
+            tipo = t["tipo"]
+            valor = float(t["valor"])
+            
+            # Validação do valor estritamente positivo
+            if valor <= 0:
+                raise ValueError(f"Transacao {t_id}: Valor invalido")
+                
+            # Processamento por tipo
+            if tipo == "DEPOSITO":
+                saldo_atual += valor
+                sucessos.append(t_id)
+            elif tipo == "SAQUE":
+                if valor > saldo_atual:
+                    raise ValueError(f"Transacao {t_id}: Saldo insuficiente")
+                saldo_atual -= valor
+                sucessos.append(t_id)
+            else:
+                raise ValueError(f"Transacao {t_id}: Tipo desconhecido")
+                
+        except KeyError:
+            erros.append("Erro na transacao: Chave ausente")
+        except ValueError as e:
+            erros.append(str(e))
+            
+    return (saldo_atual, sucessos, erros)
+\end{minted}
+
+\textbf{Explicação:}
+Envolvemos o processamento de cada transação em um bloco \texttt{try/except}, disparando exceções apropriadas (\texttt{KeyError} e \texttt{ValueError}) e capturando-as para alimentar a lista de erros sem interromper a execução do lote.
+\else
+\linhasResposta{17}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q14]{30}
+\clearpage
+\fi

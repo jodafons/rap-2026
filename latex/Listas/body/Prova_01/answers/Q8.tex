@@ -1,0 +1,24 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def sacar_cedulas(valor_reais: int) -> Tuple[int, int, int]:
+    qtd_50 = valor_reais // 50
+    resto_50 = valor_reais % 50
+    
+    qtd_20 = resto_50 // 20
+    resto_20 = resto_50 % 20
+    
+    qtd_10 = resto_20 // 10
+    
+    return (qtd_50, qtd_20, qtd_10)
+\end{minted}
+
+\textbf{Explicação:}
+Utilizamos a divisão inteira \texttt{//} para quantificar quantas cédulas de maior denominação cabem no montante e o operador módulo \texttt{\%} para obter o saldo remanescente a ser decomposto nas cédulas subsequentes, sem necessidade de laços ou condicionais.
+\else
+\linhasResposta{18}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q8]{30}
+\clearpage
+\fi

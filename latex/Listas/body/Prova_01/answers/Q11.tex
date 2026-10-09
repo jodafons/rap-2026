@@ -1,0 +1,35 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List, Dict, Any
+
+def consolidar_vendas_categoria(
+    vendas: List[Dict[str, Any]]
+) -> Dict[str, Dict[str, Any]]:
+    agrupado = {}
+    for pedido in vendas:
+        cat = pedido["categoria"]
+        val = pedido["valor"]
+        if cat not in agrupado:
+            agrupado[cat] = {"total": 0.0, "quantidade": 0}
+        agrupado[cat]["total"] += val
+        agrupado[cat]["quantidade"] += 1
+        
+    resultado = {}
+    for cat, dados in agrupado.items():
+        media = dados["total"] / dados["quantidade"]
+        resultado[cat] = {
+            "total": round(dados["total"], 2),
+            "quantidade": dados["quantidade"],
+            "media": round(media, 2)
+        }
+    return resultado
+\end{minted}
+
+\textbf{Explicação:}
+Realizamos uma passagem sobre os registros acumulando a soma dos valores e a contagem por categoria em um dicionário. Na segunda etapa, calculamos a média dividindo o faturamento pela quantidade de itens.
+\else
+\linhasResposta{17}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q11]{30}
+\clearpage
+\fi

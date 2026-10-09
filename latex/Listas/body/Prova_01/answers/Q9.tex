@@ -1,0 +1,33 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def validar_cadastro_usuario(
+    nome: str, 
+    idade: int, 
+    email: str, 
+    renda: float
+) -> Tuple[bool, str]:
+    if len(nome.strip()) < 3:
+        return (False, "NOME_INVALIDO")
+    
+    if idade < 18:
+        return (False, "MENOR_DE_IDADE")
+        
+    if "@" not in email or "." not in email:
+        return (False, "EMAIL_INVALIDO")
+        
+    if renda <= 0:
+        return (False, "RENDA_INVALIDA")
+        
+    return (True, "CADASTRO_APROVADO")
+\end{minted}
+
+\textbf{Explicação:}
+Avaliamos as restrições em ordem sequencial com saídas rápidas (\emph{early returns}). Apenas se todas as validações forem satisfeitas, retorna-se \texttt{(True, "CADASTRO\_APROVADO")}.
+\else
+\linhasResposta{17}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q9]{30}
+\clearpage
+\fi

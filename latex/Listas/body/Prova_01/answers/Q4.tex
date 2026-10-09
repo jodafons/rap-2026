@@ -1,0 +1,24 @@
+\ifmostrarGabarito
+\textbf{Resposta: (D)}
+
+\textbf{Justificativa:}
+Como \texttt{lista\_b = lista\_a}, ambas as variáveis apontam para o mesmo objeto na memória. Portanto, a alteração \texttt{lista\_b.append(40)} afeta tanto \texttt{lista\_b} quanto \texttt{lista\_a}.
+Já \texttt{lista\_c = lista\_a.copy()} cria uma nova lista independente contendo os mesmos elementos originais \texttt{[10, 20, 30]}. A alteração \texttt{lista\_c.append(50)} afeta exclusivamente \texttt{lista\_c}.
+Resultados finais:
+- \texttt{lista\_a = [10, 20, 30, 40]}
+- \texttt{lista\_b = [10, 20, 30, 40]}
+- \texttt{lista\_c = [10, 20, 30, 50]}
+\else
+\par\vspace{0.15cm}
+\begin{tikzpicture}
+  \draw[rounded corners=3pt, draw=black!60, line width=0.7pt, fill=gray!3] (0,0) rectangle (\linewidth, -2.6cm);
+  \node[anchor=north west, font=\tiny\bfseries\color{black!70}] at (0.25cm, -0.08cm) {RESPOSTA DA QUESTÃO:};
+  \node[anchor=west, font=\footnotesize\bfseries] at (0.6cm, -0.65cm) {Assinale a alternativa: \quad [ \hspace{0.3cm} ] A \qquad [ \hspace{0.3cm} ] B \qquad [ \hspace{0.3cm} ] C \qquad [ \hspace{0.3cm} ] D \qquad [ \hspace{0.3cm} ] E};
+  \node[anchor=north west, font=\tiny\bfseries\color{gray!80}] at (0.25cm, -1.05cm) {RASCUNHO / MEMÓRIA DE CÁLCULO:};
+  \draw[gray!35, line width=0.4pt] (0.8cm, -1.65cm) -- (\linewidth-0.25cm, -1.65cm);
+  \draw[gray!35, line width=0.4pt] (0.8cm, -2.25cm) -- (\linewidth-0.25cm, -2.25cm);
+  \node[anchor=east, font=\scriptsize\ttfamily\color{gray!80}] at (0.65cm, -1.5cm) {1};
+  \node[anchor=east, font=\scriptsize\ttfamily\color{gray!80}] at (0.65cm, -2.1cm) {2};
+\end{tikzpicture}
+\par\vspace{0.2cm}
+\fi
