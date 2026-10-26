@@ -1,0 +1,47 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+import pandas as pd
+from typing import Tuple, Dict, Any
+
+def sanear_telemetria_motores(df_bruto: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, Any]]:
+    """
+    Audita valores nulos, descarta registros incompletos e realiza imputações com Pandas.
+    """
+    df = df_bruto.copy()
+    
+    # 1. Auditoria inicial de valores ausentes por coluna
+    nans_iniciais = df.isna().sum().to_dict()
+    total_linhas_inicial = len(df)
+    
+    # 2. Descarte de registros cujo identificador principal seja nulo
+    df = df.dropna(subset=["id_equipamento"])
+    
+    # 3. Imputação de variável contínua pela mediana
+    mediana_temp = df["temperatura_oleo"].median()
+    df["temperatura_oleo"] = df["temperatura_oleo"].fillna(round(mediana_temp, 2))
+    
+    # 4. Imputação temporal de pressão por propagação do valor anterior (ffill)
+    df["pressao_bar"] = df["pressao_bar"].ffill()
+    
+    # 5. Imputação de coluna categórica com valor padrão seguro
+    df["status_operacional"] = df["status_operacional"].fillna("DESCONHECIDO")
+    
+    # Montagem do relatório de auditoria
+    linhas_removidas = total_linhas_inicial - len(df)
+    auditoria = {
+        "nans_originais": nans_iniciais,
+        "linhas_descartadas": int(linhas_removidas)
+    }
+    
+    return (df.reset_index(drop=True), auditoria)
+\end{minted}
+
+\textbf{Explicação:}
+A função aplica as melhores práticas de preparação de dados com Pandas:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{df.isna().sum()}: Mapeia o quantitativo de dados corrompidos/ausentes.
+    \item \texttt{.dropna(subset=...)}: Remove apenas linhas com chaves de identificação essenciais faltantes.
+    \item \texttt{.median()} e \texttt{.fillna()}: Trata assimetrias numéricas sem distorcer o centro dos dados.
+    \item \texttt{.ffill()}: Modela a inércia física de sensores de pressão propagando o último estado estável.
+\end{itemize}
+\fi

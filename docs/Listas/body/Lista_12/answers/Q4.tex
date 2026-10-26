@@ -1,0 +1,44 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+import numpy as np
+from typing import Dict, Any
+
+def analisar_grade_sonar(grade: np.ndarray, tam_subgrade: int) -> Dict[str, Any]:
+    """
+    Realiza fatiamento 2D, agregações estatísticas por eixos e localização de pico sonar.
+    """
+    linhas, colunas = grade.shape
+    centro_l, centro_c = linhas // 2, colunas // 2
+    meio = tam_subgrade // 2
+    
+    # Fatiamento bidimensional centrado no meio geométrico da matriz
+    l_ini, l_fim = centro_l - meio, centro_l - meio + tam_subgrade
+    c_ini, c_fim = centro_c - meio, centro_c - meio + tam_subgrade
+    subgrade_central = grade[l_ini:l_fim, c_ini:c_fim]
+    
+    # Agregações estatísticas por eixo (axis=0 colunas, axis=1 linhas)
+    media_colunas = np.round(np.mean(grade, axis=0), 2)
+    desvio_linhas = np.round(np.std(grade, axis=1), 2)
+    
+    # Localização do ponto de máxima potência acústica
+    idx_max_1d = np.argmax(grade)
+    pico_coord = np.unravel_index(idx_max_1d, grade.shape)
+    
+    return {
+        "subgrade_central": subgrade_central,
+        "media_colunas": media_colunas,
+        "desvio_linhas": desvio_linhas,
+        "coordenada_pico": (int(pico_coord[0]), int(pico_coord[1])),
+        "valor_pico": float(grade[pico_coord])
+    }
+\end{minted}
+
+\textbf{Explicação:}
+A função explora recursos essenciais de matrizes 2D no NumPy:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{grade[l\_ini:l\_fim, c\_ini:c\_fim]}: Fatiamento matricial direto sem cópias desnecessárias de dados.
+    \item \texttt{axis=0}: Colapsa as linhas, calculando a média ao longo de cada coluna vertical.
+    \item \texttt{axis=1}: Colapsa as colunas, calculando o desvio padrão ao longo de cada linha horizontal.
+    \item \texttt{np.argmax} e \texttt{np.unravel\_index}: Convertem o índice unidimensional do valor máximo global na respectiva tupla de coordenadas $(linha, coluna)$ da matriz 2D.
+\end{itemize}
+\fi

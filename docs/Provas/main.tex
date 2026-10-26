@@ -1,0 +1,74 @@
+\documentclass[12pt]{exam}
+\input{packages}
+
+% Configuração da flag para exibir ou ocultar o gabarito
+\newboolean{mostrarGabarito}
+\ifdefined\comGabarito
+  \setboolean{mostrarGabarito}{\comGabarito}
+\else
+  \setboolean{mostrarGabarito}{true}
+\fi
+
+% Configuração para Lista ou Prova
+\ifdefined\isProva
+  \def\tipoDoc{Prova}
+  \ifdefined\numProva
+  \else
+    \def\numProva{01}
+  \fi
+\else
+  \def\tipoDoc{Lista}
+  \ifdefined\numAula
+  \else
+    \def\numAula{11}
+  \fi
+\fi
+
+% Comando para desenhar linhas pautadas e numeradas (modo sem gabarito)
+\newcommand{\linhasResposta}[2][ESPAÇO PARA RESOLUÇÃO / CÓDIGO PYTHON:]{%
+  \par\vspace{0.15cm}\noindent
+  \begin{tikzpicture}
+    \draw[rounded corners=3pt, draw=black!60, line width=0.7pt, fill=gray!3] (0,0) rectangle (\linewidth, -#2*0.68cm - 0.35cm);
+    \node[anchor=north west, font=\tiny\bfseries\color{black!70}] at (0.25cm, -0.08cm) {#1};
+    \foreach \i in {1,...,#2} {
+      \node[anchor=east, font=\scriptsize\ttfamily\color{gray!80}] at (0.65cm, -\i*0.68cm + 0.15cm) {\i};
+      \draw[gray!35, line width=0.4pt] (0.8cm, -\i*0.68cm) -- (\linewidth-0.25cm, -\i*0.68cm);
+    }
+  \end{tikzpicture}
+  \par\vspace{0.2cm}
+}
+
+\begin{document}
+\setlength{\arrayrulewidth}{1.5pt}
+\vspace{0.1cm}
+\begin{tabular}{l|l}
+\thispagestyle{empty}
+\multirow{4}{30mm}{\vspace*{-1cm}\hspace*{-0.4cm}\includegraphics[width=0.15\textwidth]{logos/ciaa_gray.pdf}}
+& {\bf \Large{Revisão Acelerada de Programação - RAP}} \\
+ & {\bf \Large{RAP-2026, Marinha do Brasil}} \\
+ & {Centro de Instrução Almirante Alexandrino}\\
+ & {Departamento de Aperfeiçoamento Avançado para Oficiais}\\
+ & {Curso de Aperfeiçoamento Avançado em Guerra Acústica (C-ApA-Of-GA)}\\
+ & {Professor: João Victor da Fonseca Pinto}\\
+\ifthenelse{\equal{\tipoDoc}{Prova}}{%
+ & {Descrição do Documento: \textbf{Avaliação Escrita \numProva}}\\
+ & {Valor Total: \textbf{100,0 Pontos} (+20,0 Bônus) \quad | \quad Nota Obtida: \underline{\hspace{2.2cm}}}\\
+ & {Aluno: \underline{\hspace{9.5cm}}}\\
+}{%
+ & {Descrição do Documento: Lista de Exercícios \numAula}\\
+ & {Código da Aula: \numAula}\\
+}%
+\end{tabular}\\ 
+
+
+\thispagestyle{headandfoot}
+\normalsize
+\vspace{-0.2cm}
+\vspace{0.2cm}
+
+\ifthenelse{\equal{\tipoDoc}{Prova}}{%
+  \input{body/Prova_\numProva/main}
+}{%
+  \input{body/Lista_\numAula/main}
+}
+\end{document}

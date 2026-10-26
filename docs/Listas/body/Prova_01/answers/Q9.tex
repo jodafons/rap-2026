@@ -1,0 +1,42 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def eh_primo(numero: int) -> bool:
+    if numero <= 1:
+        return False
+    for divisor in range(2, int(numero**0.5) + 1):
+        if numero % divisor == 0:
+            return False
+    return True
+
+def filtrar_primos_intervalo(inicio: int, fim: int) -> List[int]:
+    primos = []
+    for num in range(inicio, fim + 1):
+        if eh_primo(num):
+            primos.append(num)
+    return primos
+\end{minted}
+
+\textbf{Explicação:}
+A solução adota a modularização em duas funções:
+\begin{enumerate}
+    \item \texttt{eh\_primo}: Testa se um número individual é primo, descartando números $\le 1$ e verificando divisores até $\sqrt{\text{numero}}$.
+    \item \texttt{filtrar\_primos\_intervalo}: Percorre o intervalo fechado de \texttt{inicio} a \texttt{fim}, chamando \texttt{eh\_primo(num)} para filtrar e acumular os números primos em uma lista.
+\end{enumerate}
+
+\vspace{0.3cm}
+\textbf{Critérios de Correção e Penalidades Sugeridas (Erros Comuns):}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item \textbf{Falta de modularização ou não chamar função auxiliar} (\textbf{--6,0 pontos}): Implementar tudo em uma única função ou não invocar \code{eh\_primo} dentro de \code{filtrar\_primos\_intervalo}.
+    \item \textbf{Falha nos casos base $\le 1$} (\textbf{--5,0 pontos}): Não descartar números $\le 1$, classificando erroneamente $0$ ou $1$ como primos.
+    \item \textbf{Intervalo de divisores incorreto} (\textbf{--5,0 pontos}): Omitir o $+1$ no teto da raiz quadrada (\code{range(2, int(n**0.5) + 1)}), falhando em quadrados perfeitos como 4, 9 e 25, ou iniciar em 1.
+    \item \textbf{Retorno prematuro no laço} (\textbf{--5,0 pontos}): Colocar \code{return True} dentro de um bloco \code{else} na primeira iteração do laço divisor em \code{eh\_primo}.
+    \item \textbf{Limites do intervalo ou retorno} (\textbf{--4,0 pontos}): Usar \code{range(inicio, fim)} esquecendo o limite superior inclusivo, ou não retornar a lista de primos resultante.
+\end{itemize}
+\else
+\linhasResposta{18}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q9]{30}
+\clearpage
+\fi

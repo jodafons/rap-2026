@@ -1,0 +1,315 @@
+\vspace{0.8cm}
+
+\noindent \textbf{\Large Avaliação Escrita 01 — Revisão Acelerada de Programação (RAP)}
+
+\vspace{0.3cm}
+\noindent \textbf{Orientações e Instruções para a Realização da Prova:}
+\begin{itemize}[leftmargin=*]
+    \item Esta avaliação é composta por \textbf{10 questões regulares} (totalizando \textbf{100,0 pontos}) e \textbf{1 Questão Bônus Especial} (valendo até \textbf{20,0 pontos extras}).
+    \item \textbf{Estrutura da Prova:}
+    \begin{itemize}
+        \item \textbf{Parte I (Questões 1 a 7):} 7 Questões de Múltipla Escolha (Total: \textbf{30,0 pontos}).
+        \item \textbf{Parte II (Questões 8 a 10):} 3 Questões Discursivas e de Programação em Python (Total: \textbf{70,0 pontos}).
+        \item \textbf{Parte III (Questão 11):} 1 Questão Bônus de Simulação de Algoritmo em Python (\textbf{20,0 pontos extras}).
+    \end{itemize}
+    \item \textbf{Critérios de Correção e Resolução:}
+    \begin{itemize}
+        \item Nas questões de múltipla escolha, assinale com clareza a alternativa correta no espaço indicado.
+        \item Nas questões discursivas, escreva o código Python de forma legível respeitando a indentação obrigatória, nomes de funções e parâmetros indicados nos protótipos.
+        \item É proibido o uso de módulos externos não autorizados (utilize apenas funções nativas do Python).
+    \end{itemize}
+    \item \textbf{Tabela de Consulta (Anexo):} Ao final da prova, há uma tabela de referência rápida contendo a sintaxe e exemplos de funções e métodos nativos do Python que podem ser consultados livremente.
+\end{itemize}
+
+\vspace{0.4cm}
+
+\section*{Parte I: Questões de Múltipla Escolha (Q1 a Q7 — 30,0 Pontos)}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=1]
+
+% Q1 - 4,0 pontos (Copiada da Lista 11 Q1)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Considere a seguinte expressão aritmética executada em Python para calcular o valor total de uma compra com desconto:
+\begin{minted}{python}
+total = 10 + 2 * 3 ** 2 - 8 // 4 + 7 % 3
+\end{minted}
+Qual será o valor final atribuído à variável \code{total}?
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} A ordem de precedência dos operadores aritméticos em Python é: 1º Parênteses \code{()}, 2º Exponenciação \code{**}, 3º Multiplicação \code{*}, Divisão \code{/}, Divisão Inteira \code{//} e Módulo \code{\%} (avaliados da esquerda para a direita), 4º Adição \code{+} e Subtração \code{-} (avaliados da esquerda para a direita). O operador de divisão inteira \code{//} retorna apenas a parte inteira da divisão (ex: \code{8 // 4} resulta em \code{2}), enquanto o operador módulo \code{\%} calcula o resto da divisão inteira (ex: \code{7 \% 3} resulta em \code{1}).
+\end{itemize}
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item 25
+    \item 27
+    \item 28
+    \item 30
+    \item 19
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q1}
+
+\vspace{0.4cm}
+
+% Q2 - 4,0 pontos (Copiada da Lista 11 Q11)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Em Python, a avaliação de expressões lógicas com os operadores \code{and} e \code{or} segue a regra do curto-circuito (\emph{short-circuit evaluation}). Considere as variáveis:
+\begin{minted}{python}
+x = 0
+y = 10
+z = 20
+\end{minted}
+Analise a expressão lógica:
+\begin{minted}{python}
+resultado = (x != 0 and (y / x) > 2) or (z > y and y > 0)
+\end{minted}
+Qual é o valor final atribuído a \code{resultado} e qual comportamento ocorre durante a execução?
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} Na avaliação de curto-circuito (\emph{short-circuit evaluation}), o interpretador Python interrompe a avaliação de uma expressão lógica assim que o valor final já pode ser determinado:
+    \begin{itemize}
+        \item No operador \code{and}, se o primeiro termo for falso (\code{False}), o segundo termo \textbf{não é avaliado}, pois toda a conjunção será necessariamente falsa.
+        \item No operador \code{or}, se o primeiro termo for verdadeiro (\code{True}), o segundo termo \textbf{não é avaliado}. Se o primeiro termo for falso, o segundo termo é avaliado para definir o resultado final.
+    \end{itemize}
+\end{itemize}
+
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item Ocorre um erro de divisão por zero (\code{ZeroDivisionError}) ao tentar avaliar \code{y / x}.
+    \item O valor é \code{True}, pois a primeira parte da conjunção \code{x != 0} é \code{False}, evitando a divisão por zero, e a segunda parte do \code{or} é \code{True}.
+    \item O valor é \code{False}, pois a primeira expressão é falsa e invalida todo o teste lógico.
+    \item O valor é \code{None}, pois expressões com curto-circuito em Python não retornam valores booleanos puros.
+    \item O programa trava em um laço infinito aguardando a definição do operador de curto-circuito.
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q2}
+
+\vspace{0.4cm}
+
+% Q3 - 4,0 pontos (Copiada da Lista 11 Q31)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Dada a string \code{s = "PROGRAMACAO"}, qual será o resultado da operação de fatiamento \code{s[1:8:2]}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{"RMAA"}
+    \item \code{"RGAA"}
+    \item \code{"RGA"}
+    \item \code{"PGMC"}
+    \item \code{"ROAM"}
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q3}
+
+\vspace{0.4cm}
+
+% Q4 - 4,0 pontos (Copiada da Lista 11 Q42)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Em Python, a atribuição direta entre variáveis que apontam para listas cria uma referência (\emph{alias}), enquanto o método \code{.copy()} ou o fatiamento \texttt{[:]} cria uma cópia rasa (\emph{shallow copy}). Analise o código abaixo:
+\begin{minted}{python}
+lista_a = [10, 20, 30]
+lista_b = lista_a
+lista_c = lista_a.copy()
+
+lista_b.append(40)
+lista_c.append(50)
+\end{minted}
+Quais serão os valores finais de \code{lista\_a}, \code{lista\_b} e \code{lista\_c}, respectivamente?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \texttt{[10, 20, 30]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30, 50]}
+    \item \texttt{[10, 20, 30, 40, 50]}, \texttt{[10, 20, 30, 40, 50]} e \texttt{[10, 20, 30, 50]}
+    \item \texttt{[10, 20, 30]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30]}
+    \item \texttt{[10, 20, 30, 40]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30, 50]}
+    \item \texttt{[10, 20, 30, 50]}, \texttt{[10, 20, 30, 40]} e \texttt{[10, 20, 30, 50]}
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q4}
+
+\vspace{0.4cm}
+
+% Q5 - 4,0 pontos (Processamento de Strings com split e join)
+\item \textbf{[Múltipla Escolha - 4,0 pontos]} Considere a seguinte rotina em Python utilizada para higienização e formatação de um registro de texto:
+\begin{minted}{python}
+registro = "  joao ; silva ; 1995 ; engenheiro  "
+partes = [campo.strip().upper() for campo in registro.split(";")]
+resultado = " - ".join(partes[:2])
+\end{minted}
+Qual será o valor exato atribuído à variável \code{resultado} ao final da execução?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \code{"JOAO - SILVA"}
+    \item \code{"JOAO ; SILVA"}
+    \item \code{"JOAO - SILVA - 1995"}
+    \item \code{"  JOAO   -   SILVA  "}
+    \item \code{['JOAO', 'SILVA']}
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q5}
+
+\vspace{0.4cm}
+
+% Q6 - 5,0 pontos (Nova Questão - Escopo & Funções)
+\item \textbf{[Múltipla Escolha - 5,0 pontos]} Analise a execução do seguinte trecho de código em Python envolvendo escopo de variáveis e funções:
+\begin{minted}{python}
+taxa = 1.10
+
+def atualizar_precos(valores: list[float]) -> float:
+    global taxa
+    taxa = 1.20
+    soma = 0.0
+    for i in range(len(valores)):
+        valores[i] = valores[i] * taxa
+        soma += valores[i]
+    return soma
+
+precos = [10.0, 20.0]
+total_calculado = atualizar_precos(precos)
+\end{minted}
+Após a execução completa, quais serão os valores de \code{precos}, \code{total\_calculado} e da variável global \code{taxa}?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \texttt{precos = [10.0, 20.0]}, \texttt{total\_calculado = 33.0} e \texttt{taxa = 1.10}
+    \item \texttt{precos = [12.0, 24.0]}, \texttt{total\_calculado = 36.0} e \texttt{taxa = 1.20}
+    \item \texttt{precos = [11.0, 22.0]}, \texttt{total\_calculado = 33.0} e \texttt{taxa = 1.20}
+    \item \texttt{precos = [12.0, 24.0]}, \texttt{total\_calculado = 36.0} e \texttt{taxa = 1.10}
+    \item Ocorre um erro de compilação (\texttt{UnboundLocalError}) devido ao uso de \texttt{global taxa}.
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q6}
+
+\vspace{0.4cm}
+
+% Q7 - 5,0 pontos (Nova Questão - POO)
+\item \textbf{[Múltipla Escolha - 5,0 pontos]} Na Programação Orientada a Objetos em Python, considere o seguinte modelo de classes:
+\begin{minted}{python}
+class Sensor:
+    def __init__(self, identificador: str):
+        self.id = identificador
+    
+    def obter_status(self) -> str:
+        return f"Sensor {self.id}: ATIVO"
+
+class SensorSonar(Sensor):
+    def __init__(self, identificador: str, profundidade_max: float):
+        super().__init__(identificador)
+        self.profundidade = profundidade_max
+    
+    def obter_status(self) -> str:
+        msg_base = super().obter_status()
+        return f"{msg_base} (Prof: {self.profundidade}m)"
+\end{minted}
+Ao instanciar \texttt{s = SensorSonar("SN-01", 300.0)} e executar \texttt{s.obter\_status()}, qual será o retorno produzido?
+
+\begin{enumerate}[label=\textbf{(\Alph*)}]
+    \item \texttt{"Sensor SN-01: ATIVO"}
+    \item \texttt{"(Prof: 300.0m)"}
+    \item Ocorre um erro de execução (\texttt{AttributeError}), pois \texttt{super()} não pode acessar métodos com o mesmo nome.
+    \item \texttt{"Sensor SN-01: ATIVO (Prof: 300.0m)"}
+    \item \texttt{"Sensor: None (Prof: 300.0m)"}
+\end{enumerate}
+
+\input{body/Prova_01/answers/Q7}
+
+\ifmostrarGabarito\else\clearpage\fi
+
+\section*{Parte II: Questões Discursivas e de Programação (Q8 a Q10 — 70,0 Pontos)}
+
+% Q8 - 20,0 pontos (Desconto Progressivo em E-Commerce)
+\item \textbf{[Discursiva - 20,0 pontos]} Uma loja online aplica descontos promocionais progressivos no fechamento do carrinho de compras conforme o valor total bruto gasto pelo cliente:
+\begin{itemize}[leftmargin=*]
+    \item Compras de até R\$ 100,00: sem desconto (0\%).
+    \item Compras de R\$ 100,01 a R\$ 300,00: \textbf{5\%} de desconto.
+    \item Compras de R\$ 300,01 a R\$ 500,00: \textbf{10\%} de desconto.
+    \item Compras acima de R\$ 500,00: \textbf{15\%} de desconto.
+\end{itemize}
+Escreva a função \code{calcular\_desconto\_compra} que receba o valor bruto da compra e retorne uma tupla \code{(valor\_desconto, valor\_final\_a\_pagar)}, com ambos os valores arredondados para duas casas decimais com \code{round(..., 2)}. Caso o valor informado seja menor ou igual a zero, a função deve retornar \code{(0.0, 0.0)}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import Tuple}\\\code{def calcular\_desconto\_compra(}\\\code{    valor\_bruto: float}\\\code{) -> Tuple[float, float]:}
+    \item \textbf{Exemplos de Teste:}\newline
+    \code{calcular\_desconto\_compra(200.0)} $\rightarrow$ \code{(10.0, 190.0)}\newline
+    \code{calcular\_desconto\_compra(400.0)} $\rightarrow$ \code{(40.0, 360.0)}\newline
+    \code{calcular\_desconto\_compra(600.0)} $\rightarrow$ \code{(90.0, 510.0)}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q8}
+
+\vspace{0.5cm}
+
+% Q9 - 25,0 pontos (Laços & Modularização de Funções: Números Primos)
+\item \textbf{[Discursiva - 25,0 pontos]} Um número natural maior do que 1 é dito \textbf{primo} se for divisível apenas por 1 e por ele mesmo (números $\le 1$ não são primos). Para resolver este problema de forma modular e aplicando boas práticas de programação, você deve implementar obrigatoriamente \textbf{duas funções}:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1. Função Auxiliar \code{eh\_primo(numero: int) -> bool}:}\newline
+    Recebe um número inteiro e verifica se ele é primo utilizando laço de repetição e o operador módulo \code{\%}. Retorna \code{True} se o número for primo ou \code{False} caso contrário.
+    \item \textbf{2. Função Principal \code{filtrar\_primos\_intervalo(inicio: int, fim: int) -> List[int]}:}\newline
+    Recebe dois inteiros positivos \code{inicio} e \code{fim} ($\text{inicio} \le \text{fim}$). Esta função deve iterar pelos números do intervalo fechado $[\text{inicio}, \text{fim}]$ e \textbf{chamar obrigatoriamente a função auxiliar \code{eh\_primo}} para cada número, retornando uma \textbf{lista} contendo todos os números primos encontrados em ordem crescente. Caso não haja primos no intervalo, retorne uma lista vazia \code{[]}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Dica:} Para verificar se um número $n$ é primo, basta testar se algum inteiro $d$ no intervalo $2 \le d \le \sqrt{n}$ divide $n$ de forma exata (\code{n \% d == 0}). Lembre-se de que números $\le 1$ não são primos.
+    \item \textbf{Protótipos Obrigatórios:}\newline
+    \code{def eh\_primo(numero: int) -> bool:}\newline
+    \code{from typing import List}\newline
+    \code{def filtrar\_primos\_intervalo(inicio: int, fim: int) -> List[int]:}
+    \item \textbf{Exemplo de Teste:} \code{filtrar\_primos\_intervalo(10, 30)} $\rightarrow$ \code{[11, 13, 17, 19, 23, 29]}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q9}
+
+\vspace{0.5cm}
+
+% Q10 - 25,0 pontos (Média Móvel de Preços Financeiros)
+\item \textbf{[Discursiva - 25,0 pontos]} No mercado financeiro, a Média Móvel Simples é muito utilizada para suavizar oscilações diárias de preços e identificar tendências. Dada uma lista de preços históricos de uma ação e um tamanho de janela $K$ ($K \ge 1$), a média móvel no dia $i$ é a média aritmética dos $K$ valores compreendidos entre o dia $i - K + 1$ e o dia $i$.
+
+Escreva uma função chamada \code{calcular\_media\_movel} que receba a lista de preços diários e o tamanho da janela $K$, e retorne uma lista contendo as médias móveis calculadas a partir do momento em que a primeira janela completa estiver disponível (com valores arredondados para duas casas decimais com \code{round(..., 2)}). Caso a lista de preços contenha menos elementos do que o tamanho da janela $K$, a função deve retornar uma lista vazia \code{[]}.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline \code{from typing import List}\\\code{def calcular\_media\_movel(}\\\code{    precos\_diarios: List[float],}\\\code{    tamanho\_janela: int}\\\code{) -> List[float]:}
+    \item \textbf{Exemplo de Entrada:} \code{([100.0, 102.0, 104.0, 106.0, 108.0], 3)}
+    \item \textbf{Saída Esperada:} \code{[102.0, 104.0, 106.0]}
+    \item \textbf{Exemplo de Janela Insuficiente:} \code{([50.0, 55.0], 3)} $\rightarrow$ \code{[]}
+\end{itemize}
+
+\input{body/Prova_01/answers/Q10}
+
+\end{enumerate}
+
+\ifmostrarGabarito\clearpage\fi
+
+\vspace{-0.2cm}
+\section*{\Large Parte III: Questão Bônus (Q11 — 20,0 Pontos Extras)}
+\vspace{-0.2cm}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}, start=11]
+
+% Q11 - 20,0 pontos extras (Questão Bônus - A Travessia pelas Montanhas de Mordor)
+\item \textbf{[Discursiva Bônus — 20,0 Pontos Extras]} Nas entranhas sombrias sob as imponentes \textbf{Montanhas de Mordor}, oculta-se uma perigosa passagem fortificada repleta de tesouros guardados pelas temíveis forças de \textbf{Sauron}. Uma intrépida maga adentra o labirinto iniciando com: \textbf{100 HP} (máx. $100$), \textbf{50 Mana} (máx. $50$), \textbf{3 Poções de cura} (restauram $+40$ de HP cada, teto $100$) e \textbf{0 Ouro}.
+
+O labirinto é percorrido sala a sala, representado por uma lista de dicionários (\code{salas}), onde cada câmara possui a chave \code{"tipo"}:
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+    \item \code{"MONSTRO"}: Representa criaturas enviadas por Sauron com \code{"dano\_base"} (inteiro). Ao enfrentá-las:
+    \begin{enumerate}[label=(\alph*), leftmargin=*, noitemsep, topsep=0pt]
+        \item Se $\text{mana} \ge 15$: conjura um feitiço neutralizador, gastando $15$ de mana e \textbf{não sofrendo dano}.
+        \item Se $\text{mana} < 15$: enfrenta combate corporal contra os servos de Sauron e sofre dano integral (\code{hp -= dano\_base}).
+        \item Se sobreviver com vida crítica ($0 < HP \le 30$) e possuir poções: consome automaticamente $1$ poção, restaurando $+40$ de HP (\code{min(100, hp + 40)}) e descontando $1$ poção.
+        \item Se $HP \le 0$: derrota imediata diante do poder de Sauron! A função encerra e retorna \texttt{("DERROTA", 0, mana, ouro)}.
+    \end{enumerate}
+    \item \code{"DESCANSO"}: Contém \code{"recupera\_mp"}. Recupera mana em um refúgio seguro (\code{min(50, mana + recupera\_mp)}).
+    \item \code{"TESOURO"}: Contém \code{"ouro"}. Recolhe as relíquias e riquezas, somando ao ouro acumulado.
+\end{itemize}
+
+Ao atravessar todas as salas viva, a exploradora supera as Montanhas de Mordor e a função retorna:\newline \texttt{("VITORIA", hp, mana, ouro)}. Escreva a função \code{simular\_expedicao\_calabouco} em Python.
+
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+    \item \textbf{Protótipo:}\newline
+    \code{from typing import List, Dict, Any, Tuple}\\\code{def simular\_expedicao\_calabouco(}\\\code{    salas: List[Dict[str, Any]]}\\\code{) -> Tuple[str, int, int, int]:}
+    \item \textbf{Exemplo de Entrada:}\newline
+    \texttt{[\{"tipo": "MONSTRO", "dano\_base": 30\}, \{"tipo": "TESOURO", "ouro": 100\},}\\\texttt{\phantom{[}\{"tipo": "MONSTRO", "dano\_base": 30\}, \{"tipo": "MONSTRO", "dano\_base": 30\},}\\\texttt{\phantom{[}\{"tipo": "MONSTRO", "dano\_base": 80\}, \{"tipo": "DESCANSO", "recupera\_mp": 25\}]}
+    \item \textbf{Saída Esperada:} \texttt{("VITORIA", 60, 30, 100)}
+    \item \textbf{Explicação:} Nas 3 primeiras salas consome-se $15$ MP em cada ($50 \to 5$ MP). Na 4ª sala (dano $80$), sem mana, sofre dano corporal ($HP: 100 \to 20$); como $0 < HP \le 30$, usa $1$ poção automaticamente ($HP: 20 + 40 = 60$). No descanso, recupera $25$ MP ($5 + 25 = 30$). Retorna \texttt{("VITORIA", 60, 30, 100)}.
+\end{itemize}
+
+\input{body/Prova_01/answers/Q11}
+
+\end{enumerate}
+
+\input{body/Prova_01/anexo}
+
+

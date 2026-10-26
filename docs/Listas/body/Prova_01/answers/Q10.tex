@@ -1,0 +1,40 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import List
+
+def calcular_media_movel(
+    precos_diarios: List[float], 
+    tamanho_janela: int
+) -> List[float]:
+    if len(precos_diarios) < tamanho_janela or tamanho_janela <= 0:
+        return []
+        
+    medias = []
+    n_janelas = len(precos_diarios) - tamanho_janela + 1
+    
+    for i in range(n_janelas):
+        janela = precos_diarios[i : i + tamanho_janela]
+        media_janela = round(sum(janela) / tamanho_janela, 2)
+        medias.append(media_janela)
+        
+    return medias
+\end{minted}
+
+\textbf{Explicação:}
+A função valida primeiramente se o número de preços é suficiente para formar ao menos uma janela de tamanho $K$. Caso positivo, calcula a quantidade de intervalos deslizantes possíveis ($N - K + 1$) e percorre os dados com fatiamento de listas (\texttt{precos\_diarios[i : i + tamanho\_janela]}). A média de cada janela é calculada com \texttt{sum()} e \texttt{round()}, acumulando os resultados na lista final.
+
+\vspace{0.3cm}
+\textbf{Critérios de Correção e Penalidades Sugeridas (Erros Comuns):}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item \textbf{Não validar tamanho mínimo ou janela nula/negativa} (\textbf{--4,0 pontos}): Não testar se \code{len(precos\_diarios) < tamanho\_janela} ou se \code{tamanho\_janela <= 0}, gerando exceção ou divisão por zero.
+    \item \textbf{Erro no fatiamento da janela} (\textbf{--6,0 pontos}): Usar \code{precos\_diarios[i : tamanho\_janela]} em vez de \code{[i : i + tamanho\_janela]}, mantendo o ponto final fixo em vez de deslizar a janela.
+    \item \textbf{Erro na quantidade de iterações (\emph{off-by-one})} (\textbf{--5,0 pontos}): Iterar apenas até \code{len(precos) - tamanho\_janela}, deixando de calcular a última média móvel.
+    \item \textbf{Cálculo incorreto da média} (\textbf{--5,0 pontos}): Dividir pelo tamanho total da lista em vez de \code{tamanho\_janela}, ou somar elementos incorretos.
+    \item \textbf{Arredondamento e formato de retorno} (\textbf{--5,0 pontos}): Omitir \code{round(..., 2)} nas médias calculadas ou retornar apenas a última média em vez da lista completa.
+\end{itemize}
+\else
+\linhasResposta{17}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q10]{30}
+\clearpage
+\fi

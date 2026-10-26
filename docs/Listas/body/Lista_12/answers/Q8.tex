@@ -1,0 +1,28 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+import pandas as pd
+
+def relatorio_consumo_patrulha(df_missoes: pd.DataFrame) -> pd.DataFrame:
+    """
+    Agrupa missões por classe e zona de patrulha, calculando métricas e consumo por hora.
+    """
+    # Agrupamento multi-chave com agregações nomeadas via .agg()
+    df_resumo = df_missoes.groupby(["classe_navio", "zona_patrulha"]).agg(
+        horas_totais=("horas_navegadas", "sum"),
+        horas_medias=("horas_navegadas", "mean"),
+        consumo_total=("consumo_toneladas", "sum"),
+        consumo_maximo=("consumo_toneladas", "max")
+    ).reset_index()
+    
+    # Criação de coluna calculada de eficiência energética
+    df_resumo["taxa_consumo_hora"] = df_resumo["consumo_total"] / df_resumo["horas_totais"]
+    
+    # Arredondamento numérico uniforme para 2 casas decimais
+    df_resumo = df_resumo.round(2)
+    
+    return df_resumo
+\end{minted}
+
+\textbf{Explicação:}
+A técnica de agregações nomeadas (\emph{Named Aggregation}) no método \texttt{.agg(novo\_nome=('coluna', 'operacao'))} gera um DataFrame plano e autoexplicativo, eliminando índices hierárquicos complexos. A taxa derivada por hora sintetiza a métrica operacional necessária para o planejamento logístico da força naval.
+\fi

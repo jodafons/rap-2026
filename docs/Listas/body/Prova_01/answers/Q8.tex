@@ -1,0 +1,41 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+def calcular_desconto_compra(valor_bruto: float) -> Tuple[float, float]:
+    if valor_bruto <= 0:
+        return (0.0, 0.0)
+    
+    if valor_bruto <= 100.0:
+        taxa = 0.0
+    elif valor_bruto <= 300.0:
+        taxa = 0.05
+    elif valor_bruto <= 500.0:
+        taxa = 0.10
+    else:
+        taxa = 0.15
+        
+    desconto = round(valor_bruto * taxa, 2)
+    valor_final = round(valor_bruto - desconto, 2)
+    
+    return (desconto, valor_final)
+\end{minted}
+
+\textbf{Explicação:}
+A função valida inicialmente se a entrada é válida (estritamente positiva). Em seguida, aplica uma estrutura condicional (\texttt{if / elif / else}) para determinar a taxa de desconto conforme as faixas de valor especificadas, calculando o desconto e o valor líquido a pagar com arredondamento para duas casas decimais.
+
+\vspace{0.3cm}
+\textbf{Critérios de Correção e Penalidades Sugeridas (Erros Comuns):}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+    \item \textbf{Validação de entrada nula ou negativa} (\textbf{--4,0 pontos}): Não tratar valores $\le 0$ retornando \code{(0.0, 0.0)}.
+    \item \textbf{Lógica e faixas de desconto} (\textbf{--6,0 pontos}): Erro nas comparações de limites (ex.: usar operador estrito \code{<} em vez de \code{<=}) ou faixas invertidas.
+    \item \textbf{Cálculo aritmético} (\textbf{--4,0 pontos}): Erro na multiplicação da taxa ou esquecer de subtrair o desconto do valor bruto.
+    \item \textbf{Arredondamento} (\textbf{--3,0 pontos}): Não utilizar \code{round(..., 2)} no desconto ou no valor a pagar.
+    \item \textbf{Formato de retorno} (\textbf{--3,0 pontos}): Retornar tipo incorreto (ex.: lista em vez de tupla) ou usar \code{print} em vez de \code{return}.
+\end{itemize}
+\else
+\linhasResposta{18}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q8]{30}
+\clearpage
+\fi

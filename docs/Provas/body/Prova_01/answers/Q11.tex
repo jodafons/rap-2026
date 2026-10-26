@@ -1,0 +1,49 @@
+\ifmostrarGabarito
+\clearpage
+\begin{minted}[fontsize=\footnotesize]{python}
+from typing import List, Dict, Any, Tuple
+
+def simular_expedicao_calabouco(
+    salas: List[Dict[str, Any]]
+) -> Tuple[str, int, int, int]:
+    hp, mana, pocoes, ouro = 100, 50, 3, 0
+    HP_MAX, MANA_MAX = 100, 50
+    for sala in salas:
+        tipo = sala.get("tipo")
+        if tipo == "MONSTRO":
+            dano_base = sala.get("dano_base", 0)
+            if mana >= 15:
+                mana -= 15
+            else:
+                hp -= dano_base
+                if 0 < hp <= 30 and pocoes > 0:
+                    hp = min(HP_MAX, hp + 40)
+                    pocoes -= 1
+            if hp <= 0:
+                return ("DERROTA", 0, mana, ouro)
+        elif tipo == "DESCANSO":
+            mana = min(MANA_MAX, mana + sala.get("recupera_mp", 0))
+        elif tipo == "TESOURO":
+            ouro += sala.get("ouro", 0)
+    return ("VITORIA", hp, mana, ouro)
+\end{minted}
+
+\textbf{Explicação:}
+A simulação mantém o estado dos recursos da heroína (\texttt{hp}, \texttt{mana}, \texttt{pocoes}, \texttt{ouro}) ao longo da travessia pelas Montanhas de Mordor, processando cada câmara conforme seu tipo: em \texttt{"MONSTRO"} consome $15$ de mana ou aplica dano com cura automática por poções (ou derrota se $HP \le 0$); em \texttt{"DESCANSO"} recupera mana até o teto $50$; e em \texttt{"TESOURO"} acumula o ouro. Ao superar todas as câmaras viva, retorna \texttt{("VITORIA", hp, mana, ouro)}.
+
+\vspace{0.2cm}
+\textbf{Critérios de Correção e Penalidades Sugeridas (Erros Comuns):}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+    \item \textbf{Gestão de combate com feitiço e mana} (\textbf{--5,0 pontos extras}): Não verificar se $\text{mana} \ge 15$, deduzir vida indevidamente mesmo com mana disponível, ou não abater os $15$ pontos de mana consumidos.
+    \item \textbf{Consumo de poção de cura e limites de HP} (\textbf{--5,0 pontos extras}): Ativar poção fora da faixa crítica ($0 < HP \le 30$), curar após a morte ($HP \le 0$), não decrementar a contagem de poções, ou ultrapassar o teto de $100$ HP.
+    \item \textbf{Encerramento imediato por derrota} (\textbf{--4,0 pontos extras}): Não interromper a função imediatamente ao zerar o HP, continuando a processar salas após a morte em vez de retornar logo a tupla de \code{"DERROTA"}.
+    \item \textbf{Teto de recuperação de mana no descanso} (\textbf{--3,0 pontos extras}): Não limitar a mana recuperada ao teto de $50$ (\code{min(50, mana + recupera\_mp)}).
+    \item \textbf{Estrutura e elementos da tupla de retorno} (\textbf{--3,0 pontos extras}): Retornar strings divergentes de \code{"VITORIA"} / \code{"DERROTA"}, ou trocar a ordem dos parâmetros \code{(status, hp, mana, ouro)}.
+\end{itemize}
+\else
+\clearpage
+\linhasResposta[ESPAÇO PARA RESOLUÇÃO / CÓDIGO PYTHON -- QUESTAO Q11 (BONUS)]{30}
+\clearpage
+\linhasResposta[FOLHA DE CONTINUACAO / RASCUNHO -- QUESTAO Q11 (BONUS)]{30}
+\clearpage
+\fi

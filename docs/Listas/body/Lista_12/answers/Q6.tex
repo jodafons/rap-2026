@@ -1,0 +1,33 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+import pandas as pd
+from typing import List, Dict, Any
+
+def filtrar_prontidao_navios(
+    dados_frota: List[Dict[str, Any]],
+    autonomia_min: float,
+    missoes_alvo: List[str]
+) -> pd.DataFrame:
+    """
+    Cria DataFrame de frota, aplica filtros com .loc[] e ordena por prontidão de autonomia.
+    """
+    df = pd.DataFrame(dados_frota)
+    
+    # Máscara booleana composta com operador bitwise & e método .isin()
+    filtro = (df["autonomia_dias"] >= autonomia_min) & (df["missao_designada"].isin(missoes_alvo))
+    
+    # Seleção explícita de linhas e colunas com .loc
+    colunas_interesse = ["nome", "classe", "autonomia_dias"]
+    df_selecionado = df.loc[filtro, colunas_interesse].copy()
+    
+    # Ordenação decrescente e redefinição de índice
+    df_final = df_selecionado.sort_values(
+        by="autonomia_dias", ascending=False
+    ).reset_index(drop=True)
+    
+    return df_final
+\end{minted}
+
+\textbf{Explicação:}
+A função constrói o DataFrame tabular a partir de registros brutos e aplica filtragem indexada com \texttt{.loc[linhas, colunas]}. Os filtros lógicos combinam expressões com parênteses obrigatórios e o operador \texttt{\&}. A ordenação com \texttt{.sort\_values()} e \texttt{.reset\_index(drop=True)} produz uma saída limpa e padronizada.
+\fi

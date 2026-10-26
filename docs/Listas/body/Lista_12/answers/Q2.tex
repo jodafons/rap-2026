@@ -1,0 +1,60 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Tuple
+
+class FalhaPropulsaoError(Exception):
+    """Classe base para falhas do sistema de propulsão."""
+    pass
+
+class CombustivelInsuficienteError(FalhaPropulsaoError):
+    """Disparada quando o combustível não atende ao consumo previsto."""
+    pass
+
+class SobreaquecimentoTurbinaError(FalhaPropulsaoError):
+    """Disparada quando a temperatura da turbina supera o teto de segurança."""
+    pass
+
+
+def autorizar_manobra_tatica(
+    combustivel_atual: float,
+    consumo_previsto: float,
+    temp_turbina: float,
+    temp_maxima: float
+) -> bool:
+    """
+    Avalia a segurança de manobra e dispara exceções personalizadas em caso de risco.
+    """
+    if consumo_previsto > combustivel_atual:
+        raise CombustivelInsuficienteError(
+            f"Combustivel insuficiente: requerido {consumo_previsto:.1f}L, disponivel {combustivel_atual:.1f}L."
+        )
+    if temp_turbina > temp_maxima:
+        raise SobreaquecimentoTurbinaError(
+            f"Temperatura critica: {temp_turbina:.1f}C excede teto seguro de {temp_maxima:.1f}C."
+        )
+    return True
+
+
+def executar_verificacao_manobra(
+    combustivel_atual: float,
+    consumo_previsto: float,
+    temp_turbina: float,
+    temp_maxima: float
+) -> Tuple[bool, str]:
+    """
+    Invoca a verificação e captura as exceções personalizadas com mensagens adequadas.
+    """
+    try:
+        autorizar_manobra_tatica(combustivel_atual, consumo_previsto, temp_turbina, temp_maxima)
+        return (True, "MANOBRA_AUTORIZADA")
+    except CombustivelInsuficienteError as err:
+        return (False, f"FALHA_COMBUSTIVEL: {err}")
+    except SobreaquecimentoTurbinaError as err:
+        return (False, f"FALHA_TEMPERATURA: {err}")
+    except FalhaPropulsaoError as err:
+        return (False, f"FALHA_PROPULSAO_GENERICA: {err}")
+\end{minted}
+
+\textbf{Explicação:}
+A solução modela a hierarquia orientada a objetos de exceções customizadas herdando de \texttt{Exception}. A função \texttt{autorizar\_manobra\_tatica} utiliza \texttt{raise} para interromper o fluxo quando parâmetros críticos são violados. A função de supervisão \texttt{executar\_verificacao\_manobra} captura especificamente cada exceção filha antes da classe base, permitindo tratamento diferenciado e seguro.
+\fi

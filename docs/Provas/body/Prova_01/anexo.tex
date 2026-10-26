@@ -1,0 +1,39 @@
+\clearpage
+
+\begin{center}
+    {\Large \textbf{Anexo: Tabela de Referência — Funções e Métodos Python}}
+\end{center}
+
+\vspace{0.15cm}
+
+%\noindent A tabela a seguir sintetiza a sintaxe e a funcionalidade dos métodos e funções nativas (\emph{built-ins}) da linguagem Python. Os exemplos apresentados são intencionalmente genéricos e descontextualizados, servindo como guia rápido de consulta de sintaxe.
+
+\vspace{0.3cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.22}
+\small
+\begin{tabularx}{\textwidth}{@{} >{\ttfamily}l l >{\RaggedRight}X >{\ttfamily}l @{}}
+\toprule
+\textbf{\textsf{Função / Método}} & \textbf{\textsf{Tipo}} & \textbf{\textsf{Descrição / Funcionalidade}} & \textbf{\textsf{Exemplo de Uso}} \\
+\midrule
+.append(item) & Método (\texttt{list}) & Insere \texttt{item} ao final da lista original (\emph{in-place}). & itens.append("novo") \\
+.copy() & Método (\texttt{list}) & Cria cópia rasa (\emph{shallow copy}) independente da lista. & nova = dados.copy() \\
+.split([sep]) & Método (\texttt{str}) & Divide a string por \texttt{sep} e retorna lista de substrings. & partes = s.split(",") \\
+.strip() & Método (\texttt{str}) & Remove espaços em branco do início e final da string. & limpo = s.strip() \\
+.upper() & Método (\texttt{str}) & Converte caracteres alfabéticos da string para maiúsculas. & maiusc = s.upper() \\
+.join(seq) & Método (\texttt{str}) & Concatena elementos de \texttt{seq} usando o delimitador base. & " - ".join(palavras) \\
+.get(k[, d]) & Método (\texttt{dict}) & Retorna o valor da chave \texttt{k}, ou padrão \texttt{d} se inexistente. & val = mapa.get("k", 0) \\
+\midrule
+len(seq) & \emph{Built-in} & Retorna a quantidade de elementos de uma coleção. & tam = len(dados) \\
+range(i, f[, p]) & \emph{Built-in} & Gera inteiros de \texttt{i} até antes de \texttt{f} com passo \texttt{p}. & range(1, 10, 2) \\
+round(num[, n]) & \emph{Built-in} & Arredonda número decimal para $n$ casas decimais (padrão $0$). & res = round(total, 2) \\
+sum(iteravel) & \emph{Built-in} & Retorna o somatório dos elementos numéricos do iterável. & soma = sum(valores) \\
+int(x) & \emph{Built-in} & Converte número ou string para inteiro truncando decimais. & num = int(4.9) \\
+min(a, b, ...) & \emph{Built-in} & Retorna o menor valor entre os argumentos fornecidos. & menor = min(limite, x) \\
+max(a, b, ...) & \emph{Built-in} & Retorna o maior valor entre os argumentos fornecidos. & maior = max(base, y) \\
+super() & \emph{Built-in} & Acessa métodos e construtores da superclasse na herança. & super().\_\_init\_\_(arg) \\
+print(*args) & \emph{Built-in} & Imprime argumentos formatados no console padrão de saída. & print("Total:", val) \\
+\bottomrule
+\end{tabularx}
+\end{center}

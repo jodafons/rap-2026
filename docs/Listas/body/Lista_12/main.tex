@@ -1,0 +1,315 @@
+\vspace{1cm}
+
+\noindent \textbf{\Large Lista de Exercícios 12 — Tópicos Avançados (Exceções, NumPy, Pandas e Matplotlib)}
+
+\vspace{0.3cm}
+\noindent \textbf{Orientações e Instruções Gerais:}
+\begin{itemize}[leftmargin=*]
+    \item Esta lista consolida os tópicos avançados ministrados entre as \textbf{Aulas 12 e 15} da disciplina, totalizando \textbf{100,0 pontos} (10 questões de 10,0 pontos cada).
+    \item \textbf{Formato e Entrega:} As resoluções devem ser desenvolvidas em Python e entregues em formato Jupyter Notebook (\texttt{.ipynb}) ou Google Colab na plataforma Google Classroom.
+    \item Para questões de implementação, respeite rigorosamente os protótipos fornecidos, nomes de funções, parâmetros e \textbf{Type Hints}.
+    \item Priorize o uso dos paradigmas oficiais das bibliotecas: tratamento especializado de exceções, operações vetorizadas no NumPy (evitando laços desnecessários), manipulação tabular no Pandas com métodos nativos e construção gráfica orientada a objetos no Matplotlib (\texttt{fig, ax = plt.subplots()}).
+\end{itemize}
+
+\vspace{0.5cm}
+
+\begin{enumerate}[label=\textbf{Q\arabic*.}]
+
+% Q1 - Aula 12: try, except, else, finally
+\item \textbf{[Discursiva - 10,0 pontos]} Em um sistema de Guerra Acústica, boias hidrofônicas transmitem pacotes de telemetria contendo dados numéricos brutos em formatos textuais heterogêneos. Algumas transmissões apresentam falhas de rede que geram chaves ausentes, caracteres inválidos ou divisões proibidas por zero.
+
+Escreva a função \code{processar\_pacote\_sonar(pacote: Dict[str, Any], log\_execucao: List[str]) -> Dict[str, float]} que processe um pacote de telemetria aplicando tratamento robusto de exceções:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1.} No bloco \code{try}, converta \code{pacote["frequencia\_hz"]} e \code{pacote["amplitude\_db"]} para \code{float}. Caso a frequência seja menor ou igual a zero ($\le 0$), dispare intencionalmente um \code{ValueError("Frequência deve ser estritamente positiva.")}.
+    \item \textbf{2.} Calcule a razão de sinal: $\text{razao} = \frac{\text{amplitude\_db}}{\text{frequencia\_hz}}$. Retorne um dicionário contendo \code{"frequencia\_hz"}, \code{"amplitude\_db"} e \code{"razao\_sinal"} (arredondada para 4 casas decimais).
+    \item \textbf{3.} Capture de forma especializada:
+    \begin{itemize}
+        \item \code{KeyError}: anexe a string \code{"ERRO\_CHAVE\_AUSENTE: <msg>"} na lista \code{log\_execucao}.
+        \item \code{(ValueError, TypeError)}: anexe a string \code{"ERRO\_VALOR\_INVALIDO: <msg>"} na lista \code{log\_execucao}.
+        \item \code{ZeroDivisionError}: anexe a string \code{"ERRO\_DIVISAO\_ZERO: <msg>"} na lista \code{log\_execucao}.
+    \end{itemize}
+    Em qualquer caso de exceção capturada, a função deve retornar o dicionário zerado: \code{\{"frequencia\_hz": 0.0, "amplitude\_db": 0.0, "razao\_sinal": 0.0\}}.
+    \item \textbf{4.} No bloco \code{else}, anexe a string \code{"SUCESSO\_PROCESSAMENTO"} na lista \code{log\_execucao}.
+    \item \textbf{5.} No bloco \code{finally}, anexe obrigatoriamente a string \code{"PACOTE\_FINALIZADO"} na lista \code{log\_execucao}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{from typing import Dict, Any, List}\\\code{def processar\_pacote\_sonar(}\\\code{    pacote: Dict[str, Any],}\\\code{    log\_execucao: List[str]}\\\code{) -> Dict[str, float]:}
+    \item \textbf{Exemplo de Entrada Válida:}\newline
+    \code{pacote = \{"frequencia\_hz": "250.0", "amplitude\_db": 50.0\}}\newline
+    \textbf{Saída:}\newline
+    \code{\{"frequencia\_hz": 250.0, "amplitude\_db": 50.0, "razao\_sinal": 0.2\}}\newline
+    \code{log\_execucao = ["SUCESSO\_PROCESSAMENTO", "PACOTE\_FINALIZADO"]}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q1}
+
+\vspace{0.5cm}
+
+% Q2 - Aula 12: Exceções Personalizadas e raise
+\item \textbf{[Discursiva - 10,0 pontos]} O subsistema de propulsão de um submarino de ataque exige validações de segurança em tempo real antes que qualquer manobra tática evasiva seja iniciada. Crie uma estrutura orientada a objetos de exceções personalizadas e as respectivas funções de validação:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1. Hierarquia de Exceções:}\newline
+    Crie a classe base \code{FalhaPropulsaoError(Exception)} e duas subclasses derivadas: \code{CombustivelInsuficienteError(FalhaPropulsaoError)} e \code{SobreaquecimentoTurbinaError(FalhaPropulsaoError)}.
+    \item \textbf{2. Função de Validação com \code{raise}:}\newline
+    Implemente a função \code{autorizar\_manobra\_tatica(combustivel\_atual: float, consumo\_previsto: float, temp\_turbina: float, temp\_maxima: float) -> bool}:
+    \begin{itemize}
+        \item Se $\text{consumo\_previsto} > \text{combustivel\_atual}$, dispare \code{CombustivelInsuficienteError} com mensagem detalhada.
+        \item Se $\text{temp\_turbina} > \text{temp\_maxima}$, dispare \code{SobreaquecimentoTurbinaError} com mensagem detalhada.
+        \item Se nenhuma condição for violada, retorne \code{True}.
+    \end{itemize}
+    \item \textbf{3. Função de Supervisão Operacional:}\newline
+    Implemente a função \code{executar\_verificacao\_manobra(...)} que chame a função anterior dentro de um bloco \code{try/except}. Se a manobra for válida, retorne a tupla \code{(True, "MANOBRA\_AUTORIZADA")}. Caso contrário, capture as exceções especificamente e retorne \code{(False, "<MOTIVO\_DO\_ERRO>")}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipos:}\newline
+    \code{class FalhaPropulsaoError(Exception): pass}\newline
+    \code{class CombustivelInsuficienteError(FalhaPropulsaoError): pass}\newline
+    \code{class SobreaquecimentoTurbinaError(FalhaPropulsaoError): pass}\newline
+    \code{from typing import Tuple}\\\code{def autorizar\_manobra\_tatica(}\\\code{    combustivel\_atual: float, consumo\_previsto: float,}\\\code{    temp\_turbina: float, temp\_maxima: float}\\\code{) -> bool:}\newline
+    \code{def executar\_verificacao\_manobra(}\\\code{    combustivel\_atual: float, consumo\_previsto: float,}\\\code{    temp\_turbina: float, temp\_maxima: float}\\\code{) -> Tuple[bool, str]:}
+    \item \textbf{Exemplo de Falha de Temperatura:}\newline
+    \code{executar\_verificacao\_manobra(1000.0, 300.0, 920.0, 850.0)}\newline
+    $\rightarrow$ \code{(False, "FALHA\_TEMPERATURA: Temperatura critica: 920.0C excede teto seguro de 850.0C.")}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q2}
+
+\vspace{0.5cm}
+
+% Q3 - Aula 13: NumPy Vetorização, Máscaras e np.where
+\item \textbf{[Discursiva - 10,0 pontos]} No pré-processamento digital de sinais capturados por uma cortina de hidrofones, é fundamental atenuar o ruído ambiente de fundo e destacar contatos de alta energia.
+
+Utilizando exclusivamente recursos vetorizados do \textbf{NumPy} (é terminantemente proibido o uso de laços \code{for} ou \code{while}), escreva a função \code{filtrar\_sinal\_hidrofone(leituras\_brutas: np.ndarray, limiar\_ruido: float, fator\_ganho: float) -> Tuple[np.ndarray, int]}:
+\begin{itemize}[leftmargin=*]
+    \item Construa uma máscara booleana vetorizada que identifique todas as amostras cujo valor absoluto seja maior ou igual ao limiar de ruído ($|\text{leitura}| \ge \text{limiar\_ruido}$).
+    \item Com a função \code{np.where()}, gere um novo array no qual as amostras que superam o limiar sejam multiplicadas pelo \code{fator\_ganho}, e as amostras inferiores ao limiar sejam integralmente zeradas ($0.0$).
+    \item Contabilize de forma vetorizada o total de amostras válidas que superaram o limiar e retorne a tupla \code{(sinal\_filtrado, total\_validos)}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{import numpy as np}\\\code{from typing import Tuple}\\\code{def filtrar\_sinal\_hidrofone(}\\\code{    leituras\_brutas: np.ndarray,}\\\code{    limiar\_ruido: float,}\\\code{    fator\_ganho: float}\\\code{) -> Tuple[np.ndarray, int]:}
+    \item \textbf{Exemplo de Entrada:}\newline
+    \code{leituras = np.array([0.15, -0.85, 0.05, 1.20, -0.10, 0.90])}\newline
+    \code{filtrar\_sinal\_hidrofone(leituras, limiar\_ruido=0.50, fator\_ganho=2.0)}
+    \item \textbf{Saída Esperada:}\newline
+    \code{(array([0.0, -1.7, 0.0, 2.4, 0.0, 1.8]), 3)}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q3}
+
+\vspace{0.5cm}
+
+% Q4 - Aula 13: Fatiamento 2D, Agregações por Eixo (axis) e argmax
+\item \textbf{[Discursiva - 10,0 pontos]} Uma varredura de sonar panorâmico produz uma grade matricial bidimensional de intensidades energéticas de dimensão $L \times C$. Para apoiar a decisão tática, o operador precisa extrair a região central da matriz, calcular métricas estatísticas por eixos e identificar o ponto exato de máxima intensidade.
+
+Escreva a função \code{analisar\_grade\_sonar(grade: np.ndarray, tam\_subgrade: int) -> Dict[str, Any]} que execute as seguintes operações:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1. Fatiamento 2D Central:}\newline
+    A partir do centro geométrico da matriz $(\text{centro\_l}, \text{centro\_c}) = (L // 2, \, C // 2)$, extraia a submatriz quadrada central de dimensões $\text{tam\_subgrade} \times \text{tam\_subgrade}$ utilizando fatiamento de arrays do NumPy.
+    \item \textbf{2. Agregações Estatísticas por Eixo:}\newline
+    Calcule a média aritmética ao longo das colunas (\code{axis=0}) e o desvio padrão ao longo das linhas (\code{axis=1}) da grade completa, arredondando os valores para duas casas decimais com \code{np.round(..., 2)}.
+    \item \textbf{3. Ponto de Máxima Intensidade:}\newline
+    Utilizando \code{np.argmax()} e \code{np.unravel\_index()}, localize a coordenada exata $(linha, coluna)$ do maior valor presente na matriz.
+    \item \textbf{4. Retorno:}\newline
+    Retorne um dicionário contendo as chaves \code{"subgrade\_central"}, \code{"media\_colunas"}, \code{"desvio\_linhas"}, \code{"coordenada\_pico"} (tupla de inteiros) e \code{"valor\_pico"} (float).
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{import numpy as np}\\\code{from typing import Dict, Any}\\\code{def analisar\_grade\_sonar(}\\\code{    grade: np.ndarray,}\\\code{    tam\_subgrade: int}\\\code{) -> Dict[str, Any]:}
+    \item \textbf{Exemplo de Entrada:}\newline
+    \code{grade = np.array([[10, 20, 15, 30], [25, 80, 75, 40], [15, 70, 95, 35], [20, 30, 40, 50]])}\newline
+    \code{analisar\_grade\_sonar(grade, tam\_subgrade=2)}
+    \item \textbf{Saída Esperada:}\newline
+    \code{"subgrade\_central": array([[80, 75], [70, 95]])}\newline
+    \code{"coordenada\_pico": (2, 2)}, \code{"valor\_pico": 95.0}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q4}
+
+\vspace{0.5cm}
+
+% Q5 - Aula 13: Broadcasting e Geometria Vetorial
+\item \textbf{[Discursiva - 10,0 pontos]} Em um teatro de operações naval, uma flotilha de $S$ boias sonar com posições bidimensionais $(x, y)$ monitora a aproximação de $A$ contatos acústicos. O cálculo da distância euclidiana entre cada sensor e cada contato é uma etapa crítica de rastreamento.
+
+Utilizando o mecanismo de \textbf{Broadcasting} do NumPy (sem utilizar nenhum laço iterativo), escreva a função \code{calcular\_matriz\_distancias(sensores: np.ndarray, alvos: np.ndarray) -> np.ndarray}:
+\begin{itemize}[leftmargin=*]
+    \item A matriz \code{sensores} possui dimensão $(S, 2)$ e a matriz \code{alvos} possui dimensão $(A, 2)$.
+    \item Ajuste os eixos dos arrays com \code{np.newaxis} para permitir que o NumPy realize o *broadcasting* tridimensional entre as posições cartesianas.
+    \item Calcule a matriz de distâncias euclidianas $D$ de dimensão $(S, A)$, onde a célula $D[i, j] = \sqrt{(x_{s_i} - x_{a_j})^2 + (y_{s_i} - y_{a_j})^2}$.
+    \item Retorne a matriz resultante com valores arredondados para duas casas decimais com \code{np.round(..., 2)}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{import numpy as np}\\\code{def calcular\_matriz\_distancias(}\\\code{    sensores: np.ndarray,}\\\code{    alvos: np.ndarray}\\\code{) -> np.ndarray:}
+    \item \textbf{Exemplo de Entrada:}\newline
+    \code{sensores = np.array([[0.0, 0.0], [0.0, 10.0]])}\newline
+    \code{alvos = np.array([[3.0, 4.0], [0.0, 6.0], [8.0, 0.0]])}\newline
+    \code{calcular\_matriz\_distancias(sensores, alvos)}
+    \item \textbf{Saída Esperada (dimensão 2 x 3):}\newline
+    \code{array([[ 5.  ,  6.  ,  8.  ],}\newline
+    \code{       [ 6.71,  4.  , 12.81]])}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q5}
+
+\vspace{0.5cm}
+
+% Q6 - Aula 14: Pandas Criação, .loc[] e Filtragem Condicional
+\item \textbf{[Discursiva - 10,0 pontos]} O comando de operações navais necessita de uma rotina automatizada para inspecionar e selecionar navios de superfície prontos para missões de alta permanência no mar.
+
+Escreva a função \code{filtrar\_prontidao\_navios(dados\_frota: List[Dict[str, Any]], autonomia\_min: float, missoes\_alvo: List[str]) -> pd.DataFrame} utilizando a biblioteca \textbf{Pandas}:
+\begin{itemize}[leftmargin=*]
+    \item Crie um \code{pd.DataFrame} a partir da lista de dicionários \code{dados\_frota}. Cada registro contém as chaves: \code{"nome"}, \code{"classe"}, \code{"autonomia\_dias"}, \code{"missao\_designada"} e \code{"efetivo\_tripulacao"}.
+    \item Construa uma máscara booleana composta aplicando os operadores lógicos adequados:
+    \begin{itemize}
+        \item A autonomia do navio (\code{"autonomia\_dias"}) deve ser maior ou igual a \code{autonomia\_min}.
+        \item A missão designada do navio (\code{"missao\_designada"}) deve pertencer à lista de missões autorizadas \code{missoes\_alvo} (utilize o método \code{.isin()}).
+    \end{itemize}
+    \item Utilizando o indexador \code{.loc[]}, filtre as linhas correspondentes e selecione apenas o subconjunto de colunas: \code{["nome", "classe", "autonomia\_dias"]}.
+    \item Ordene o DataFrame resultante de forma decrescente pela coluna \code{"autonomia\_dias"} com \code{.sort\_values()} e redefina os índices para uma sequência inteira iniciando em zero com \code{.reset\_index(drop=True)}.
+    \item Retorne o DataFrame formatado.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{import pandas as pd}\\\code{from typing import List, Dict, Any}\\\code{def filtrar\_prontidao\_navios(}\\\code{    dados\_frota: List[Dict[str, Any]],}\\\code{    autonomia\_min: float,}\\\code{    missoes\_alvo: List[str]}\\\code{) -> pd.DataFrame:}
+    \item \textbf{Exemplo de Uso:}\newline
+    \code{frota = [}\newline
+    \code{    \{"nome": "F-Constituicao", "classe": "Fragata", "autonomia\_dias": 30, "missao\_designada": "PATRULHA"\},}\newline
+    \code{    \{"nome": "C-Barroso", "classe": "Corveta", "autonomia\_dias": 15, "missao\_designada": "ESCOLTA"\},}\newline
+    \code{    \{"nome": "F-Defensora", "classe": "Fragata", "autonomia\_dias": 45, "missao\_designada": "PATRULHA"\},}\newline
+    \code{    \{"nome": "NPa-Macaé", "classe": "Patrulha", "autonomia\_dias": 10, "missao\_designada": "TREINAMENTO"\}}\newline
+    \code{]}\newline
+    \code{filtrar\_prontidao\_navios(frota, autonomia\_min=20.0, missoes\_alvo=["PATRULHA", "ESCOLTA"])}
+    \item \textbf{Saída Esperada (DataFrame):}\newline
+    \code{            nome    classe  autonomia\_dias}\newline
+    \code{0    F-Defensora   Fragata              45}\newline
+    \code{1  F-Constituicao  Fragata              30}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q6}
+
+\vspace{0.5cm}
+
+% Q7 - Aula 14: Pandas Limpeza de Dados e Tratamento de NaN
+\item \textbf{[Discursiva - 10,0 pontos]} Sensores de monitoramento da praça de máquinas de navios de guerra transmitem dados que frequentemente sofrem degradação por ruído eletromagnético, gerando valores nulos (\code{NaN}) em bancos de dados operacionais.
+
+Escreva a função \code{sanear\_telemetria\_motores(df\_bruto: pd.DataFrame) -> Tuple[pd.DataFrame, Dict[str, Any]]} que realize o saneamento e auditoria do DataFrame recebido:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1. Auditoria Preliminar:}\newline
+    Contabilize o quantitativo de valores nulos originais por coluna através de \code{df.isna().sum().to\_dict()}.
+    \item \textbf{2. Descarte de Registros sem Identificação:}\newline
+    Remova todas as linhas que possuam valor ausente na coluna de identificação \code{"id\_equipamento"} utilizando \code{.dropna(subset=["id\_equipamento"])}.
+    \item \textbf{3. Imputação Estatística por Mediana:}\newline
+    Calcule a mediana dos valores presentes na coluna \code{"temperatura\_oleo"} e preencha todos os \code{NaN} dessa coluna com esse valor arredondado para duas casas decimais com \code{.fillna()}.
+    \item \textbf{4. Imputação Temporal por Propagação:}\newline
+    Preencha os valores ausentes da coluna \code{"pressao\_bar"} utilizando o método de propagação para a frente (\code{.ffill()}).
+    \item \textbf{5. Imputação Categórica de Contingência:}\newline
+    Preencha quaisquer valores ausentes na coluna categórica \code{"status\_operacional"} com a constante \code{"DESCONHECIDO"}.
+    \item \textbf{6. Retorno Estruturado:}\newline
+    Retorne uma tupla contendo o DataFrame saneado (com índice redefinido via \code{.reset\_index(drop=True)}) e um dicionário de auditoria com as chaves \code{"nans\_originais"} (dicionário da etapa 1) e \code{"linhas\_descartadas"} (número inteiro de registros excluídos).
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{import pandas as pd}\\\code{from typing import Tuple, Dict, Any}\\\code{def sanear\_telemetria\_motores(}\\\code{    df\_bruto: pd.DataFrame}\\\code{) -> Tuple[pd.DataFrame, Dict[str, Any]]:}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q7}
+
+\vspace{0.5cm}
+
+% Q8 - Aula 14: Pandas GroupBy e Agregações Múltiplas com .agg()
+\item \textbf{[Discursiva - 10,0 pontos]} Para otimizar o planejamento logístico de combustíveis navais, o Comando de Operações Navais consolida os dados de patrulha das embarcações agrupando missões por classe do navio e zona de atuação.
+
+Escreva a função \code{relatorio\_consumo\_patrulha(df\_missoes: pd.DataFrame) -> pd.DataFrame} que receba um DataFrame com as colunas \code{"classe\_navio"}, \code{"zona\_patrulha"}, \code{"horas\_navegadas"} e \code{"consumo\_toneladas"}:
+\begin{itemize}[leftmargin=*]
+    \item Agrupe o conjunto de dados simultaneamente pelas colunas \code{["classe\_navio", "zona\_patrulha"]} utilizando \code{.groupby()}.
+    \item Aplique o método \code{.agg()} com agregações nomeadas (\emph{Named Aggregations}):
+    \begin{itemize}
+        \item \code{horas\_totais}: soma total de \code{"horas\_navegadas"}.
+        \item \code{horas\_medias}: média de \code{"horas\_navegadas"}.
+        \item \code{consumo\_total}: soma total de \code{"consumo\_toneladas"}.
+        \item \code{consumo\_maximo}: valor máximo de \code{"consumo\_toneladas"}.
+    \end{itemize}
+    \item Converta o agrupamento resultante em um DataFrame plano utilizando \code{.reset\_index()}.
+    \item Crie uma nova coluna calculada chamada \code{"taxa\_consumo\_hora"}, calculada pela divisão entre o \code{"consumo\_total"} e as \code{"horas\_totais"} de cada grupo.
+    \item Arredonde todas as colunas numéricas para duas casas decimais com \code{.round(2)} e retorne o DataFrame consolidado.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{import pandas as pd}\\\code{def relatorio\_consumo\_patrulha(}\\\code{    df\_missoes: pd.DataFrame}\\\code{) -> pd.DataFrame:}
+    \item \textbf{Exemplo de Saída (Colunas do DataFrame retornado):}\newline
+    \code{['classe\_navio', 'zona\_patrulha', 'horas\_totais', 'horas\_medias',}\newline
+    \code{ 'consumo\_total', 'consumo\_maximo', 'taxa\_consumo\_hora']}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q8}
+
+\vspace{0.5cm}
+
+% Q9 - Aula 15: Matplotlib Gráfico Orientado a Objetos (Linhas, Limiares e Áreas)
+\item \textbf{[Discursiva - 10,0 pontos]} O perfil térmico da coluna d'água afeta drasticamente a velocidade do som no mar e o comportamento dos feixes de sonar. Uma rotina de visualização deve traçar a curva temporal de temperatura e sinalizar zonas operacionais de risco.
+
+Utilizando a abordagem orientada a objetos do \textbf{Matplotlib} (\code{fig, ax = plt.subplots()}), implemente a função \code{plotar\_perfil\_termoclina(tempos: np.ndarray, temperatura: np.ndarray, temp\_critica: float, caminho\_saida: str) -> bool}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1. Curva Principal:}\newline
+    Plote a curva temporal de temperatura com linha contínua de cor azul-marinho (\code{"navy"}), espessura \code{2.0}, marcadores circulares discretos (\code{marker="o"}, \code{markersize=4}) e rótulo \code{"Temperatura Medida (C)"}.
+    \item \textbf{2. Linha de Limite Operacional:}\newline
+    Adicione uma linha de referência horizontal com \code{ax.axhline()} no nível \code{temp\_critica}, com estilo tracejado (\code{"--"}), cor carmesim (\code{"crimson"}) e rótulo na legenda indicando o valor numérico com uma casa decimal.
+    \item \textbf{3. Destaque Visual com Área Sombreada:}\newline
+    Utilizando \code{ax.fill\_between()}, preencha a região entre a curva de temperatura e a linha crítica exclusivamente nos instantes em que a temperatura medida exceder o limite crítico (\code{where=(temperatura > temp\_critica)}), com cor carmesim e transparência \code{alpha=0.25}.
+    \item \textbf{4. Elementos Visuais e Legenda:}\newline
+    Defina título principal em negrito, rótulo do eixo X (\code{"Tempo de Operacao (min)"}), rótulo do eixo Y (\code{"Temperatura da Agua (C)"}), grade pontilhada com transparência e exiba a legenda na posição superior direita (\code{"upper right"}).
+    \item \textbf{5. Exportação Vetorial e Encerramento:}\newline
+    Salve a figura em formato vetorial PDF no caminho especificado por \code{caminho\_saida} (ex: \code{"perfil\_termoclina.pdf"}) com resolução \code{dpi=150} e ajuste de bordas \code{bbox\_inches="tight"}. Encerre e libere os recursos gráficos da figura com \code{plt.close(fig)}, retornando \code{True}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{import numpy as np}\\\code{import matplotlib.pyplot as plt}\\\code{def plotar\_perfil\_termoclina(}\\\code{    tempos: np.ndarray,}\\\code{    temperatura: np.ndarray,}\\\code{    temp\_critica: float,}\\\code{    caminho\_saida: str = "perfil\_termoclina.pdf"}\\\code{) -> bool:}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q9}
+
+\vspace{0.5cm}
+
+% Q10 - Aula 15: Matplotlib Dashboards com plt.subplots(1, 2)
+\item \textbf{[Discursiva - 10,0 pontos]} No centro de controle de sonar de uma fragata, painéis analíticos sintéticos combinam distribuições estatísticas com contagens categóricas de contatos navais em múltiplos quadrantes táticos.
+
+Implemente a função \code{gerar\_dashboard\_acustico(valores\_snr: List[float], setores: List[str], contagens: List[int], caminho\_img: str) -> bool} utilizando o \textbf{Matplotlib}:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{1. Configuração da Grade de Subgráficos:}\newline
+    Crie uma figura com uma linha e duas colunas de eixos com proporção panorâmica: \code{fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(13, 5))}.
+    \item \textbf{2. Painel Esquerdo (\code{ax1} - Histograma de SNR):}\newline
+    \begin{itemize}
+        \item Plote a distribuição de frequência dos valores de sinal-ruído (\code{valores\_snr}) usando \code{ax1.hist()} com $12$ intervalos (\emph{bins}), cor verde-azulado (\code{"teal"}), bordas pretas (\code{edgecolor="black"}) e transparência \code{0.75}.
+        \item Calcule a média dos valores de SNR e adicione uma linha vertical tracejada vermelha com \code{ax1.axvline()} destacando o valor médio formatado com 1 casa decimal na legenda.
+        \item Configure título (\code{"Distribuicao da Relacao Sinal-Ruido (SNR)"}), rótulos dos eixos com unidades (\code{"SNR (dB)"} e \code{"Frequencia de Deteccoes"}), grade pontilhada e legenda.
+    \end{itemize}
+    \item \textbf{3. Painel Direito (\code{ax2} - Gráfico de Barras com Rótulos Automáticos):}\newline
+    \begin{itemize}
+        \item Plote um gráfico de barras verticais com \code{ax2.bar(setores, contagens)}, cor azul-aço (\code{"steelblue"}), bordas pretas e largura \code{0.6}.
+        \item Utilize o método moderno \code{ax2.bar\_label(barras, padding=3, fontweight="bold")} para exibir o valor numérico exato acima do topo de cada barra vertical.
+        \item Configure título (\code{"Contatos Acusticos por Setor Tatico"}), rótulos dos eixos e grade apenas horizontal (\code{grid(axis="y")}).
+    \end{itemize}
+    \item \textbf{4. Ajuste e Salvamento Vetorial:}\newline
+    Aplique \code{plt.tight\_layout()}, salve a figura em formato vetorial PDF no arquivo especificado por \code{caminho\_img} (ex: \code{"dashboard\_acustico.pdf"}) com \code{dpi=150} e \code{bbox\_inches="tight"}, encerre o objeto com \code{plt.close(fig)} e retorne \code{True}.
+\end{itemize}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Protótipo:}\newline
+    \code{from typing import List}\\\code{import matplotlib.pyplot as plt}\\\code{def gerar\_dashboard\_acustico(}\\\code{    valores\_snr: List[float],}\\\code{    setores: List[str],}\\\code{    contagens: List[int],}\\\code{    caminho\_img: str = "dashboard\_acustico.pdf"}\\\code{) -> bool:}
+\end{itemize}
+
+\input{body/Lista_12/answers/Q10}
+
+\end{enumerate}

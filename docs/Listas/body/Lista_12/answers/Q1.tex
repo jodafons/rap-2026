@@ -1,0 +1,45 @@
+\ifmostrarGabarito
+\begin{minted}{python}
+from typing import Dict, Any, List
+
+def processar_pacote_sonar(pacote: Dict[str, Any], log_execucao: List[str]) -> Dict[str, float]:
+    """
+    Processa e normaliza um pacote de telemetria acústica com tratamento robusto de erros.
+    """
+    resultado = {"frequencia_hz": 0.0, "amplitude_db": 0.0, "razao_sinal": 0.0}
+    try:
+        freq = float(pacote["frequencia_hz"])
+        amp = float(pacote["amplitude_db"])
+        
+        if freq <= 0:
+            raise ValueError("Frequência deve ser estritamente positiva.")
+            
+        razao = amp / freq
+        resultado = {
+            "frequencia_hz": round(freq, 2),
+            "amplitude_db": round(amp, 2),
+            "razao_sinal": round(razao, 4)
+        }
+    except KeyError as e:
+        log_execucao.append(f"ERRO_CHAVE_AUSENTE: {e}")
+    except (ValueError, TypeError) as e:
+        log_execucao.append(f"ERRO_VALOR_INVALIDO: {e}")
+    except ZeroDivisionError as e:
+        log_execucao.append(f"ERRO_DIVISAO_ZERO: {e}")
+    else:
+        log_execucao.append("SUCESSO_PROCESSAMENTO")
+    finally:
+        log_execucao.append("PACOTE_FINALIZADO")
+        
+    return resultado
+\end{minted}
+
+\textbf{Explicação:}
+A função implementa a estrutura completa de tratamento de exceções em Python:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{try}: Tenta converter as entradas numéricas, calcula a métrica derivada e valida se a frequência é positiva.
+    \item \texttt{except}: Captura de forma especializada erros de chave ausente (\texttt{KeyError}), problemas de tipo/valor (\texttt{ValueError}, \texttt{TypeError}) e divisão por zero (\texttt{ZeroDivisionError}), registrando a falha no log.
+    \item \texttt{else}: Executado exclusivamente quando nenhuma exceção é levantada, confirmando o sucesso da operação.
+    \item \texttt{finally}: Executado incondicionalmente em todos os cenários, assegurando que o encerramento do pacote fique auditado no log.
+\end{itemize}
+\fi
