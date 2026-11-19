@@ -19,6 +19,7 @@ kagglehub
 pyarrow
 fastparquet
 typing_extensions
-polars 
+polars
+torch
 
 
